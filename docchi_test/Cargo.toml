@@ -1,0 +1,17 @@
+[package]
+name = "docchi_test"
+version = "0.1.0"
+authors = ["juzy <dochy.ksti@gmail.com>"]
+edition = "2018"
+
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+docchi = { path="../../docchi"}
+docchi_diff = { path="../docchi_diff"}
+docchi_core = { path="../docchi_core"}
+docchi_archiver2 = { path="../docchi_archiver2" }
+rand = "0.8.3"
+rayon = "1.5.1"
+once_cell = "1.7.2"
+parking_lot = "0.11.1"

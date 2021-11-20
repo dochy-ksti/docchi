@@ -1,0 +1,104 @@
+{
+  // Table is another immutable collection of Dochy
+
+  // Table's items must have string-IDs
+
+  table1: [
+    "Table", [{
+      val: 0,
+    }],
+    {
+      ID: "item1", //<- ID is needed
+      val: 10,
+    },
+    {
+      ID: "item2",
+      val: 20,
+    },
+  ],
+  // In Dochy, all names start with capital letters are reserved by the system. "ID" is one of them.
+
+  // Users can use [a-z][A-Za-z0-9]* for identifiers.
+
+  // Other collections can refer table items by ID
+
+  a_list : [
+    "CList",[{
+      name : "", // Default Values are necessary. "" is good for default values of string.
+      Ref : {
+        table1 : "",
+      },
+
+    }],
+    {
+      name : "m",
+      Ref : {
+        table1 : "item1"
+      },
+    },
+    {
+      name : "n",
+      Ref : {
+        table1 : "item2"
+      }
+    }
+  ],
+
+  // Ref is also a keyword of Dochy.
+
+  // In default objects, Ref is like
+
+  // Ref :{
+  //   table-name : "" / ID
+  // }
+
+  // In items, Ref is
+
+  // Ref :{
+  //   table-name : ID
+  // }
+
+  // You can refer table items by specifying ID
+
+  // Tables can refer tables too.
+  table2 : [
+    "Table",[{
+      Ref : {
+        table1 : "item1", // You can specify ID in default objects too.
+      }
+    }],
+    {
+      ID : "a",
+      Ref : {
+        table1 : "item2"
+      }
+    },
+    {
+      ID : "b",
+      // When ID is specified in the default object, you can omit "Ref" in items
+    }
+  ],
+
+  // You can refer two tables at once
+
+  mlist : [
+    "MList",[{
+      Ref : {
+        table1 : "",
+        "table2?" : null, // Ref's variables can be nullable too.
+      }
+    }],
+    {
+      Ref : {
+        table1 : "item1", // When the default value is empty string, existing ID must be set.
+        table2 : "a", // Other than default objects, the suffix "?" is not necessary.
+      }
+    },
+    {
+      Ref : {
+        table1 : "item2",
+        // When the default value is "null", you don't have to set ID.
+      }
+    }
+  ]
+}

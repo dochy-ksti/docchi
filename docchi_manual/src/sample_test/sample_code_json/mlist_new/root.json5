@@ -1,0 +1,18 @@
+{
+  mlist : [
+    "MList",
+    [{
+      //bar is removed,
+      baz : 100, // baz's default is changed to 100
+      qux : -1, //new value "qux" is defined
+    }],
+    {
+      baz : 1001,
+      qux : 2
+    },
+    {
+      baz : 1002,
+      qux : 3
+    }
+  ]
+}

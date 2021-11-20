@@ -1,0 +1,12 @@
+{
+	users: [
+		"MList",
+		[{
+			id: 0,
+			name: "",
+			created: "",
+			is_active: false,
+			"thumbnail?" : ["Str", null],
+		}]
+	]
+}

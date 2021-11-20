@@ -1,0 +1,6 @@
+/target
+Cargo.lock
+/.idea/
+save_dir/
+history_dir/
+dat_dir/

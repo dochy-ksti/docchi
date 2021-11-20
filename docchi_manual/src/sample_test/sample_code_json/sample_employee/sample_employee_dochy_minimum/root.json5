@@ -1,0 +1,15 @@
+{
+  "@Employees": [
+    "MList",
+    [{
+      userId: "",
+      jobTitle: "",
+      firstName: "",
+      lastName: "",
+      employeeCode: "",
+      region: "",
+      phoneNumber: "",
+      emailAddress: ""
+    }]
+  ]
+}

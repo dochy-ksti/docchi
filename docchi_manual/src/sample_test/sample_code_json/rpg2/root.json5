@@ -1,0 +1,61 @@
+{
+  pcList : [
+    "MList",
+    [{
+      name : "",
+      items : [
+        // "Mil" stands for "Mut Inner List"
+        "MilDef",
+        // In a default object, inner list's default object is defined.
+        // The name "MilDef" stresses the fact.
+        [{
+          //"Enum" is a keyword
+          // Enum is basically the programming language Rust's "enum"
+          Enum : {
+            //Enum's variables must be nullable, and the default values must be null
+            "sword?" : null,
+            "herb?" : null,
+          }
+        }]
+      ]
+    }],
+    {
+      name : "Elvis",
+      //Elvis has a bronze sword and a middle healing
+      items : [
+        //Mil stands for "Mut Inner List"
+        "Mil",
+        //In an item, we need to write inner list's items without the default object
+        {
+          Enum : {
+            //You must set only one variable to define Enum,
+            sword : "bronze",
+          }
+        },
+        {
+          Enum : {
+            herb : "middle",
+          }
+        }
+      ]
+    },
+    {
+      name : "George",
+      //George has a low herb and an iron sword
+      items : [
+        "Mil",
+        {
+          Enum : {
+            herb : "low",
+          }
+        },
+        {
+          Enum : {
+            sword : "iron",
+          }
+        },
+
+      ]
+    },
+  ],
+}

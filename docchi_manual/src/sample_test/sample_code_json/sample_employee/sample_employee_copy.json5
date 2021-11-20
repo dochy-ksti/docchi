@@ -1,0 +1,35 @@
+{
+  "Employees": [
+    {
+      "userId": "krish", //5
+      "jobTitle": "Developer", //9
+      "firstName": "Krish", //5
+      "lastName": "Lee", //3
+      "employeeCode": "E1", //2
+      "region": "CA", //2
+      "phoneNumber": "123456", //6
+      "emailAddress": "krish.lee@learningcontainer.com" //31 total 63
+    },
+    {
+      "userId": "devid", //5
+      "jobTitle": "Developer", //9
+      "firstName": "Devid", //5
+      "lastName": "Rome", //4
+      "employeeCode": "E2", //2
+      "region": "CA", //2
+      "phoneNumber": "1111111", //7
+      "emailAddress": "devid.rome@learningcontainer.com" //32 total 66
+    },
+    {
+      "userId": "tin", //3
+      "jobTitle": "Program Directory", //17
+      "firstName": "tin", //3
+      "lastName": "jonson", //6
+      "employeeCode": "E3", //2
+      "region": "CA", //2
+      "phoneNumber": "2222222", //7
+      "emailAddress": "tin.jonson@learningcontainer.com" //32 total 72
+    }
+  ]
+}
+//63+66+72=201

@@ -1,0 +1,13 @@
+{
+  int : 10,
+  list : [
+    "CList",
+    [{
+      v : 0,
+    }],
+    {
+      v : 1,
+    }
+  ],
+  string : "aaaaa"
+}

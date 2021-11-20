@@ -1,0 +1,60 @@
+{
+  pcList : [
+    "MList",
+    [{
+      Ref : {
+        race : "",
+        class : "",
+      },
+      name : "",
+    }],
+    {
+      Ref : {
+        race : "elf",
+        class : "mage",
+      },
+      name : "Elvis",
+    },
+    {
+      Ref : {
+        race : "dwarf",
+        class : "fighter",
+      },
+      name : "George",
+    },
+  ],
+  race : [
+    "Table",
+    [{
+      strength : 0,
+      intelligence : 0,
+    }],
+    {
+      ID : "elf",
+      strength : 35,
+      intelligence : 50,
+    },
+    {
+      ID : "dwarf",
+      strength : 55,
+      intelligence : 30,
+    }
+  ],
+  class : [
+    "Table",
+    [{
+      attack : 0,
+      magic : 0,
+    }],
+    {
+      ID : "fighter",
+      attack : 50,
+      magic : 0,
+    },
+    {
+      ID : "mage",
+      attack : 5,
+      magic : 30,
+    }
+  ]
+}

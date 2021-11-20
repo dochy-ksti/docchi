@@ -1,0 +1,39 @@
+[package]
+name = "docchi"
+version = "0.7.0"
+authors = ["juzy <dochy.ksti@gmail.com>"]
+edition = "2018"
+
+license = "MIT OR Apache-2.0"
+description = "A diff-based data management language to implement unlimited undo, auto-save for games, and cloud-apps which needs to retain every change."
+repository = "https://github.com/dochy-ksti/docchi"
+readme = "readme.md"
+keywords = ["json5","diff","binary","undo","autosave"]
+categories = ["filesystem","compression","data-structures"]
+documentation = "https://github.com/dochy-ksti/docchi/blob/master/docchi_manual/manual/index.md"
+
+
+[workspace]
+members = [
+    "docchi_json5",
+    "docchi_compaction",
+    "docchi_archiver2",
+    "docchi_core",
+    "docchi_diff",
+    "docchi_fs",
+    "docchi_intf",
+    "docchi_manual",
+    "docchi_temporal_test",
+    "docchi_test",
+]
+
+[dependencies]
+docchi_json5 = { path="docchi_json5", version="0.7.0"}
+docchi_compaction = { path="docchi_compaction", version="0.7.0" }
+docchi_archiver2 = { path="docchi_archiver2", version="0.7.0" }
+docchi_core = { path="docchi_core", version="0.7.0" }
+docchi_diff = { path="docchi_diff", version="0.7.0"}
+docchi_fs = { path="docchi_fs", version="0.7.0"}
+docchi_intf = { path="docchi_intf", version="0.7.0"}
+anyhow = "1.0.34"
+

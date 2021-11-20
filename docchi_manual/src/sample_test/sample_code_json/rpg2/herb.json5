@@ -1,0 +1,17 @@
+[
+  "Table",
+  [{
+    restore : 0,
+    price : 0,
+  }],
+  {
+    ID : "low",
+    restore : 30,
+    price : 10,
+  },
+  {
+    ID : "middle",
+    restore : 80,
+    price : 50,
+  }
+]

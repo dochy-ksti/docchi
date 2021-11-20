@@ -1,0 +1,16 @@
+[
+	"Table",
+	["Default", { s : "", n : 0.0, Ref : { unkoList : ""}}],
+	{
+		ID : "a1ban",
+		Ref : { unkoList : "first" },
+	},
+	{
+		ID: "a2ban",
+		s: "hugahuga",
+		n: 30.08,
+		Ref: {
+			unkoList: "second"
+		},
+	}
+]

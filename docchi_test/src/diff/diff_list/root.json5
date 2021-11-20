@@ -1,0 +1,66 @@
+{
+  refed1 : ["Table",
+    [{
+      notImportant : 0
+    }],
+    {
+      ID : "a1"
+    },
+    {
+      ID : "a2"
+    }],
+
+  refed2 : ["Table",
+    [{
+      notVeryImportant : 0,
+    }],
+    {
+      ID : "b1",
+    },
+    {
+      ID : "b2",
+    }
+  ],
+
+  list : ["MList",
+    [{
+      Ref : {
+        refed1 : "a1",
+      },
+      mem : 0,
+      inList : ["MilDef",
+        [{
+          Ref : {
+            refed2 : ""
+          },
+          inMem : 0,
+          inList2 : ["MilDef",
+            [{
+              inMem2 : 0,
+            }]
+          ]
+        }]
+      ]
+    }],
+    {
+      Ref : {
+        refed1 : "a1",
+      },
+      mem : 0,
+      inList : ["Mil",
+        {
+          Ref : {
+            refed2 : "b1",
+          },
+          inList2 : ["Mil",
+            {
+              inMem2 : 0,
+            }
+          ]
+        }
+      ]
+    },
+  ],
+
+
+}

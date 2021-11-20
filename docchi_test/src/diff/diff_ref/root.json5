@@ -1,0 +1,116 @@
+{
+  refed1 : ["Table",
+    [{
+      notImportant : 0
+    }],
+    {
+      ID : "a1"
+    },
+    {
+      ID : "a2"
+    }],
+
+  refed2 : ["Table",
+    [{
+      notVeryImportant : 0,
+    }],
+    {
+      ID : "b1",
+    },
+    {
+      ID : "b2",
+    }
+  ],
+  refed3 : ["Table",
+    [{
+      notSoImportant : 0,
+    }],
+    {
+      ID : "c1",
+    },
+    {
+      ID : "c2",
+    }
+  ],
+  refed4 : ["Table",
+    [{
+      notImportant : 0,
+    }],
+    {
+      ID : "d1",
+    },
+    {
+      ID : "d2",
+    }
+  ],
+
+  list1 : ["MList",
+    [{
+      Ref : {
+        refed1 : "a1",
+        "refed2?" : "b1",
+        "refed3!" : "c1",
+        "refed4!?" : "d1",
+      },
+    }],
+    {
+    },
+    {
+      Ref : {
+        refed1 : "a2",
+        refed2 : "b2",
+        refed3 : "c2",
+        refed4 : "d2",
+      },
+    }
+  ],
+
+  list2 : ["MList",
+    [{
+      Ref : {
+        refed1 : "",
+        "refed2?" : null,
+        "refed3!" : undefined,
+        "refed4!?" : null,
+      },
+    }],
+    {
+      Ref : {
+        refed1 : "a1",
+      }
+    },
+    {
+      Ref : {
+        refed1 : "a2",
+        refed2 : "b2",
+        refed3 : "c2",
+        refed4 : "d2",
+      },
+    }
+  ],
+
+  list3 : ["MList",
+    [{
+      Ref : {
+        refed1 : "",
+        "refed2?" : null,
+        "refed3!" : undefined,
+        "refed4!?" : undefined,
+      },
+    }],
+    {
+      Ref : {
+        refed1 : "a1",
+      }
+    },
+    {
+      Ref : {
+        refed1 : "a2",
+        refed2 : "b2",
+        refed3 : "c2",
+        refed4 : "d2",
+      },
+    }
+  ]
+
+}

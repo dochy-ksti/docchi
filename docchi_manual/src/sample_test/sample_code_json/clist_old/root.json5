@@ -1,0 +1,21 @@
+{
+  list : [
+    "CList",
+    // every list must have the default object.
+    [{
+      //The variables must be defined in the default object with its initial value
+      foo : 0,
+    }],
+    {
+      foo : 1,
+    },
+    {
+      foo : 2,
+    },
+    {
+      //if a value is not written, logically its value is the default value,
+      //but this object actually doesn't have the value.
+      //No memory is used and no storage space consumed
+    }
+  ]
+}

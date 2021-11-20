@@ -1,0 +1,12 @@
+[package]
+name = "docchi_manual"
+version = "0.6.1"
+authors = ["Juzy <dochy.ksti@gmail.com>"]
+edition = "2018"
+
+license= "MIT OR Apache-2.0"
+
+[dependencies]
+docchi = { path="../../docchi" }
+docchi_diff ={ path="../docchi_diff" }
+flate2 = "1.0.20"

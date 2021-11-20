@@ -1,0 +1,15 @@
+{
+  "@Employees": [
+    "MList",
+    [{
+      userId: "krish",
+      jobTitle: "Developer",
+      firstName: "Krish",
+      lastName: "Lee",
+      employeeCode: "E1",
+      region: "CA",
+      phoneNumber: "123456",
+      emailAddress: "krish.lee@learningcontainer.com"
+    }]
+  ]
+}

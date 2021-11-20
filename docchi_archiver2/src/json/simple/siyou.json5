@@ -1,0 +1,214 @@
+{
+	hogeInt : 10,
+	hogeFloat : 11.0,
+	hogeString : "hoge",
+	hogeBool : true,
+	@HugaNumber : 30, //先頭が大文字のメンバ名はすべてシステムが予約しているので認められない。しかしメンバ名をどうしても大文字で始めたい場合、
+	//jsonでは戦闘に@をつけ、プログラム側では@なしでもアクセス可能にするという技も使えなくはなかろうと思う。
+
+	//名前が?で終わるメンバはnull値を含むことが出来る。
+	//プログラム側のメンバ名にはこの?は反映されず、型が変わるだけ(もし俺以外の実装が現れたらわからないが・・・）
+	//初期値にnullを入れるには、特殊な記法を使う必要がある
+	hegoInt? : ["Int", null], //型を指定し、null値を入れる。これでnullになる。
+	"hegoFloat?" : ["Float", null], //型を指定し、null値を入れる。これでnullになる。
+
+	//!で終わる場合、バージョン違いでこのメンバを持っていなかった場合、デフォルト値でなくundefinedが入る。
+	//undefinedを手入力してはいけない
+	pugyaInt! : 10,
+	pugyaInt2!? : ["Int", null], //!?も出来る。?!ではダメ
+
+
+	//配列はいまのところint配列、float配列の2通り。
+	floatArray : [ "FloatArray", 5.8, 8, 10 ],
+
+	//Int配列はタグなしでもかける・・・必要か？
+	intArray : [ 0, 3, 10 ],
+
+	emptyIntArray : [ "IntArray" ], //初期値が空配列のnum-array
+	"nullableIntArray?" : [ "IntArray", null ], //nullable配列の初期値をnullにする場合
+
+	//古くて今では使っていないが、互換性のために残すメンバはOldに指定する
+	//oldに設定されたメンバは、_oldを付けなければプログラムから使用できず、
+	//ConstDataである場合、jsonで Refできない。
+	Old : [ "oldName", "oldName2" ],
+
+	//nullを入れておく。この変数に値が入っているなら、それは古いデータということになるだろう
+	"oldName?" : ["Str", null],
+	"oldName2?" : ["Int", null],
+
+	//undefined可能に設定することで、古いデータの場合はundefinedが設定される。
+	//その場合、oldの古いデータを参照し、なんらかの変換をかけることで新しい値を設定できるかもしれない
+	"newName!" : "new_dayo",
+	"newName2!" : 100,
+
+	unkoList : [
+		"Table", //オブジェクトのコレクションを作るためにはList,Data,MutListのどれかを使う必要がある。DataはIDによる参照が可能である
+		["Default", {
+			hogeInt : 0,
+			hogeString : "hoge"
+		}], //デフォルト値を設定
+		{
+			ID : "first",
+			hogeInt : 12,
+			hogeString : "huga"
+		},
+		{
+			ID : "second",
+			//デフォルト値から変更がない場合は書かなくても良い
+		}],
+
+
+
+	usable : [
+		"Table",
+		//Defaultを省略する
+		[{ num : 0 }],
+		{
+			ID : "yakusou",
+			num : 3
+		},
+		{
+			ID : "dokukesisou",
+			num : 31
+		}
+	],
+
+	weapon : [
+		"Table",
+		["Default", { atk : 0 }],
+		{
+			ID : "katana",
+			atk : 5
+		},
+		{
+			ID : "doutanuki",
+			atk : 7
+		}
+	],
+
+	iniItemList : [
+		"CList",
+		["Default",{
+			"atk?" : ["Int", null],
+			"Ref": { weapon : "" }, //Refの基本の形、なにか入れないとエラーになる。
+		}],
+		{
+			Ref : { weapon : "doutanuki" }, //どうたぬきを参照。
+			atk : 8 //override的ななにか
+		}
+	],
+
+	hogeList : [
+		"Table",
+		["Default",{ mem : "" }],
+		{
+			ID : "hogehoge",
+			mem : "a",
+		}
+	],
+
+	hugaList: [
+		"Table",
+		["Default",{}],
+		{
+			ID : "hugahuga"
+		}
+	],
+
+	hegoList: [
+		"Table",
+		["Default", {
+			mem : "",
+		}],
+		["Old", "nantoka"],//Oldに指定されたItemは、jsonから参照できず、プログラムから使うときもnantoka_Oldという名前でアクセスしないとコンパイルエラーになる
+		{
+			ID : "hegohego",
+			mem : "b",
+		},
+		{
+			ID : "nantoka",
+		}
+	],
+
+	itemList3 : [
+		"CList",
+		["Default",{
+			"memOverride?" : ["Str", null],
+			"Ref" : { hogeList : "", "hugaList?" : null, hegoList : "" },
+		}],
+		{
+			Ref : { //参照先を記述
+				hogeList : "hogehoge",
+				//入力しなければデフォルトになる。この場合null
+				hegoList : "hegohego",
+			},
+		}
+	],
+
+	dim2List : [
+		"Table", [{
+			dataMem : 3,
+
+		}],
+		{
+			ID : "item1",
+
+			dataMem : 300,
+		},
+		{
+			ID : "item2",
+		},
+		{
+			ID : "item3",
+
+		}
+	],
+
+	mut1 : [
+		"MList",
+		["Default",{
+			innerMutList : [
+				"MilDef",
+
+				["Default",{
+					Ref : { hegoList :  "" },
+					innerListMem : 3,
+				}],
+			],
+			someName : "",
+		}],//MutListには初期値を与えてはいけない。InnerMutにも。
+	],
+
+
+
+	enumList : [
+		"CList",
+		["Default",{
+			Enum :{
+				"hogeList?" : null, "hugaList?" : null, "hegoList?" : null //enumはどれか一つだけ参照し、プログラムからはmatchでアクセスできる
+			},
+			mem : "unti",
+		}],
+		{
+			Enum :{
+				hogeList : "hogehoge",
+			}
+		},
+		{
+			Enum :{
+				hegoList : "hegohego"
+			}
+		}
+	],
+
+	mut2 : [
+		"MList",
+		["Default",{
+			Enum :{
+				"hogeList?" : null, "hugaList?" : null, "hegoList?" : null //enumはどれか一つだけ参照し、プログラムからはmatchでアクセスできる
+			},
+			mem : "unti",
+		}],
+
+	]
+}

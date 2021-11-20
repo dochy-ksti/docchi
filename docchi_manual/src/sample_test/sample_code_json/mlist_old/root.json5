@@ -1,0 +1,21 @@
+{
+  mlist : [
+    "MList",
+    [{
+      bar : 0,
+      baz : 1
+    }],
+    {
+      bar : 1,
+      baz : 2
+    },
+    {
+      // not set
+      baz : 3,
+    },
+    {
+      bar : 3,
+      // not set
+    }
+  ]
+}

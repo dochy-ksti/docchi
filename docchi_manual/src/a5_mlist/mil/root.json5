@@ -1,0 +1,37 @@
+{
+  // Inner MList is named "Mil", which is "Mut Inner List".
+
+  // Basically, changing C to M works, because they are facially very similar.
+
+  // Internally, MList and Mil uses int-keyed LinkedHashMap, which is a hashmap whose items are linked list nodes,
+  // so it has sequential order.
+
+  // It's items have ID number, which is auto-increment, and assigned automatically.
+  // The ID is the key, so searching items by ID in the list is very fast(because it's also a hashmap).
+  // To calculate diff, we compare items with the same ID.
+
+  // Let's see how to use it in the next section.
+
+  mlist : ["MList",[{
+    val : 0,
+    inner_list : ["MilDef",[{
+      name : "x",
+    }]]
+  }],
+    {
+      val : 1,
+      inner_list : ["Mil",
+        {
+          name : "p",
+        },
+        {
+          name : "q",
+        }
+      ]
+    },
+    {
+      val : 2,
+      //inner_list omitted
+    },
+  ],
+}

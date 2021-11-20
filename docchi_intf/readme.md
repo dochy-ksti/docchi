@@ -1,0 +1,3 @@
+The Dochy Interface component generates the source code to access Dochy Data. 
+
+More explanations to be added...

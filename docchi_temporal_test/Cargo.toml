@@ -1,0 +1,14 @@
+[package]
+name = "docchi_temporal_test"
+version = "0.1.0"
+authors = ["juzy <dochy.ksti@gmail.com>"]
+edition = "2018"
+
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+# docchi_core = { path="../docchi_core" }
+docchi = { path="../../docchi" }
+bitvec = "0.22.3"
+rand = "0.8.4"
+rayon = "1.5.1"

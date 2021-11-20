@@ -1,0 +1,18 @@
+{
+  // MList is a mutable list in Dochy.
+  // Explanations are reserved for the next section.
+
+  mlist : ["MList",[{
+    name : "a",
+    val : 3,
+  }],
+    {
+      name : "b",
+      val : 4,
+    },
+    {
+      //name is omitted
+      val : 5,
+    }
+  ],
+}

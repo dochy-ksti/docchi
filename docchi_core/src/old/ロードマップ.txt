@@ -1,0 +1,9 @@
+deeta
+dielta
+/adjust_list_item_valuesとadjust_root_objを書いて、adjust_listを書けばOKではないかと思う
+
+バージョンのアジャスタを作る
+jsonからRustのアクセサ生成
+
+差分バイナリ生成
+差分の作り方を整えて差分ベースのデータ保存システム完成

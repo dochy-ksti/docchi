@@ -1,0 +1,66 @@
+{
+	num : -2, //numとかstrは今は書き換える方法がないので、テスト出来ませんね・・・
+	str : "old",
+
+	refedData: [
+		"Table",
+		[{
+			oldMem1 : 1,
+			mem2 : 2,
+		}],
+		{
+			ID : "first",
+			oldMem1 : 10,
+			mem2 : 20,
+		},
+		{
+			ID : "second",
+			oldMem1 : 100,
+			mem2 : 200,
+		}
+	],
+
+	oldRefedData : [
+		"Table",
+		[{}],
+		{
+			ID : "hogehoge",
+		}
+	],
+
+	constList: [
+		"CList",
+		["Default",{
+			Ref : { refedData : "", oldRefedData : "" },
+			mem : 0,
+			hoge : 20,
+		}],
+		{
+			mem : 100,
+			Ref : { refedData : "first", oldRefedData : "hogehoge" }
+		},
+		{
+			Ref : { refedData :  "second", oldRefedData : "hogehoge" },
+			mem : 200,
+			hoge : 30,
+		}
+	],
+
+	mutList : [
+		"MList",
+		["Default",{
+			mem : 0,
+			hoge : 0,
+			Ref: { refedData : "", oldRefedData: "", },
+		}],
+		{
+			mem : 100,
+			hoge : 30,
+			Ref : { refedData : "first", oldRefedData : "hogehoge" }
+		},
+		{
+			Ref : { refedData :  "second", oldRefedData : "hogehoge" },
+			hoge : 40,
+		}
+	]
+}

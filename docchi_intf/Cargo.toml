@@ -1,0 +1,15 @@
+[package]
+name = "docchi_intf"
+version = "0.7.0"
+authors = ["juzy <dochy.ksti@gmail.com>"]
+edition = "2018"
+
+license = "MIT OR Apache-2.0"
+description = "Generates the source code to access Dochy Data"
+repository = "https://github.com/dochy-ksti/docchi"
+readme = "readme.md"
+keywords = ["data", "management"]
+
+[dependencies]
+docchi_core = {path="../docchi_core", version="0.7.0"}
+anyhow = "1.0.34"

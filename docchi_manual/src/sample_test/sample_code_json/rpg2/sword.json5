@@ -1,0 +1,17 @@
+[
+  "Table",
+  [{
+    attack : 0,
+    price : 0,
+  }],
+  {
+    ID : "bronze",
+    attack : 10,
+    price : 100,
+  },
+  {
+    ID : "iron",
+    attack : 40,
+    price :500,
+  }
+]

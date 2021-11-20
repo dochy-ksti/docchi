@@ -1,0 +1,39 @@
+{
+	users : [
+		{
+			id : 1,
+			name : "Holt Gianuzzi",
+			created : "2/24/2021",
+			is_active : false,
+			thumbnail : null
+		},
+		{
+			id : 2,
+			name : "Sansone Gerard",
+			created : "5/28/2020",
+			is_active : true,
+			thumbnail : null
+		},
+		{
+			id : 3,
+			name : "Max Mangan",
+			created : "3/14/2020",
+			is_active : false,
+			thumbnail : null
+		},
+		{
+			id : 4,
+			name : "Brice Bartosch",
+			created : "11/24/2020",
+			is_active : false,
+			thumbnail : null
+		},
+		{
+			id : 5,
+			name : "Lauretta Tyt",
+			created : "4/26/2020",
+			is_active : true,
+			thumbnail : null
+		}
+	]
+}

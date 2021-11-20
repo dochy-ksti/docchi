@@ -1,0 +1,28 @@
+{
+  list : [
+    "MList",
+    [{
+      Ref : {
+        tableA : "",
+      },
+      "foo?" : ["Int",null],
+    }],
+    {
+      Ref : {
+        tableA : "item1",
+      },
+      // The value is updated here
+      foo : 22,
+    },
+  ],
+  tableA : [
+    "Table",
+    [{
+      foo : 0
+    }],
+    {
+      ID : "item1",
+      foo : 33,
+    },
+  ]
+}

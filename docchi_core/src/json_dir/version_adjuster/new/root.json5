@@ -1,0 +1,97 @@
+{
+	num : 10,
+	str : "a",
+	"undef!" : "undef",
+
+	refedData: [
+		"Table",
+		[{
+			//MutListとCompatibleでない場合、oldメンバが使われることはないので、old指定する必要はなく単に消せばいいはず
+			//Compatibleかどうかの判断が難しいので、oldをつけて消さないという選択もあるかもしれないが・・・？
+			//そもそもDataとCompatibleにする必要があるのか・・・？
+			newMem : 10,
+			mem2 : 9,
+		}],
+		["Old", "first"],
+		{
+			ID : "first",
+		},
+		{
+			ID : "second",
+		},
+		{
+			ID : "newItem",
+		}
+
+	],
+
+	constList: [
+		"CList",
+		["Default",{
+			Ref : {
+				refedData : "",
+				"oldRefedData?" : null,
+				"newRefedData!" : "",
+				Old : ["oldRefedData"]
+			},
+			mem : -100,
+			tuikaMem : 20,
+			"hoge?" : ["Int",null],
+			"hogeNew!" : 80,
+			Old : ["hoge"],
+		}],
+		//firstはold化されているので、ここではrefしない。しかし、旧バージョンのmutlistを読みだした時には、firstは入っている
+		//どうするのがいいんでしょうね。参照先が消えているとExceptionするしかないのでなんかしら入れとく必要はあるだろうけど、
+		//oldが入ってるのが有効なデータともいい難い気はする。かなり中途半端な存在になってしまう
+		{
+			Ref : { refedData :  "second", newRefedData : "hugahuga" },
+			mem : 4000,
+			tuikaMem : 30,
+		},
+		{
+			Ref : { refedData : "newItem", newRefedData : "hogehoge" },
+			mem : 5000,
+			hogeNew : 90,
+		},
+	],
+
+
+	mutList : [
+		"MList",
+		[{
+			Ref : {
+				refedData : "",
+				"oldRefedData?" : null,
+				"newRefedData!" : "",
+				Old : ["oldRefedData"],
+			},
+			mem : 0,
+			tuikaMem : 0, //新メンバ。旧バージョンのデータではこのデフォルト値が使われる
+			"hoge?" : ["Int",null], //新定義にしたいので旧定義はnullにし、old指定して上書きできなくする。旧バージョンではここに値が残っている,
+			"hogeNew!" : 0, //新定義はundefined可能にする。旧バージョンのデータではundefinedになるので、適切な値を計算して代入。計算のために旧定義の値も残す
+			Old : ["hoge"],
+		}],
+	],
+
+	Old : ["oldRefedData"],
+
+	oldRefedData : [
+		"Table",
+		[{}],
+		{
+			ID : "hogehoge",
+		}
+	],
+
+	//これでDataのRenameは可能になっている・・・Renameは重要・・・
+	newRefedData : [
+		"Table",
+		[{}],
+		{
+			ID : "hogehoge",
+		},
+		{
+			ID : "hugahuga",
+		}
+	]
+}
