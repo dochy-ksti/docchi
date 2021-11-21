@@ -1,12 +1,12 @@
 {
-  // Dochy Lang is a language to define static types and initial values of data
-  // The source files of the language is called Dochy Src.
+  // Docchi Lang is a language to define static types and initial values of data
+  // The source files of the language is called Docchi Src.
   // It's written in "JSON5". It's an improved JSON and comments can be written in it (as you can see).
 
   // Firstly, you need to crate a directory to place JSON5 files. It's kind of cumbersome, but it's for scalability.
   // The directory must have "root.json5"(It's also bothersome, but it's also for scalability).
 
-  // Let's take a look at the parameter types of Dochy Lang and how to write it.
+  // Let's take a look at the parameter types of Docchi Lang and how to write it.
 
   // Int (i64)
   int_value : 1,
@@ -17,11 +17,11 @@
   // Bool
   bool_value : true,
 
-  // In Dochy Lang, ints (1) and floats (1.0) are distinguishable.
+  // In Docchi Lang, ints (1) and floats (1.0) are distinguishable.
   // Right value's type determines the variable's static type.
 
-  // Let's call Dochy Lang's parameters "Dochy Params".
-  // Let's enumerate all the Dochy Param types other than above.
+  // Let's call Docchi Lang's parameters "Docchi Params".
+  // Let's enumerate all the Docchi Param types other than above.
 
   int_array : ["IntArray", 1, 2],
   float_array : ["FloatArray", 1.0, 2], //integers can be written in FloatArray (it's converted to f64)
@@ -35,7 +35,7 @@
 
   //---
 
-  // Dochy Params have "nullable" variants.
+  // Docchi Params have "nullable" variants.
 
   // You can use "nullable" with attaching "?" at the end of the variable names.
   "nullable_int?" : ["Int", null],
@@ -46,7 +46,7 @@
 
   "nullable_int2?" : 5,
 
-  // Dochy's parser accepts variable names with "?" without quotations.
+  // Docchi's parser accepts variable names with "?" without quotations.
   // But it's not valid JSON5. Your JSON5 editor will be angry.
   nullable_str? : ["Str", null],
 
@@ -58,14 +58,14 @@
 
   // ---
 
-  // Dochy has a special value named "undefined".
+  // Docchi has a special value named "undefined".
 
   // When an old data does not have a variable, and the variable is "undefiable",
   // the value "undefined" will be automatically assigned to the variable in the conversion process.
 
   // "undefiable" values must have "!" at the end of the variable names.
-  // Dochy accepts the value "undefined", like null, but it's invalid JSON5 and not recommended.
-  // "undefined" is not supposed to be used in Dochy Src.
+  // Docchi accepts the value "undefined", like null, but it's invalid JSON5 and not recommended.
+  // "undefined" is not supposed to be used in Docchi Src.
   // "undefined" should only be assigned in the conversion process.
 
   undefiable_int! : ["Int", undefined], // NOT RECOMMENDED

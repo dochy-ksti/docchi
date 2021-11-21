@@ -1,5 +1,5 @@
 {
-  // Dochy has three collection types, "CList","MList", and "Table",
+  // Docchi has three collection types, "CList","MList", and "Table",
   // but the basic foundations are the same.
 
   clist : ["CList",[{
@@ -19,14 +19,14 @@
 
 // Explanation:
 //
-// Dochy's every collection must have "default object" to define the static type of the items of the collection.
+// Docchi's every collection must have "default object" to define the static type of the items of the collection.
 //
 //   clist : ["CList",[{
 //    name : "a",
 //    val : 3,
 //  }],
 //
-// Dochy's default object is surrounded by "[{" and "}]".
+// Docchi's default object is surrounded by "[{" and "}]".
 // The default object defines the variables "name" (String) and "val" (Int).
 // "name"'s default value is "a", and "val"'s is 3.
 //
@@ -46,9 +46,9 @@
 // In the second object, the "name" variable is omitted.
 // When a value is omitted, it's default value is used, so the value "name" will be "a".
 //
-// CList is the immutable list of Dochy.
+// CList is the immutable list of Docchi.
 // Why we need CList?
-// We have MList which is the mutable list of Dochy.
+// We have MList which is the mutable list of Docchi.
 // You can use MList and hide the mutable methods.
 //
 // It's because, these two have different strategies in conversion.

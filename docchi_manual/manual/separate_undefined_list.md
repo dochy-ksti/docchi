@@ -46,7 +46,7 @@ fn undefiable_list_test() -> DpResult<()> {
     let new = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/undefiable_list_separated", true)?;
 
     // We call "adjust_versions" manually here.
-    // "load_dochy_file"/"load_history_file" automatically adjusts versions, so calling this manually isn't necessary.
+    // "load_docchi_file"/"load_history_file" automatically adjusts versions, so calling this manually isn't necessary.
     let r = adjust_versions(new, old, true)?;
 
     let mut r = RootIntf::new(r);

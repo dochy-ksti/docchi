@@ -1,5 +1,5 @@
 {
-  // MList is a mutable list in Dochy.
+  // MList is a mutable list in Docchi.
   // Explanations are reserved for the next section.
 
   mlist : ["MList",[{

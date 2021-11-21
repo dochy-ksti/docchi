@@ -61,10 +61,6 @@ fn test_save_history_vacant() -> DpResult<()> {
         let l = RootIntf::new(loaded);
         println!("{:?} {:?}", l.data0(), d.props().calc_filename());
     }
-    // let ds = list_dochy_files(&save_dir)?;
-    // let last = ds.last().unwrap();
-    // let ld = load_dochy_file(last.calc_path(&save_dir), &info, true)?;
-    // let ld = RootIntf::new(ld);
-    // println!("data0 {}", ld.data0());
+
     Ok(())
 }

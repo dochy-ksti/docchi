@@ -2,7 +2,7 @@
 [index](index.md)
 [next](directory_composition_and_how_to_handle.md)
 
-### 7-3. Algorithm Of Dochy History
+### 7-3. Algorithm Of Docchi History
 
 A balanced implementation of a file system which can contain small changes 
 efficiently and can be read without great difficulty.

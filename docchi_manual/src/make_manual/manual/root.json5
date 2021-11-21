@@ -6,19 +6,19 @@
       "src?" : ["Str",null],
     }],
     {
-      title : "1. Dochy Lang"
+      title : "1. Docchi Lang"
     },
     {
       title : "1-1. Basic Params",
-      src : "a3_dochy_langs_basics/dochy_params/root.json5"
+      src : "a3_docchi_langs_basics/docchi_params/root.json5"
     },
     {
       title : "1-1-1. Generate Source Code To Access Params",
-      src : "a3_dochy_langs_basics/dochy_params_generate.rs"
+      src : "a3_docchi_langs_basics/docchi_params_generate.rs"
     },
     {
       title : "1-1-2. Use Generated Source Code",
-      src : "a3_dochy_langs_basics/params_test.rs"
+      src : "a3_docchi_langs_basics/params_test.rs"
     },
     {
       title : "2. CList",
@@ -53,24 +53,24 @@
       src : "a6_table/use_table.rs"
     },
     {
-      title : "5. Split Dochy Src",
-      src : "a7_split_dochy_src/split_src.md"
+      title : "5. Split Docchi Src",
+      src : "a7_split_docchi_src/split_src.md"
     },
     {
-      title : "6. Dochy File",
-      src : "b1_save_dochy_files/save_dochy_files.md"
+      title : "6. Docchi File",
+      src : "b1_save_docchi_files/save_docchi_files.md"
     },
     {
-      title : "6-1. Save Dochy File",
-      src : "b1_save_dochy_files/save_dochy_file_test.rs"
+      title : "6-1. Save Docchi File",
+      src : "b1_save_docchi_files/save_docchi_file_test.rs"
     },
     {
-      title : "6-2. Load And Remove Dochy File",
-      src : "b1_save_dochy_files/load_dochy_file.rs"
+      title : "6-2. Load And Remove Docchi File",
+      src : "b1_save_docchi_files/load_docchi_file.rs"
     },
     {
-      title : "7. Dochy History",
-      src : "b2_save_history_files/whats_dochy_history.md"
+      title : "7. Docchi History",
+      src : "b2_save_history_files/whats_docchi_history.md"
     },
     {
       title : "7-1. Save History File",
@@ -81,7 +81,7 @@
       src : "b2_save_history_files/load_history_file_test.rs"
     },
     {
-      title : "7-3. Algorithm Of Dochy History",
+      title : "7-3. Algorithm Of Docchi History",
       src : "b2_save_history_files/algorithm_of_history.md"
     },
     {

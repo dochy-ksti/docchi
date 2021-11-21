@@ -65,7 +65,7 @@ pub mod history{
 
     pub use crate::imp::history::current_root_obj_info::history_cache_map::set_current_root_obj_info;
     pub use crate::imp::history::current_root_obj_info::history_cache_map::get_peekable_info;
-    pub use crate::imp::history::current_root_obj_info::history_cache_map::init_dochy_cache_us;
+    pub use crate::imp::history::current_root_obj_info::history_cache_map::init_docchi_cache_us;
     pub use crate::imp::history::current_root_obj_info::current_root_obj_info::CurrentRootObjInfo;
     pub use crate::imp::history::current_root_obj_info::history_cache_item::PeekableCacheInfo;
 
@@ -73,11 +73,11 @@ pub mod history{
 }
 
 pub mod filesys{
-    pub use crate::imp::filesys::save_dochy_file::save_dochy_file;
-    pub use crate::imp::filesys::save_dochy_file::save_dochy_file_nb;
-    pub use crate::imp::filesys::list_dochy_files::list_dochy_files;
-    pub use crate::imp::filesys::load_dochy_file::load_dochy_file;
-    pub use crate::imp::filesys::remove_dochy_file::remove_dochy_file;
+    pub use crate::imp::filesys::save_docchi_file::save_docchi_file;
+    pub use crate::imp::filesys::save_docchi_file::save_docchi_file_nb;
+    pub use crate::imp::filesys::list_docchi_files::list_docchi_files;
+    pub use crate::imp::filesys::load_docchi_file::load_docchi_file;
+    pub use crate::imp::filesys::remove_docchi_file::remove_docchi_file;
     pub use crate::imp::filesys::save_cache_map::force_update_and_get_info_us;
     pub use crate::imp::filesys::save_dir_info::SaveDirInfo;
 

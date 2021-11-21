@@ -6,7 +6,7 @@
 
 ```json5
 {
-  // Table is another immutable collection of Dochy
+  // Table is another immutable collection of Docchi
 
   // Table's items must have string-IDs
 
@@ -23,7 +23,7 @@
       val: 20,
     },
   ],
-  // In Dochy, all names start with capital letters are reserved by the system. "ID" is one of them.
+  // In Docchi, all names start with capital letters are reserved by the system. "ID" is one of them.
 
   // Users can use [a-z][A-Za-z0-9]* for identifiers.
 
@@ -51,7 +51,7 @@
     }
   ],
 
-  // Ref is also a keyword of Dochy.
+  // Ref is also a keyword of Docchi.
 
   // In default objects, Ref is like
 

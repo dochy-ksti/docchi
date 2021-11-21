@@ -19,7 +19,7 @@ use crate::imp::common::path::prepare_hash_dir::prepare_hash_dir;
 /// * `tag` - arbitrary string to distinguish files. It's appended to the file name.
 /// * 'root' - the object to save
 ///
-/// The algorithm to generate diffs is described [here](https://github.com/dochy-ksti/dochy/blob/master/dochy_manual/src/sample_test/sample_code/history.md)
+/// The algorithm to generate diffs is described [here](https://github.com/dochy-ksti/docchi/blob/master/docchi_manual/src/sample_test/sample_code/history.md)
 pub fn save_history_file(history_info : &HistoryInfo,
                          tag : Option<String>,
                          root : &RootObject) -> FsResult<FileNameProps> {

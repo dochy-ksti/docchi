@@ -9,10 +9,10 @@ use crate::imp::common::path::prepare_hash_dir::prepare_hash_dir;
 
 
 /// saves a Docchi file.
-pub fn save_dochy_file(info : &SaveDirInfo,
-                       file_name : &str,
-                       root: &RootObject,
-                       overwrite : bool) -> FsResult<PathBuf>{
+pub fn save_docchi_file(info : &SaveDirInfo,
+                        file_name : &str,
+                        root: &RootObject,
+                        overwrite : bool) -> FsResult<PathBuf>{
     let mutex = get_mutex(info.save_dir()).unwrap();
     let info = mutex.cache();
     let save_dir = info.save_dir();
@@ -33,7 +33,7 @@ pub fn save_dochy_file(info : &SaveDirInfo,
 /// Saves clone of the RootObject, and cloning is very fast because RootObject consists of Arcs.
 /// Actual copying occurs only when the RootObject is modified before the saving is finished,
 /// and only the parts to be modified are copied using Arc::make_mut.
-pub fn save_dochy_file_nb<
+pub fn save_docchi_file_nb<
     F : FnOnce(FsResult<PathBuf>) + Send + 'static>(info : &SaveDirInfo,
                                                     file_name : &str,
                                                     root: &RootObject,
@@ -43,7 +43,7 @@ pub fn save_dochy_file_nb<
     let file_name = file_name.to_string();
     let root = root.clone();
     std::thread::spawn(move ||{
-        match save_dochy_file(&info, &file_name, &root, overwrite){
+        match save_docchi_file(&info, &file_name, &root, overwrite){
             Ok(p) =>{
                 callback(Ok(p.to_path_buf()));
             },

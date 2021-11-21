@@ -14,14 +14,14 @@ Referencing items with auto-increment ID is not very intuitive.
 You can create very powerful systems on it with programming languages, 
 but it's not very suited for handmade JSON5 files to reference items.
 
-Dochy has another option, which is first-class reference based on name-resolution.
+Docchi has another option, which is first-class reference based on name-resolution.
 ```json5
 {
  list : [
   "MList",
   [{
    // "Ref" is the keyword to reference items
-   // Every keyword in Dochy starts with captal letters,
+   // Every keyword in Docchi starts with captal letters,
    // and all the names starts with captal letters are reserved by the system
    Ref : {
     //Ref's initial value must be a concrete ID, empty string, or null.
@@ -64,7 +64,7 @@ Dochy has another option, which is first-class reference based on name-resolutio
 }
 ```
 Tables are basically CList with string IDs. 
-Dochy's objects can reference table's items by IDs.
+Docchi's objects can reference table's items by IDs.
 ```
 {
  Ref : {

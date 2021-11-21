@@ -5,7 +5,7 @@
 
   // Why Cil exists? What about just use the CList in the CList?
 
-  // Dochy's inner lists are different from normal lists. Let's see.
+  // Docchi's inner lists are different from normal lists. Let's see.
 
   clist : ["CList",[{
     val : 0,

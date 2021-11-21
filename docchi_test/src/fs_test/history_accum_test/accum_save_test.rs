@@ -31,7 +31,7 @@ fn accum_save_test() -> DpResult<()> {
         assert!(root.root_obj_ref().contents_eq(loaded.root_obj_ref()));
         //ロードするとロードしたオブジェクトでセーブしないとHistoryが構成できない
         //ここはインチキして、セーブした時の状態に戻す
-        dochy::fs::history::set_current_root_obj_info(
+        docchi::fs::history::set_current_root_obj_info(
             &info, Some(CurrentRootObjInfo::new(root.root_obj_ref().id(), saved)));
     }
 

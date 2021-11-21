@@ -1,17 +1,17 @@
 ## 1. Efficiency
 
-The Dochy language is basically JSON5 which is a better JSON. JSON5 is dynamically typed, like this.
+The Docchi language is basically JSON5 which is a better JSON. JSON5 is dynamically typed, like this.
 
 ```json5
 {
   list : [
 	{
 		age: 1,
-		name: "dochy1"
+		name: "docchi1"
 	},
 	{
 		age: 2,
-		name: "dochy2"
+		name: "docchi2"
 	}
   ]
 }
@@ -19,15 +19,15 @@ The Dochy language is basically JSON5 which is a better JSON. JSON5 is dynamical
 Dynamically typed data must contain type data, namely member names and member types,
 which can vary in each item so every item must have them.
 
-In Dochy, member names and types are statically defined and can't vary in a list.
+In Docchi, member names and types are statically defined and can't vary in a list.
 ```json5
 {
-  // Comments can be written in JSON5 (and Dochy)
+  // Comments can be written in JSON5 (and Docchi)
   list : [ 
-    // "MList" means a mutable list, one of the collection types in Dochy.
-    // Every collection in Dochy must have the collection type as the first item
+    // "MList" means a mutable list, one of the collection types in Docchi.
+    // Every collection in Docchi must have the collection type as the first item
     "MList",
-    // Every collection in Dochy must have Default Object written within "[{" and "}]".
+    // Every collection in Docchi must have Default Object written within "[{" and "}]".
     // Default Object defines the static type of the items in the list.
     [{
       age : 0, //The type is Int, which is distinguished from Float
@@ -35,11 +35,11 @@ In Dochy, member names and types are statically defined and can't vary in a list
     }],
     {
       age : 1,
-      name : "dochy1"
+      name : "docchi1"
     },
     {
       age : 2,
-      name : "dochy2",
+      name : "docchi2",
     }
   ]
 }
@@ -47,7 +47,7 @@ In Dochy, member names and types are statically defined and can't vary in a list
 The default object defines the static type, and the type can't vary, 
 so we can omit the type data from the items.
 
-Actually, Dochy's data is binary, 
+Actually, Docchi's data is binary, 
 but the system records the difference from the initial state which is described in JSON5.
 We need raw JSON5 to define the initial state,
 
@@ -55,7 +55,7 @@ JSON5 is easy to read, write and maintain.
 Real world applications need the initial data for the most time,
 so we think that initial raw JSON5 being mandatory is not a serious disadvantage.
 
-We introduce an example to show how Dochy is efficient .
+We introduce an example to show how Docchi is efficient .
 ```json5
 {
 	users : [
@@ -99,7 +99,7 @@ We introduce an example to show how Dochy is efficient .
 ```
 This is mock JSON5 data. 
 
-To convert the data to Dochy, at first, we need to write the initial JSON5.
+To convert the data to Docchi, at first, we need to write the initial JSON5.
 ```json5
 {
   users: [  
@@ -109,16 +109,16 @@ To convert the data to Dochy, at first, we need to write the initial JSON5.
       name: "",
       created: "",
       is_active: false,
-      // member name with "?" means it's nullable, which is Dochy's extension from JSON5
+      // member name with "?" means it's nullable, which is Docchi's extension from JSON5
       thumbnail? : ["Str", null], //null values need the type specified
     }]
   ]
 }
 ```
 This is an artificial example. Normally we need to write actual, concrete data for expressiveness.
-However, we need to show the data size of Dochy, so the values are emptied.
+However, we need to show the data size of Docchi, so the values are emptied.
 
-We made the data inputted and output the string expression of the equivalent Dochy data. 
+We made the data inputted and output the string expression of the equivalent Docchi data. 
 ```json5
 {
 	"Old" : [], // Old is a member added by the system.
@@ -179,7 +179,7 @@ We made the data inputted and output the string expression of the equivalent Doc
 The docchi data to make this output is 157 bytes, while the original JSON5 file is 626 bytes and
 215 bytes using flate2::ZlibEncoder;
 
-Actually, the Dochy language only needs values changed from the default value. 
+Actually, the Docchi language only needs values changed from the default value. 
 We can omit unchanged values, and it makes the file size 155 bytes.
 ```json5
 {
@@ -212,11 +212,11 @@ We can omit unchanged values, and it makes the file size 155 bytes.
   ],
 }
 ```
-The difference is 2 bytes, which is very small because Dochy records some data bitwise. 
+The difference is 2 bytes, which is very small because Docchi records some data bitwise. 
 We omitted 8 items, but the values are boolean and null, and it occupied about 2 bytes. 
 
 The compressed JSON5 has the dynamic type data too, 
-and it's corresponding to the initial JSON5 in Dochy. The initial JSON5 is 139 bytes. 
+and it's corresponding to the initial JSON5 in Docchi. The initial JSON5 is 139 bytes. 
 155 + 139 = 273 > 215, so you may think this is not good enough.
 
 (Type data is basically fixed, and it doesn't need re-download or such, though.)
@@ -252,7 +252,7 @@ Writing everything is not where the diff system really shines. Let's add one ite
   ],
 }
 ```
-The Dochy file of this diff is 37 bytes, but in JSON, you should need to write the entire list to record the change.
+The Docchi file of this diff is 37 bytes, but in JSON, you should need to write the entire list to record the change.
 
 There's a module dedicated to accumulate small changes efficiently. [fs::history](./history.md)
 

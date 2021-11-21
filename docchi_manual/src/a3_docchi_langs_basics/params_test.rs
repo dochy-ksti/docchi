@@ -1,12 +1,12 @@
 use docchi::error::DpResult;
 use docchi::core::json_dir_to_root;
 use docchi::core::structs::{RootObject, NullOr, UndefOr, Qv};
-use crate::a3_dochy_langs_basics::dochy_params_accessor::RootIntf;
+use crate::a3_docchi_langs_basics::docchi_params_accessor::RootIntf;
 
 #[test]
 fn params_test() -> DpResult<()> {
     // You validated Docchi Src when you generated the source code, so validation is not needed now.
-    let root_obj : RootObject = json_dir_to_root("src/a3_dochy_langs_basics/dochy_params", false)?;
+    let root_obj : RootObject = json_dir_to_root("src/a3_docchi_langs_basics/docchi_params", false)?;
 
     // RootIntf is the struct created in the generated source code.
     // It's always named "RootIntf".

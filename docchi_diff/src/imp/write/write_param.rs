@@ -87,6 +87,6 @@ fn write_float_array(a : &RustFloatArray, r : &mut Vec<KVal>){
 }
 
 fn write_binary(a : &RustBinary, r : &mut Vec<KVal>){
-    //DochyBenchの結果を見るに、Arcを使う最適化によって、誤差より多少マシ程度には早くなったと思う。でもそんなに価値はなさそう
+    //DocchiBenchの結果を見るに、Arcを使う最適化によって、誤差より多少マシ程度には早くなったと思う。でもそんなに価値はなさそう
     r.push(KVal::BinaryArc(a.arc().clone()));
 }

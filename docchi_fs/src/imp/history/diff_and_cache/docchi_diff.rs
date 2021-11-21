@@ -4,13 +4,13 @@ use std::io::{Read, Write};
 use docchi_diff::RootDiffR;
 use docchi_core::structs::MetaTable;
 
-pub(crate) struct DochyDiff{
+pub(crate) struct DocchiDiff {
     vec : Vec<u8>
 }
 
-impl DiffValue for DochyDiff{
+impl DiffValue for DocchiDiff {
     fn read_value<R: Read>(read: &mut R) -> FsResult<Self> {
-        DochyDiff::read_value(read)
+        DocchiDiff::read_value(read)
     }
 
     fn write_value<W: Write>(&self, write: &mut W) -> FsResult<()> {
@@ -18,13 +18,13 @@ impl DiffValue for DochyDiff{
     }
 }
 
-impl DochyDiff{
-    pub(crate) fn new(vec : Vec<u8>) -> DochyDiff{ DochyDiff{ vec } }
+impl DocchiDiff {
+    pub(crate) fn new(vec : Vec<u8>) -> DocchiDiff { DocchiDiff { vec } }
     pub(crate) fn slice(&self) -> &[u8]{ &self.vec }
     pub(crate) fn read_value<R: Read>(read: &mut R) -> FsResult<Self> {
         let mut vec : Vec<u8> = vec![];
         read.read_to_end(&mut vec)?;
-        Ok(DochyDiff{ vec })
+        Ok(DocchiDiff { vec })
     }
     pub(crate) fn write_value<W: Write>(&self, write: &mut W) -> FsResult<()> {
         write.write_all(&self.vec)?;

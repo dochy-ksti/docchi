@@ -1,10 +1,10 @@
 [prev](use_table.md)
 [index](index.md)
-[next](save_dochy_files.md)
+[next](save_docchi_files.md)
 
-### 5. Split Dochy Src
+### 5. Split Docchi Src
 
-Dochy Src can be split into multiple files.
+Docchi Src can be split into multiple files.
 
 The original source is...
 ```json5
@@ -63,4 +63,4 @@ Nullable variables can't be separated because "?" can't be used in filenames.
 
 [prev](use_table.md)
 [index](index.md)
-[next](save_dochy_files.md)
+[next](save_docchi_files.md)

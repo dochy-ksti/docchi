@@ -49,14 +49,14 @@ fn mil_test() -> DpResult<()> {
     // *** Not Important Note ***
 
     // The default value doesn't usually exist in the item's hashtable.
-    // When a value doesn't exist in the table, Dochy considers it as the default value.
+    // When a value doesn't exist in the table, Docchi considers it as the default value.
     // In other words, when you get the value from an item and if it doesn't exist,
-    // Dochy returns the default value.
+    // Docchi returns the default value.
 
     // When you set the value into the item, the value is placed in the item's hashtable,
     // so we can get the value instead of the default value.
 
-    // If you mutably borrow an unset value, Dochy sets the default value into the item's hashtable first,
+    // If you mutably borrow an unset value, Docchi sets the default value into the item's hashtable first,
     // and returns the mutable reference.
     // If you push_str to it, the pushed string is appended to the default value.
 

@@ -12,11 +12,11 @@ use docchi::error::DpResult;
 //#[test]
 fn users_omitted() -> DpResult<()>{
     let ini_path= "src/sample_code_json/users/users_initial";
-    let mut r = dochy::core::json_dir_to_root(ini_path, false)?;
+    let mut r = docchi::core::json_dir_to_root(ini_path, false)?;
 
     let rp = RootObjectPtr::new(&mut r);
 
-    let mut ml : MListPtr<MItemPtr> = dochy::core::intf::root::get_mlist_mut(
+    let mut ml : MListPtr<MItemPtr> = docchi::core::intf::root::get_mlist_mut(
         rp, "users")?.unwrap();
     let item = ml.insert();
     mitem::set_int(item, "id", Qv::Val(1));

@@ -8,9 +8,9 @@ use crate::imp::common::path::reserved_filename::ARCHIVE_DEFAULT_NAME;
 use crate::common::hash::folder_name_to_hash;
 use crate::imp::filesys::save_dir_info::SaveDirInfo;
 
-pub fn load_dochy_file<P : AsRef<Path>>(file_path : P,
-                                        current_save_dir_info : &SaveDirInfo,
-                                        validation : bool) -> FsResult<RootObject>{
+pub fn load_docchi_file<P : AsRef<Path>>(file_path : P,
+                                         current_save_dir_info : &SaveDirInfo,
+                                         validation : bool) -> FsResult<RootObject>{
     let path = file_path.as_ref();
     let dir_path = path.parent().ok_or("file_path's file must be in a folder which contains src.archive file.")?;
     let folder_name = dir_path.file_name().ok_or_else(||format!("the path doesn't have a folder name {:?} ", dir_path))?;

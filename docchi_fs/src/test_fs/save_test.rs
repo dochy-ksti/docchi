@@ -1,10 +1,10 @@
-use crate::imp::filesys::save_dochy_file::save_dochy_file;
+use crate::imp::filesys::save_docchi_file::save_docchi_file;
 use docchi_core::intf::RootObjectPtr;
 use docchi_core::intf::root::{set_bool, get_bool, set_int, get_int};
 use docchi_core::structs::Qv;
 use tempfile::tempdir;
 use crate::error::FsResult;
-use crate::imp::filesys::load_dochy_file::load_dochy_file;
+use crate::imp::filesys::load_docchi_file::load_docchi_file;
 use crate::test_fs::copy_dir_all::copy_dir_all;
 use crate::imp::common::list::list_files::list_files;
 use crate::imp::filesys::save_dir_info::SaveDirInfo;
@@ -30,9 +30,9 @@ fn save_test() -> FsResult<()> {
         let p = RootObjectPtr::new(&mut root);
         set_bool(p, "b", Qv::Val(true));
 
-        let path = save_dochy_file(&info, "test1", &root, false)?;
+        let path = save_docchi_file(&info, "test1", &root, false)?;
 
-        let mut loaded = load_dochy_file(&path, &info, false)?;
+        let mut loaded = load_docchi_file(&path, &info, false)?;
         first_save_path = path;
 
         let p = RootObjectPtr::new(&mut loaded);
@@ -52,8 +52,8 @@ fn save_test() -> FsResult<()> {
         let p = RootObjectPtr::new(&mut root);
         set_int(p, "int", Qv::Val(-1));
 
-        let path = save_dochy_file(&info, "test2", &root, false)?;
-        let mut loaded = load_dochy_file(&path, &info, false)?;
+        let path = save_docchi_file(&info, "test2", &root, false)?;
+        let mut loaded = load_docchi_file(&path, &info, false)?;
 
         let p = RootObjectPtr::new(&mut loaded);
         let i = get_int(p, "int")?;
@@ -64,7 +64,7 @@ fn save_test() -> FsResult<()> {
         let current_src = CurrentSrc::SrcDir(src_dir_path.clone());
         let info = SaveDirInfo::create(proj_dir_path, current_src)?;
 
-        let mut loaded = load_dochy_file(&first_save_path, &info, false)?;
+        let mut loaded = load_docchi_file(&first_save_path, &info, false)?;
 
         let p = RootObjectPtr::new(&mut loaded);
         let b = get_bool(p, "b")?;

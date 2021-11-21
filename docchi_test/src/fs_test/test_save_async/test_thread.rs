@@ -3,7 +3,6 @@ use docchi::fs::common::{CurrentSrc};
 use std::path::{Path, PathBuf};
 use docchi::core::structs::RootObject;
 use rand::Rng;
-use docchi::fs::filesys::{SaveDirInfo, save_dochy_file_async, load_dochy_file, list_dochy_files};
 use std::time::Duration;
 //use std::lazy::Lazy;
 
@@ -19,9 +18,9 @@ static vec_lazy : Lazy<Bmutex<Vec<String>>> = Lazy::new(||{
     Bmutex::new(Vec::new())
 });
 
-/// FileのWriteは全くアトランダムに実行される
-#[test]
-fn test_save_async() -> DpResult<()> {
+///thread::spawnでスレッドはバラバラに実行されることの確認
+//#[test]
+fn test_thread() -> DpResult<()> {
 
     let max = 10;
 
@@ -48,9 +47,9 @@ fn test_save_async() -> DpResult<()> {
     let hoge : &Vec<String> = &v;
     println!("{:?}", hoge);
 
+    //Output:
+    //["0", "6", "1", "2", "3", "5", "7", "4", "8", "9"]
 
 
-    //list_dochy_files()
-    //load_dochy_file()
     Ok(())
 }

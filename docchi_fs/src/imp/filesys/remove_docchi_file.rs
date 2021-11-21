@@ -4,7 +4,7 @@ use crate::imp::common::path::reserved_filename::is_reserved_filename;
 use crate::imp::common::path::hash_dir_path::hash_dir_path;
 
 ///Docchi files can be safely removed.
-pub fn remove_dochy_file<P : AsRef<Path>>(save_dir : P, hash : u128, filename : &str) -> FsResult<()>{
+pub fn remove_docchi_file<P : AsRef<Path>>(save_dir : P, hash : u128, filename : &str) -> FsResult<()>{
     if is_reserved_filename(filename) == false{
         let dir = hash_dir_path(save_dir, hash);
         let file_path = dir.join(filename);

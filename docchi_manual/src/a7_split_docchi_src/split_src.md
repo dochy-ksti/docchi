@@ -1,4 +1,4 @@
-Dochy Src can be split into multiple files.
+Docchi Src can be split into multiple files.
 
 The original source is...
 ```json5

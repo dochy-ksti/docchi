@@ -8,12 +8,12 @@ use docchi::error::DpResult;
 
 //#[test]
 fn sample_employee_minimum() -> DpResult<()>{
-    let ini_path= "sample_code_json/sample_employee_dochy_minimum";
-    let mut r = dochy::core::json_dir_to_root(ini_path, false)?;
+    let ini_path= "sample_code_json/sample_employee_docchi_minimum";
+    let mut r = docchi::core::json_dir_to_root(ini_path, false)?;
 
     let rp = RootObjectPtr::new(&mut r);
 
-    let mut ml : MListPtr<MItemPtr> = dochy::core::intf::root::get_mlist_mut(
+    let mut ml : MListPtr<MItemPtr> = docchi::core::intf::root::get_mlist_mut(
         rp, "@Employees")?.unwrap();
     let item = ml.insert();
     mitem::set_str(item, "userId", Qv::Val("krish".to_string()));
@@ -49,7 +49,7 @@ fn sample_employee_minimum() -> DpResult<()>{
     //let hoge = rust_to_json_new_default(&r)?;
     //println!("{}", hoge.to_string_pretty());
 
-    let mut from = dochy::core::json_dir_to_root(
+    let mut from = docchi::core::json_dir_to_root(
         ini_path, false)?;
     let vec = docchi_diff::get_diff(&from, &r)?;
     println!("{}", vec.len());

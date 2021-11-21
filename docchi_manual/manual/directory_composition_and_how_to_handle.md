@@ -20,7 +20,7 @@ Maybe you want to use multiple data set for your project.
                          └─ src_dir_b
 
 We recommend these compositions, but you don't need to obey them.
-There's no limitation about directory compositions in Dochy.
+There's no limitation about directory compositions in Docchi.
 
 But history_dir, save_dir, and src_dir need to be dedicated directories,
 and let Docchi manage them.

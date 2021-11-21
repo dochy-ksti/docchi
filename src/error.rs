@@ -4,10 +4,10 @@ use anyhow::{anyhow};
 use std::time::SystemTimeError;
 //use std::time::SystemTimeError;
 
-/// The general result type for dochy
+/// The general result type for docchi
 pub type DpResult<T> = Result<T, DpError>;
 
-/// The general error type for dochy
+/// The general error type for docchi
 pub struct DpError {
     error : anyhow::Error,
 }

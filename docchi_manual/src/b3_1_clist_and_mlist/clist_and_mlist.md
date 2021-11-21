@@ -1,6 +1,6 @@
 ## CList and MList
 
-Dochy has two types of lists, "CList" and "MList".
+Docchi has two types of lists, "CList" and "MList".
 
 CList is immutable, and if it's changed in a new version,
 the old CList is completely ignored and replaced by the new CList.

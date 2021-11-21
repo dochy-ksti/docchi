@@ -1,23 +1,23 @@
 ### Version Awareness
 
-Dochy File System forces the diff files to be placed with 
+Docchi File System forces the diff files to be placed with 
  an archived source JSON5 file in the same directory.
 
 When the source is modified, diff files will be invalid unless 
-the source file at the time is preserved, and Dochy File System makes sure
+the source file at the time is preserved, and Docchi File System makes sure
 the corresponding archive file is always preserved in the same directory.
 
 When the source is modified, we'll have the current and old source files.
 Since we can get the old and current type data from them,
 we can adjust the old data to be compatible with the current version.
 
-In Dochy, if a variable is removed in a new version, 
+In Docchi, if a variable is removed in a new version, 
 the corresponding variable in the old data is also removed in the adjustment process, 
 and it shouldn't cause any problem.
 
 What about adding a variable?
 
-In Dochy, when we try to get a value from a variable, 
+In Docchi, when we try to get a value from a variable, 
 and the value hasn't been modified, its default value will be returned.
 When a variable is added in a new version, since the old data doesn't have the variable,
 the default value will be returned. It's basically safe, but sometimes, it's not.
@@ -30,7 +30,7 @@ How should we implement the conversion. We can write,
 
 But is that the right way? Accumulation of the conversion may cause problems in the future.
 
-In Dochy, when a variable is undefined in an old data, 
+In Docchi, when a variable is undefined in an old data, 
 the system can set the special value "undefined" to the variable in the adjustment process.
 
 ```json5
@@ -42,13 +42,13 @@ the system can set the special value "undefined" to the variable in the adjustme
 ```
 //Comments can be written in JSON5
 {
- // ? means "nullable". It's not valid syntax in JSON5, but Dochy's parser accepts it
+ // ? means "nullable". It's not valid syntax in JSON5, but Docchi's parser accepts it
  // Like normal JSON, you can quote the member name "oldValue?" and make the name legal    
  oldValue? : ["Int", null], 
  // every variable must have its static type. and the static type "null" is prohibited (and meaningless)
  // ["Int", null] means the null's type is Int, and the variable's static type is "nullable Int"
  
- newValue! : 100, // ! means "can be undefined". It's also invalid in JSON5 syntax but Dochy's parser accepts it.
+ newValue! : 100, // ! means "can be undefined". It's also invalid in JSON5 syntax but Docchi's parser accepts it.
  //newValue's default value is 100, which is 10 times bigger than the old.
 }
  ```
@@ -60,7 +60,7 @@ changed to "undefined" in the adjustment process.
 
 ## How to use the value "undefined"?
 
-Dochy generates a source code to access the data. 
+Docchi generates a source code to access the data. 
 The generated code from the new source is this. 
 (You don't need to read. It's just a generated code)
 ```Rust
@@ -207,7 +207,7 @@ You may see this is a sustainable conversion by reading the source code.
 
 ## CList and MList
 
-Dochy has two types of lists, "CList" and "MList". 
+Docchi has two types of lists, "CList" and "MList". 
 
 CList is immutable, and if it's changed in a new version, 
 the old CList is completely ignored and replaced by the new CList.

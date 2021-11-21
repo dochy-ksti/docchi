@@ -8,7 +8,7 @@
 // use crate::test_fs::copy_dir_all::copy_dir_all;
 // use docchi_core::json_dir_to_root;
 // use crate::test_diff_history::show_dir_contents_diff_history::show_dir_contents_diff_history;
-// use crate::imp::common::dochy_cache::DochyCache;
+// use crate::imp::common::docchi_cache::DocchiCache;
 // use crate::imp::history::history_info::HistoryInfo;
 //
 // ///途中でソースを変えるテスト
@@ -57,7 +57,7 @@
 //
 //     let mut root = load_history_file_data(proj_dir_path, &newest, &mut cache, &opt, false)?;
 //     let p = RootObjectPtr::new(&mut root);
-//     let mut cache = DochyCache::new(current_src.clone())?;
+//     let mut cache = DocchiCache::new(current_src.clone())?;
 //
 //     for i in 0..15 {
 //         set_int(p, "int", Qv::Val(i));

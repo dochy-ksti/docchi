@@ -5,7 +5,7 @@ use std::path::{PathBuf, Path};
 use crate::error::FsResult;
 use crate::imp::filesys::save_dir_info::SaveDirInfo;
 use crate::imp::filesys::save_cache_item::SaveCacheItem;
-use crate::imp::filesys::dochy_mutex::DochyMutex;
+use crate::imp::filesys::docchi_mutex::DocchiMutex;
 use crate::imp::common::current_src::current_src_map::get_current_src_info;
 use std::sync::Mutex;
 
@@ -54,9 +54,9 @@ fn get_map_item<'a>(save_dir : &Path) -> Option<&'a (SaveCacheItem, Mutex<()>)>{
     Some(unsafe{ &*ptr })
 }
 
-pub(crate) fn get_mutex<'a>(save_dir : &Path) -> Option<DochyMutex<'a>>{
+pub(crate) fn get_mutex<'a>(save_dir : &Path) -> Option<DocchiMutex<'a>>{
     let (cache, mutex) = get_map_item(save_dir)?;
-    Some(DochyMutex::new(mutex.lock().unwrap(), cache))
+    Some(DocchiMutex::new(mutex.lock().unwrap(), cache))
 }
 
 pub(crate) fn get_cache<'a>(save_dir : &Path) -> Option<&'a SaveCacheItem>{

@@ -1,21 +1,21 @@
-## Dochy User's Manual
+## Docchi User's Manual
 
-Dochy is a static JSON-like data format.
+Docchi is a static JSON-like data format.
 
 It can efficiently store "diff" of the data.
 
 It's designed to implement auto-save, unlimited undo, and
 applications which want to retain every change of the data, like cloud apps.
 
-Dochy is a language, so [the API documentation](https://docs.rs/dochy/) is not very good to learn.
+Docchi is a language, so [the API documentation](https://docs.rs/docchi/) is not very good to learn.
 This user's manual should be good to go.
 
 
-### 1. Dochy Lang
+### 1. Docchi Lang
 
 #### 　[1-1. Basic Params](root.md)
 
-##### 　　[1-1-1. Generate Source Code To Access Params](dochy_params_generate.md)
+##### 　　[1-1-1. Generate Source Code To Access Params](docchi_params_generate.md)
 
 ##### 　　[1-1-2. Use Generated Source Code](params_test.md)
 
@@ -35,21 +35,21 @@ This user's manual should be good to go.
 
 #### 　[4-1. Use Table](use_table.md)
 
-### [5. Split Dochy Src](split_src.md)
+### [5. Split Docchi Src](split_src.md)
 
-### [6. Dochy File](save_dochy_files.md)
+### [6. Docchi File](save_docchi_files.md)
 
-#### 　[6-1. Save Dochy File](save_dochy_file_test.md)
+#### 　[6-1. Save Docchi File](save_docchi_file_test.md)
 
-#### 　[6-2. Load And Remove Dochy File](load_dochy_file.md)
+#### 　[6-2. Load And Remove Docchi File](load_docchi_file.md)
 
-### [7. Dochy History](whats_dochy_history.md)
+### [7. Docchi History](whats_docchi_history.md)
 
 #### 　[7-1. Save History File](save_history_file_test.md)
 
 #### 　[7-2. Load And Remove History File](load_history_file_test.md)
 
-#### 　[7-3. Algorithm Of Dochy History](algorithm_of_history.md)
+#### 　[7-3. Algorithm Of Docchi History](algorithm_of_history.md)
 
 ### [8. Directory Composition And How To Handle](directory_composition_and_how_to_handle.md)
 

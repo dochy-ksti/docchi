@@ -3,7 +3,7 @@ use crate::common::{CurrentSrc};
 use crate::history::HistoryOptions;
 use docchi_core::structs::RootObject;
 use crate::imp::history::current_root_obj_info::current_root_obj_info::CurrentRootObjInfo;
-use crate::imp::history::diff_and_cache::dochy_cache::DochyCache;
+use crate::imp::history::diff_and_cache::docchi_cache::DocchiCache;
 use crate::imp::history::current_root_obj_info::fifo_thread::FifoThread;
 use std::sync::Mutex;
 
@@ -49,16 +49,16 @@ impl PeekableCacheInfo{
 }
 
 pub(crate) struct SyncedItem{
-    cache : DochyCache,
+    cache : DocchiCache,
     current_root : Option<CurrentRootObjInfo>,
 }
 
 impl SyncedItem{
-    pub(crate) fn new(cache : DochyCache,
+    pub(crate) fn new(cache : DocchiCache,
                       current_root : Option<CurrentRootObjInfo>) -> SyncedItem{
         SyncedItem{ cache, current_root }
     }
-    pub(crate) fn muts(&mut self) -> (&mut DochyCache, &mut Option<CurrentRootObjInfo>){
+    pub(crate) fn muts(&mut self) -> (&mut DocchiCache, &mut Option<CurrentRootObjInfo>){
         (&mut self.cache, &mut self.current_root)
     }
 }

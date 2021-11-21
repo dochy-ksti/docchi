@@ -101,32 +101,32 @@ fn save_history_file_test() -> DpResult<()> {
     // We set limit_nth "1". so the max_phase is limited by the most largest file in its ancestors.
     // The most largest file in its ancestors is "_0_0_0.his 33 bytes".
     // The total file size of the max phase is already larger than the most largest file,
-    // so Dochy considers the max phase is too large.
+    // so Docchi considers the max phase is too large.
 
     modify(&mut root, &mut count);
     let _file = save_history_file(&info, None, root.root_obj_ref())?;
     print_dir(&hash_dir)?;
 
     // "_0_1.his 77 bytes" is just created. It means "control 0 phase-0 1"
-    // When max_phase is overflowed, Dochy calculates which phase the next file should be shifted to( [algorithm](...) ),
+    // When max_phase is overflowed, Docchi calculates which phase the next file should be shifted to( [algorithm](...) ),
     // and the file is shifted to the phase-0.
-    // The diff is calculated from the Dochy Src, and saved as "0_1.his".
+    // The diff is calculated from the Docchi Src, and saved as "0_1.his".
     //
     // The data is modified four times. Each time, 10 bytes string is appended, so theoretically, the total diff size is 40 bytes.
     // The actual file size is 77 bytes. It's kind of bloated?
     // "0_0.his" was 28 bytes, and the data is modified three times since then. the diff is theoretically 30 bytes,
     // so you may think it should be 58 bytes.
     //
-    // Actually, Dochy doesn't compare values without Int, Float and Bool.
-    // Dochy doesn't compare strings and create diff of strings.
-    // Dochy only confirm whether it's modified, and if it's modified, the entire value is saved.
+    // Actually, Docchi doesn't compare values without Int, Float and Bool.
+    // Docchi doesn't compare strings and create diff of strings.
+    // Docchi only confirm whether it's modified, and if it's modified, the entire value is saved.
     // The initial string is 5 bytes, and appended 10 bytes, so the diff is actually 15 bytes.
     //
     // It modified three times so the total diff is 45 bytes.
     // "0_0.his" was 28 bytes and "_0_1.his" was 77 bytes.
     // It should be theoretically 73 bytes. The difference is 4 bytes.
     //
-    // Dochy encodes numbers to variable bytes.
+    // Docchi encodes numbers to variable bytes.
     // When a number is increased, the data size can be grown. Maybe the size grown was 4 bytes.
 
     modify(&mut root, &mut count);
@@ -180,7 +180,7 @@ fn save_history_file_test() -> DpResult<()> {
     //
     // The max_phase is also limited by the option "limit_count".
     // We set the limit '3", so a max_phase must have less than three files.
-    // "_0_1_0_2.his" is the third file of the max_phase, so Dochy thinks the max_phase is overflown.
+    // "_0_1_0_2.his" is the third file of the max_phase, so Docchi thinks the max_phase is overflown.
 
     modify(&mut root, &mut count);
     let _file = save_history_file(&info, None, root.root_obj_ref())?;

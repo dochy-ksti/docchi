@@ -10,7 +10,7 @@ use crate::imp::common::current_src::current_src_map::get_current_src_info;
 use docchi_core::archive_file_to_root;
 
 
-pub(crate) struct DochyCache{
+pub(crate) struct DocchiCache {
     //current_src : CurrentSrc,
     src_root : RootObject,
     hash : u128,
@@ -18,7 +18,7 @@ pub(crate) struct DochyCache{
     pub(crate) phase_cache: BTreeMap<usize, (PathBuf, RootObject)>,
 }
 
-impl DochyCache{
+impl DocchiCache {
 
 
     pub fn get_or_create_hash_root<P:AsRef<Path>>(&self, history_dir : P, hash : u128) -> FsResult<RootObject>{
@@ -29,10 +29,10 @@ impl DochyCache{
         }
     }
 
-    pub(crate) fn new(current_src : CurrentSrc) -> FsResult<DochyCache>{
+    pub(crate) fn new(current_src : CurrentSrc) -> FsResult<DocchiCache>{
         let info = get_current_src_info(current_src)?;
 
-        Ok(DochyCache{
+        Ok(DocchiCache {
             //current_src : info.current_src().clone(),
             src_root : info.clone_src_root(),
             hash : info.hash(),
@@ -112,7 +112,7 @@ fn remove_upper_phase_cache(cache : &mut BTreeMap<usize, (PathBuf, RootObject)>,
     }
 }
 
-fn get_cached_item(root : RootObject, cache : &mut DochyCache, paths: Vec<PathBuf>, max_phase : usize) -> FsResult<(RootObject, Vec<PathBuf>)> {
+fn get_cached_item(root : RootObject, cache : &mut DocchiCache, paths: Vec<PathBuf>, max_phase : usize) -> FsResult<(RootObject, Vec<PathBuf>)> {
     if let Some(index) = get_phase_cache(&cache.phase_cache, &paths, max_phase){
         if index == max_phase{
             let (_,root) = cache.phase_cache.get(&index).unwrap();

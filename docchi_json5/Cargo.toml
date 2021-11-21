@@ -6,7 +6,7 @@ edition = "2018"
 
 license = "MIT OR Apache-2.0"
 description = "Handles customized json5 for my project"
-repository = "https://github.com/dochy-ksti/dochy"
+repository = "https://github.com/dochy-ksti/docchi"
 readme = "readme.md"
 keywords = ["json5"]
 

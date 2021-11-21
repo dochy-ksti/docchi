@@ -2,12 +2,12 @@ use crate::imp::history::diff_and_cache::cache::Cache;
 use std::path::{PathBuf};
 use crate::error::FsResult;
 use docchi_core::structs::RootObject;
-use crate::imp::history::diff_and_cache::docchi_diff::DochyDiff;
+use crate::imp::history::diff_and_cache::docchi_diff::DocchiDiff;
 use crate::history::HistoryOptions;
-use crate::imp::history::diff_and_cache::dochy_cache::DochyCache;
+use crate::imp::history::diff_and_cache::docchi_cache::DocchiCache;
 
 
-impl Cache<DochyDiff, RootObject> for DochyCache {
+impl Cache<DocchiDiff, RootObject> for DocchiCache {
 
 
     fn apply_items_for_save(&mut self, paths: Vec<PathBuf>, op: &HistoryOptions) -> FsResult<RootObject> {

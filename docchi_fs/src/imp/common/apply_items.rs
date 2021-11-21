@@ -4,7 +4,7 @@ use crate::error::FsResult;
 use crate::imp::history::diff_and_cache::open_diff_file_without_metadata::open_diff_file_without_metadata;
 use docchi_diff::{apply_diff, RootDiffR};
 use std::sync::mpsc::{Sender, Receiver};
-use crate::imp::history::diff_and_cache::docchi_diff::DochyDiff;
+use crate::imp::history::diff_and_cache::docchi_diff::DocchiDiff;
 use std::collections::HashMap;
 
 pub(crate) fn apply_items_st<F : FnMut(&RootObject)>(mut root : RootObject,
@@ -32,7 +32,7 @@ pub(crate) fn apply_items_mt<F : FnMut(&RootObject)>(mut root : RootObject,
     std::thread::spawn(move ||{
         for (i,path) in paths.iter().enumerate() {
             let mut file = open_diff_file_without_metadata(path).unwrap();
-            let v = DochyDiff::read_value(&mut file).unwrap();
+            let v = DocchiDiff::read_value(&mut file).unwrap();
             let sender = sender.clone();
             let meta_table_arc = meta_table_arc.clone();
             rayon::spawn_fifo(move ||{

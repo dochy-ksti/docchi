@@ -1,6 +1,6 @@
-//! [Dochy User's Manual](https://github.com/dochy-ksti/dochy/blob/master/dochy_manual/manual/index.md)
+//! [Docchi User's Manual](https://github.com/dochy-ksti/docchi/blob/master/docchi_manual/manual/index.md)
 //!
-//! Dochy is a language, so this API document is not sufficient to explain what it is.
+//! Docchi is a language, so this API document is not sufficient to explain what it is.
 
 #![feature(vec_into_raw_parts)]
 #![feature(test)]

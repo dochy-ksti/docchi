@@ -10,7 +10,7 @@ use crate::imp::history::file_hist::history_file_data::HistoryFileData;
 use crate::imp::history::current_root_obj_info::history_cache_map::{get_mutex};
 use crate::imp::history::history_info::HistoryInfo;
 use crate::imp::history::current_root_obj_info::current_root_obj_info::CurrentRootObjInfo;
-use crate::imp::history::diff_and_cache::dochy_cache::DochyCache;
+use crate::imp::history::diff_and_cache::docchi_cache::DocchiCache;
 
 /// Loads a history file.
 pub fn load_history_file(history_info : &HistoryInfo,
@@ -37,7 +37,7 @@ fn load_impl<P : AsRef<Path>>(history_dir : P,
                               hash : u128,
                               props : &FileNameProps,
                               history : &FileHistory,
-                              cache : &mut DochyCache,
+                              cache : &mut DocchiCache,
                               op : &HistoryOptions,
                               validation : bool) -> FsResult<RootObject> {
     let dir = history_dir.as_ref();

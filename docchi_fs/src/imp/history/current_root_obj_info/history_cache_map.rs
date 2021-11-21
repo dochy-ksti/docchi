@@ -8,7 +8,7 @@ use crate::imp::history::history_info::HistoryInfo;
 use crate::imp::history::current_root_obj_info::current_root_obj_info::CurrentRootObjInfo;
 use crate::imp::history::current_root_obj_info::history_cache_item::{SyncedItem, HistoryCacheItem};
 use crate::imp::history::current_root_obj_info::mutex_g::MutexG;
-use crate::imp::history::diff_and_cache::dochy_cache::DochyCache;
+use crate::imp::history::diff_and_cache::docchi_cache::DocchiCache;
 use crate::imp::history::current_root_obj_info::fifo_thread::FifoThread;
 use std::sync::{Mutex, MutexGuard};
 
@@ -17,7 +17,7 @@ static MAP : Lazy<Mutex<HashMap<PathBuf, Box<HistoryCacheItem>>>> = Lazy::new(||
     Mutex::new(HashMap::new())
 });
 
-pub(crate) fn init_dochy_cache(history_dir : &Path, current_src : CurrentSrc, op : &HistoryOptions) -> FsResult<HistoryInfo>{
+pub(crate) fn init_docchi_cache(history_dir : &Path, current_src : CurrentSrc, op : &HistoryOptions) -> FsResult<HistoryInfo>{
     let map = MAP.lock().unwrap();
     if let Some(item) = map.get(history_dir){
         if item.peekable().current_src() != &current_src{
@@ -28,25 +28,25 @@ pub(crate) fn init_dochy_cache(history_dir : &Path, current_src : CurrentSrc, op
             return Ok(HistoryInfo::new(history_dir.to_path_buf()));
         }
     }
-    init_dochy_cache_impl(map, history_dir, current_src, op)
+    init_docchi_cache_impl(map, history_dir, current_src, op)
 }
 
-/// The backdoor to change DochySrc while running.
+/// The backdoor to change DocchiSrc while running.
 /// References of PeekableCacheInfo for the history_dir will corrupt
 /// If save / load in the history_dir is running, calling this results undefined behavior
-pub unsafe fn init_dochy_cache_us(history_dir : &Path,
-                                  current_src : CurrentSrc,
-                                  op : &HistoryOptions) -> FsResult<HistoryInfo>{
+pub unsafe fn init_docchi_cache_us(history_dir : &Path,
+                                   current_src : CurrentSrc,
+                                   op : &HistoryOptions) -> FsResult<HistoryInfo>{
     let map = MAP.lock().unwrap();
-    init_dochy_cache_impl(map, history_dir, current_src, op)
+    init_docchi_cache_impl(map, history_dir, current_src, op)
 }
 
-fn init_dochy_cache_impl(mut map : MutexGuard<HashMap<PathBuf, Box<HistoryCacheItem>>>,
-                         history_dir : &Path,
-                         current_src : CurrentSrc,
-                         op : &HistoryOptions) -> FsResult<HistoryInfo>{
+fn init_docchi_cache_impl(mut map : MutexGuard<HashMap<PathBuf, Box<HistoryCacheItem>>>,
+                          history_dir : &Path,
+                          current_src : CurrentSrc,
+                          op : &HistoryOptions) -> FsResult<HistoryInfo>{
 
-    let cache = DochyCache::new(current_src.clone())?;
+    let cache = DocchiCache::new(current_src.clone())?;
     let hash = cache.hash();
     let src_root = cache.clone_src_root();
     map.insert(history_dir.to_path_buf(), Box::new(HistoryCacheItem::new(
