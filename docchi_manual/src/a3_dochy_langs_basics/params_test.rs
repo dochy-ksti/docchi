@@ -5,7 +5,7 @@ use crate::a3_dochy_langs_basics::dochy_params_accessor::RootIntf;
 
 #[test]
 fn params_test() -> DpResult<()> {
-    // You validated Dochy Src when you generated the source code, so validation is not needed now.
+    // You validated Docchi Src when you generated the source code, so validation is not needed now.
     let root_obj : RootObject = json_dir_to_root("src/a3_dochy_langs_basics/dochy_params", false)?;
 
     // RootIntf is the struct created in the generated source code.
@@ -78,7 +78,7 @@ fn params_test() -> DpResult<()> {
 
     let bin : &mut Vec<u8> = root.binary_mut();
 
-    // Dochy doesn't have f32 types currently.
+    // Docchi doesn't have f32 types currently.
     // Binary type can be a workaround
 
     unsafe{
@@ -112,7 +112,7 @@ fn params_test() -> DpResult<()> {
 
         // Transferring data to the system with different endianness can be a problem for this kind of techniques.
 
-        // Dochy has no intention to support transferring data between machines with different endianness
+        // Docchi has no intention to support transferring data between machines with different endianness
     }
 
     Ok(())

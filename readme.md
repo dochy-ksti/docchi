@@ -1,10 +1,10 @@
-Dochy is a diff-based data management language to implement
+Docchi is a diff-based data management language to implement
 unlimited undo, auto-save for games, and cloud-apps which needs to
 retain every change. 
 
 *[User's Manual](https://github.com/dochy-ksti/dochy/blob/master/dochy_manual/manual/index.md)
 
-Dochy is a language, so [the API documentation](https://docs.rs/dochy/) is not very good to learn. 
+Docchi is a language, so [the API documentation](https://docs.rs/dochy/) is not very good to learn. 
 You may want to read [User's Manual](https://github.com/dochy-ksti/dochy/blob/master/dochy_manual/manual/index.md).
 
 *Demonstration
@@ -37,9 +37,9 @@ The total amount of the files was about 1 GB.
 It means 10 % of the data is modified each time. Data tends to be modified partially, 
 so 10 % is not very uncommon setting, I think.
 
-Equivalent Dochy data is created, modified, and saved 100 times.
+Equivalent Docchi data is created, modified, and saved 100 times.
 
-Dochy saves "diff". Only 1 MB of the modified data is saved at best.
+Docchi saves "diff". Only 1 MB of the modified data is saved at best.
 
 The result is below
 ```text
@@ -53,13 +53,13 @@ sum of file sizes 173005171
 ```
 JSON saved about 1 GB of data and took 1906 milliseconds.
 
-Dochy saved about 173 MB of data and took 604 milliseconds.
+Docchi saved about 173 MB of data and took 604 milliseconds.
 
-Dochy took 17 % of the storage space and about one-third of the time.
+Docchi took 17 % of the storage space and about one-third of the time.
 
 Very nice?
 
-Dochy only saved 17 % of the data so of course it's faster.
+Docchi only saved 17 % of the data so of course it's faster.
 
 For comparison, we changed JSON strings to the length of 17 % and run the demo.
 ```text
@@ -71,12 +71,12 @@ About the same file size, and JSON was twice as fast as Dochy.
 
 Serde is very fast, so the result is comprehensible.
 
-But I think Dochy's overhead is reasonable, and Dochy can save in non-blocking manner,
+But I think Dochy's overhead is reasonable, and Docchi can save in non-blocking manner,
 so saving time may not worsen user experience. 
 
 *Load Demo
 
-Loading is where Dochy pays the cost. Dochy creates "Diff Hierarchy".
+Loading is where Docchi pays the cost. Docchi creates "Diff Hierarchy".
 
 ```text
 Diff Hierarchy Concept
@@ -109,7 +109,7 @@ so it's 40 MB.
 
 We searched the deepest file from the hierarchy and loaded the data. 
 ```text
-Dochy 
+Docchi 
 40 milliseconds
 
 JSON
@@ -120,7 +120,7 @@ JSON(Short)
 ```
 The Dochy's total amount of data is 4 times bigger than JSON's, but more than twice as fast as JSON.
 
-Dochy is a binary data format and efficiently multi-threaded for loading, so it was able to beat Serde, I think.
+Docchi is a binary data format and efficiently multi-threaded for loading, so it was able to beat Serde, I think.
 
 *How can it be done?
 

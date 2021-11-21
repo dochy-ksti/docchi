@@ -30,7 +30,7 @@ impl FileData{
         Ok(FileData::new(hash, modified, name, size))
     }
 
-    /// hash of the Dochy source file
+    /// hash of the Docchi source file
     pub fn hash(&self) -> u128{ self.hash }
 
     /// modified time

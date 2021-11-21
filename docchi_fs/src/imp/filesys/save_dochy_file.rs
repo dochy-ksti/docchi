@@ -8,7 +8,7 @@ use crate::imp::filesys::save_cache_map::{get_mutex};
 use crate::imp::common::path::prepare_hash_dir::prepare_hash_dir;
 
 
-/// saves a Dochy file.
+/// saves a Docchi file.
 pub fn save_dochy_file(info : &SaveDirInfo,
                        file_name : &str,
                        root: &RootObject,

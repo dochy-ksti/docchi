@@ -1,4 +1,4 @@
-Dochy is like a binary diff format of static JSON, and surrounding file systems and tools.
+Docchi is like a binary diff format of static JSON, and surrounding file systems and tools.
 
 It's intended to replace ordinary data files, 
 especially for game/cloud apps which employs auto-save 

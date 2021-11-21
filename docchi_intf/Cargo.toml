@@ -5,7 +5,7 @@ authors = ["juzy <dochy.ksti@gmail.com>"]
 edition = "2018"
 
 license = "MIT OR Apache-2.0"
-description = "Generates the source code to access Dochy Data"
+description = "Generates the source code to access Docchi Data"
 repository = "https://github.com/dochy-ksti/docchi"
 readme = "readme.md"
 keywords = ["data", "management"]

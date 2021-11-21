@@ -3,7 +3,7 @@ use std::str::from_utf8;
 use std::path::Path;
 use crate::imp::json_to_rust::json_name::{json_name, NameType};
 use crate::imp::json_to_rust::{json_item_str_to_rust, json_root_to_rust};
-use crate::imp::structs::dochy_archive::ArchivingItem;
+use crate::imp::structs::docchi_archive::ArchivingItem;
 
 
 pub(crate) fn json_file_to_rust(path : &str, dat : &[u8]) -> CoreResult<ArchivingItem>{

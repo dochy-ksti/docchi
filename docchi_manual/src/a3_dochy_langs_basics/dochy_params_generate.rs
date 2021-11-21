@@ -6,13 +6,13 @@ use docchi::intf::generate_interface;
 #[test]
 fn dochy_params_generate() -> DpResult<()> { // DpResult can handle every error type of Dochy
 
-    // You can convert Dochy Src into RootObject with json_dir_to_root
-    // RootObject is the object representation of Dochy Src
+    // You can convert Docchi Src into RootObject with json_dir_to_root
+    // RootObject is the object representation of Docchi Src
     let mut root_obj : RootObject = json_dir_to_root(
         /* dir_path */ "src/a3_dochy_langs_basics/dochy_params",
         /* validation */ true)?;
 
-    // Validation is useful. You should validate your Dochy Src,
+    // Validation is useful. You should validate your Docchi Src,
     // but do it twice is meaningless. I think the cost of validation is negligible, though.
 
     // "json_dir_to_root" returns CoreResult, which is the result type of the module "docchi_core".

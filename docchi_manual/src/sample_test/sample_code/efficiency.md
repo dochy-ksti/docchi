@@ -176,7 +176,7 @@ We made the data inputted and output the string expression of the equivalent Doc
 	],
 }
 ```
-The dochy data to make this output is 157 bytes, while the original JSON5 file is 626 bytes and
+The docchi data to make this output is 157 bytes, while the original JSON5 file is 626 bytes and
 215 bytes using flate2::ZlibEncoder;
 
 Actually, the Dochy language only needs values changed from the default value. 

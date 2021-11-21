@@ -2,10 +2,10 @@ use docchi_archiver2::ArchiveData;
 use crate::error::{CoreResult};
 use crate::structs::{ RootObject};
 use crate::imp::json_to_rust::construct_root::construct_root;
-use crate::imp::structs::dochy_archive::{ArchivingItem, DochyArchive};
+use crate::imp::structs::docchi_archive::{ArchivingItem, DocchiArchive};
 use crate::imp::json_to_rust::validation::validate_root::validate_root;
 
-pub fn archive_to_root(archive : DochyArchive, validation : bool) -> CoreResult<RootObject>{
+pub fn archive_to_root(archive : DocchiArchive, validation : bool) -> CoreResult<RootObject>{
     let (root, _hash) = archive_data_to_root_with_hash(archive.data)?;
     if validation{
         validate_root(&root, false)?;

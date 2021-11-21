@@ -4,13 +4,13 @@ use docchi_archiver2::{ArchiveData, write_archive};
 use std::io::Write;
 use crate::imp::json_to_rust::roots::archive_data_to_root::archive_to_root;
 
-pub struct DochyArchive{
+pub struct DocchiArchive {
     pub(crate) data : ArchiveData<CoreResult<ArchivingItem>>
 }
 
-impl DochyArchive{
-    pub(crate) fn new(data : ArchiveData<CoreResult<ArchivingItem>>) -> DochyArchive{
-        DochyArchive{ data }
+impl DocchiArchive {
+    pub(crate) fn new(data : ArchiveData<CoreResult<ArchivingItem>>) -> DocchiArchive {
+        DocchiArchive { data }
     }
     pub fn hash(&self) -> u128{
         self.data.hash()

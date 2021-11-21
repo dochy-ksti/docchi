@@ -15,7 +15,7 @@ fn save_history_file_test() -> DpResult<()> {
 
     let src_dir = "src/b2_save_history_files/src_dir";
 
-    // HistoryInfo is needed for save/load Dochy History files
+    // HistoryInfo is needed for save/load Docchi History files
     let info = HistoryInfo::create(history_dir,
                                    CurrentSrc::from_src_dir(src_dir),
                                    HistoryOptionsBuilder::new()
@@ -47,12 +47,12 @@ fn save_history_file_test() -> DpResult<()> {
 
     // "crated_time.dat" and "src.archive" were already explained.
     // "_0_0.his" is the history file we just created.
-    // ".his" is the Dochy History file's extension.
+    // ".his" is the Docchi History file's extension.
     //
     // The first number "_0" is what we call "control number". It's appended to make the filename unique.
     // the second "_0" is "phase-0 number". It's 0 because it's the first phase-0 file.
-    // Phase-0 files only depend on Dochy Src. It's almost the same as Dochy Data files.
-    // Dochy History files have some metadata, so they are not identical, though.
+    // Phase-0 files only depend on Docchi Src. It's almost the same as Docchi Data files.
+    // Docchi History files have some metadata, so they are not identical, though.
 
     modify(&mut root, &mut count);
     let _file = save_history_file(&info, None, root.root_obj_ref())?;
@@ -67,7 +67,7 @@ fn save_history_file_test() -> DpResult<()> {
     // Phase numbers other than the last number is always identical with the parent's phase numbers,
     // and the control number is also basically the same with the parent's.
     //
-    // The parent file is "_0_0.his", so Dochy calculated diff from "_0_0.his", and save it as "_0_0_0.his"
+    // The parent file is "_0_0.his", so Docchi calculated diff from "_0_0.his", and save it as "_0_0_0.his"
     //
     // Each time, the modification is always "appending 10 bytes string".
     // So the size of diff is basically the same.
@@ -82,15 +82,15 @@ fn save_history_file_test() -> DpResult<()> {
     // It means "control 0 phase-0 0 phase-1 0 phase-2 0"
     // This is the first phase-2 file, and the parent file is "_0_0_0.his".
     //
-    // Dochy Calculated diff from "_0_0_0.his".
-    // It means, theoretically, first, Dochy created a RootObject from Dochy Src,
-    // and Dochy opened "_0_0.his", and applied the diff to the object,
+    // Docchi Calculated diff from "_0_0_0.his".
+    // It means, theoretically, first, Docchi created a RootObject from Docchi Src,
+    // and Docchi opened "_0_0.his", and applied the diff to the object,
     // and opened "_0_0_0.his", and applied the diff to the object,
     // and calculated diff from the object to the current object, and save it as "_0_0_0_0.his".
     //
-    // Actually, Dochy has cache data of them. The latest phase files are always cached(and Dochy Src, too),
-    // so Dochy Src, phase-0, phase-1 files are already cached.
-    // So Dochy did compare the phase-1 cache data to the current object, and save it as "_0_0_0_0.his".
+    // Actually, Docchi has cache data of them. The latest phase files are always cached(and Docchi Src, too),
+    // so Docchi Src, phase-0, phase-1 files are already cached.
+    // So Docchi did compare the phase-1 cache data to the current object, and save it as "_0_0_0_0.his".
     //
     // We set max_phase 2 in the HistoryOptions, so phase-2 is the max phase.
     //

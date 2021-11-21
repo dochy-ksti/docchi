@@ -3,7 +3,7 @@
 
 ### 9-2. Undefined MList
 
-Dochy doesn't have nullable/undefiable collections except undefiable MList.
+Docchi doesn't have nullable/undefiable collections except undefiable MList.
 ```
 {
   list! : [

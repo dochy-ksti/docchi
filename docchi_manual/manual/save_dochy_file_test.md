@@ -34,7 +34,7 @@ fn save_dochy_file_test() -> DpResult<()>
     root.set_message("Hello the next world".to_string());
 
     // To save Dochy Data file, use "save_dochy_file" function.
-    // Dochy Data file is often abbreviated to "dochy file".
+    // Dochy Data file is often abbreviated to "docchi file".
     let _saved_path = save_dochy_file(
         &info, // SaveDirInfo to specify save_dir, and Dochy Src
         "next_world.dochy", // filename

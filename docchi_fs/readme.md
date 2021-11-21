@@ -1,4 +1,4 @@
-Dochy file system mainly handles Dochy Diff files.
+Docchi file system mainly handles Docchi Diff files.
 
 It consists of two components, Filesys and History.
 

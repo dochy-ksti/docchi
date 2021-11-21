@@ -4,7 +4,7 @@ and strings which represents decimals.
 Even if a variable's size is 8 byte, when the actual value is 0 or 1, 
 this library can compress it to two bits.
 
-This is a base component of the Dochy File System.
+This is a base component of the Docchi File System.
 
 ```
 pub struct SomeCollection{

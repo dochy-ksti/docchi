@@ -3,7 +3,7 @@ and calculate 128bit hash from the metadata of the files.
 
 Reading actual files doesn't need to calculate the hash. The hash algorithm is MetroHash.
 
-It is one of the components of the Dochy File System.
+It is one of the components of the Docchi File System.
 
 ```Rust
 fn main() -> ArcResult<()>{

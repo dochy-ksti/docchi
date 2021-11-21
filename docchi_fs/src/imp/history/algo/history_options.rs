@@ -27,7 +27,7 @@ use once_cell::sync::Lazy;
 /// You need to use the same options for a history_hash_dir.
 /// Changing the options causes an undefined behavior.
 ///
-/// When you modify the source Dochy file, a new history_hash_dir will be created,
+/// When you modify the source Docchi file, a new history_hash_dir will be created,
 /// so you can change the options at the very time.
 ///
 /// You can use () for AsRef<HistoryOptions> to assign the default value.
