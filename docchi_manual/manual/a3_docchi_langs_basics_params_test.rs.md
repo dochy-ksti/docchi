@@ -1,6 +1,6 @@
-[prev](docchi_params_generate.md)
+[prev](a3_docchi_langs_basics_docchi_params_generate.rs.md)
 [index](index.md)
-[next](root.md)
+[next](a4_clist_clist_root.json5.md)
 
 ### 1-1-2. Use Generated Source Code
 
@@ -127,6 +127,6 @@ fn params_test() -> DpResult<()> {
 ```
 
 
-[prev](docchi_params_generate.md)
+[prev](a3_docchi_langs_basics_docchi_params_generate.rs.md)
 [index](index.md)
-[next](root.md)
+[next](a4_clist_clist_root.json5.md)

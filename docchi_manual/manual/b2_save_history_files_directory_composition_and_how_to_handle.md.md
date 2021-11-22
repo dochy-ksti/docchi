@@ -1,6 +1,6 @@
-[prev](algorithm_of_history.md)
+[prev](b2_save_history_files_algorithm_of_history.md.md)
 [index](index.md)
-[next](conversion.md)
+[next](b3_conversion_conversion.md.md)
 
 ### 8. Directory Composition And How To Handle
 
@@ -37,6 +37,6 @@ You can add and remove files in save and history dirs with API.
 You can remove entire hash_dirs in save and history dirs.
 
 
-[prev](algorithm_of_history.md)
+[prev](b2_save_history_files_algorithm_of_history.md.md)
 [index](index.md)
-[next](conversion.md)
+[next](b3_conversion_conversion.md.md)

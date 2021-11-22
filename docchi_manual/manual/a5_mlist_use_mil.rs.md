@@ -1,6 +1,6 @@
-[prev](root.md)
+[prev](a5_mlist_mil_root.json5.md)
 [index](index.md)
-[next](root.md)
+[next](a6_table_table_root.json5.md)
 
 ### 3-2. Use Mil
 
@@ -100,6 +100,6 @@ fn mil_test() -> DpResult<()> {
 ```
 
 
-[prev](root.md)
+[prev](a5_mlist_mil_root.json5.md)
 [index](index.md)
-[next](root.md)
+[next](a6_table_table_root.json5.md)

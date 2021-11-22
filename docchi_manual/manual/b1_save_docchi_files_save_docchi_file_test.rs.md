@@ -1,6 +1,6 @@
-[prev](save_docchi_files.md)
+[prev](b1_save_docchi_files_save_docchi_files.md.md)
 [index](index.md)
-[next](load_docchi_file.md)
+[next](b1_save_docchi_files_load_docchi_file.rs.md)
 
 ### 6-1. Save Docchi File
 
@@ -80,6 +80,6 @@ fn save_docchi_file_test() -> DpResult<()>
 ```
 
 
-[prev](save_docchi_files.md)
+[prev](b1_save_docchi_files_save_docchi_files.md.md)
 [index](index.md)
-[next](load_docchi_file.md)
+[next](b1_save_docchi_files_load_docchi_file.rs.md)

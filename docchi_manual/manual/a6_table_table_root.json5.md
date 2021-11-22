@@ -1,6 +1,6 @@
-[prev](use_mil.md)
+[prev](a5_mlist_use_mil.rs.md)
 [index](index.md)
-[next](use_table.md)
+[next](a6_table_use_table.rs.md)
 
 ### 4. Table
 
@@ -112,6 +112,6 @@
 ```
 
 
-[prev](use_mil.md)
+[prev](a5_mlist_use_mil.rs.md)
 [index](index.md)
-[next](use_table.md)
+[next](a6_table_use_table.rs.md)

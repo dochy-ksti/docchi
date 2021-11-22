@@ -1,6 +1,6 @@
-[prev](save_docchi_file_test.md)
+[prev](b1_save_docchi_files_save_docchi_file_test.rs.md)
 [index](index.md)
-[next](whats_docchi_history.md)
+[next](b2_save_history_files_whats_docchi_history.md.md)
 
 ### 6-2. Load And Remove Docchi File
 
@@ -49,6 +49,6 @@ pub(crate) fn load_docchi_file_test() -> DpResult<()> {
 ```
 
 
-[prev](save_docchi_file_test.md)
+[prev](b1_save_docchi_files_save_docchi_file_test.rs.md)
 [index](index.md)
-[next](whats_docchi_history.md)
+[next](b2_save_history_files_whats_docchi_history.md.md)

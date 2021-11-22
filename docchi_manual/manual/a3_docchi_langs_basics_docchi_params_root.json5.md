@@ -1,0 +1,104 @@
+[index](index.md)
+[next](a3_docchi_langs_basics_docchi_params_generate.rs.md)
+
+### 1-1. Basic Params
+
+```json5
+{
+  // Docchi Lang is a language to define static types and initial values of data
+  // The source files of the language is called Docchi Src.
+  // It's written in "JSON5". It's an improved JSON and comments can be written in it (as you can see).
+
+  // Firstly, you need to crate a directory to place JSON5 files. It's kind of cumbersome, but it's for scalability.
+  // The directory must have "root.json5"(It's also bothersome, but it's also for scalability).
+
+  // Let's take a look at the parameter types of Docchi Lang and how to write it.
+
+  // Int (i64)
+  int_value : 1,
+  // Float (f64)
+  float_value : 1.0,
+  // String
+  string_value : "String",
+  // Bool
+  bool_value : true,
+
+  // In Docchi Lang, ints (1) and floats (1.0) are distinguishable.
+  // Right value's type determines the variable's static type.
+
+  // Let's call Docchi Lang's parameters "Docchi Params".
+  // Let's enumerate all the Docchi Param types other than above.
+
+  int_array : ["IntArray", 1, 2],
+  float_array : ["FloatArray", 1.0, 2], //integers can be written in FloatArray (it's converted to f64)
+  binary : ["Binary"],
+
+  // Arrays and Binary need specifying typenames at the first of their arrays.
+
+  // IntArray is i64's array.
+  // FloatArray is f64's array.
+  // Binary is u8's array.
+
+  //---
+
+  // Docchi Params have "nullable" variants.
+
+  // You can use "nullable" with attaching "?" at the end of the variable names.
+  "nullable_int?" : ["Int", null],
+
+  // To assign null, ["typename", null] is needed.
+
+  // You can just assign normal values to nullable variables
+
+  "nullable_int2?" : 5,
+
+  // Docchi's parser accepts variable names with "?" without quotations.
+  // But it's not valid JSON5. Your JSON5 editor will be angry.
+  nullable_str? : ["Str", null],
+
+  nullable_float? : ["Float", null],
+  nullable_bool? : ["Bool", null],
+  nullable_int_array? : ["IntArray", null],
+  nullable_float_array? : ["FloatArray", null],
+  nullable_binary? : ["Binary", null],
+
+  // ---
+
+  // Docchi has a special value named "undefined".
+
+  // When an old data does not have a variable, and the variable is "undefiable",
+  // the value "undefined" will be automatically assigned to the variable in the conversion process.
+
+  // "undefiable" values must have "!" at the end of the variable names.
+  // Docchi accepts the value "undefined", like null, but it's invalid JSON5 and not recommended.
+  // "undefined" is not supposed to be used in Docchi Src.
+  // "undefined" should only be assigned in the conversion process.
+
+  undefiable_int! : ["Int", undefined], // NOT RECOMMENDED
+
+  // You can craate a variable both nullable and undefiable with the suffix "!?"
+
+  undef_nullable_int!? : 2,
+}
+
+// Let's suppose this is the old data
+//{
+//  var1 : 10,
+//}
+
+// And this is the new data
+//{
+//  var1 : 10,
+//  var2! : 20,
+//}
+
+// When the old data is converted to the new version, it will be
+//{
+//  var1 : 10,
+//  var2! : ["Int", undefined],
+//}
+```
+
+
+[index](index.md)
+[next](a3_docchi_langs_basics_docchi_params_generate.rs.md)

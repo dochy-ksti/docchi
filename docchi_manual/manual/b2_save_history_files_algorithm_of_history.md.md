@@ -1,6 +1,6 @@
-[prev](load_history_file_test.md)
+[prev](b2_save_history_files_load_history_file_test.rs.md)
 [index](index.md)
-[next](directory_composition_and_how_to_handle.md)
+[next](b2_save_history_files_directory_composition_and_how_to_handle.md.md)
 
 ### 7-3. Algorithm Of Docchi History
 
@@ -194,6 +194,6 @@ It would result too many files to get a state, so you may need customize the con
 
 
 
-[prev](load_history_file_test.md)
+[prev](b2_save_history_files_load_history_file_test.rs.md)
 [index](index.md)
-[next](directory_composition_and_how_to_handle.md)
+[next](b2_save_history_files_directory_composition_and_how_to_handle.md.md)

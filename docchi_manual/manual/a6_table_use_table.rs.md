@@ -1,6 +1,6 @@
-[prev](root.md)
+[prev](a6_table_table_root.json5.md)
 [index](index.md)
-[next](split_src.md)
+[next](a7_split_docchi_src_split_src.md.md)
 
 ### 4-1. Use Table
 
@@ -126,6 +126,6 @@ fn table_test() -> DpResult<()> {
 ```
 
 
-[prev](root.md)
+[prev](a6_table_table_root.json5.md)
 [index](index.md)
-[next](split_src.md)
+[next](a7_split_docchi_src_split_src.md.md)

@@ -1,6 +1,6 @@
-[prev](save_history_file_test.md)
+[prev](b2_save_history_files_save_history_file_test.rs.md)
 [index](index.md)
-[next](algorithm_of_history.md)
+[next](b2_save_history_files_algorithm_of_history.md.md)
 
 ### 7-2. Load And Remove History File
 
@@ -153,6 +153,6 @@ pub(crate) fn load_history_file_test() -> DpResult<()>{
 ```
 
 
-[prev](save_history_file_test.md)
+[prev](b2_save_history_files_save_history_file_test.rs.md)
 [index](index.md)
-[next](algorithm_of_history.md)
+[next](b2_save_history_files_algorithm_of_history.md.md)

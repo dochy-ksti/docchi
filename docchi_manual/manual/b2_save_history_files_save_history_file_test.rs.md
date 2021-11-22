@@ -1,6 +1,6 @@
-[prev](whats_docchi_history.md)
+[prev](b2_save_history_files_whats_docchi_history.md.md)
 [index](index.md)
-[next](load_history_file_test.md)
+[next](b2_save_history_files_load_history_file_test.rs.md)
 
 ### 7-1. Save History File
 
@@ -243,6 +243,6 @@ pub(crate) fn print_dir<P : AsRef<Path>>(dir : P) -> DpResult<()>{
 ```
 
 
-[prev](whats_docchi_history.md)
+[prev](b2_save_history_files_whats_docchi_history.md.md)
 [index](index.md)
-[next](load_history_file_test.md)
+[next](b2_save_history_files_load_history_file_test.rs.md)

@@ -1,6 +1,6 @@
-[prev](root.md)
+[prev](a3_docchi_langs_basics_docchi_params_root.json5.md)
 [index](index.md)
-[next](params_test.md)
+[next](a3_docchi_langs_basics_params_test.rs.md)
 
 ### 1-1-1. Generate Source Code To Access Params
 
@@ -49,6 +49,6 @@ fn docchi_params_generate() -> DpResult<()> { // DpResult can handle every error
 ```
 
 
-[prev](root.md)
+[prev](a3_docchi_langs_basics_docchi_params_root.json5.md)
 [index](index.md)
-[next](params_test.md)
+[next](a3_docchi_langs_basics_params_test.rs.md)

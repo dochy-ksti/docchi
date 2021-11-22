@@ -1,6 +1,6 @@
-[prev](use_table.md)
+[prev](a6_table_use_table.rs.md)
 [index](index.md)
-[next](save_docchi_files.md)
+[next](b1_save_docchi_files_save_docchi_files.md.md)
 
 ### 5. Split Docchi Src
 
@@ -61,6 +61,6 @@ and the content is considered as the value.
 Nullable variables can't be separated because "?" can't be used in filenames.
 
 
-[prev](use_table.md)
+[prev](a6_table_use_table.rs.md)
 [index](index.md)
-[next](save_docchi_files.md)
+[next](b1_save_docchi_files_save_docchi_files.md.md)

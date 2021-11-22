@@ -1,0 +1,83 @@
+[prev](a4_clist_clist_root.json5.md)
+[index](index.md)
+[next](a4_clist_use_cil.rs.md)
+
+### 2-1. Cil (Const Inner List)
+
+```json5
+{
+  // Inner CList is named "Cil".
+  // 'Cil' is "Const Inner List".
+  // The naming may be peculiar.(I'm not an English speaker. Please tell me better names.)
+
+  // Why Cil exists? What about just use the CList in the CList?
+
+  // Docchi's inner lists are different from normal lists. Let's see.
+
+  clist : ["CList",[{
+    val : 0,
+    inner_list : ["CilDef",[{
+      name : "x",
+    }]]
+  }],
+    {
+      val : 1,
+      inner_list : ["Cil",
+        {
+          name : "p",
+        },
+        {
+          name : "q",
+        }
+      ]
+    },
+    {
+      val : 2,
+      //inner_list omitted
+    },
+  ],
+}
+
+// Explanation
+//
+// clist : ["CList",[{
+//    val : 0,
+//    inner_list : ["CilDef",[{
+//      name : "x",
+//    }]]
+//  }],
+//
+// Cil can exist in CList, Table, and Cil. Cil can't exist in mutable lists.
+//
+// Cil is separated into two parts, "CilDef" and "Cil".
+//
+// CilDef can exist only in default objects. It defines Cil's default object. Actual values can't be defined there.
+//
+//    {
+//      val : 1,
+//      inner_list : ["Cil",
+//        {
+//          name : "p",
+//        },
+//        {
+//          name : "q",
+//        }
+//      ]
+//    },
+//
+// Cil, on the other hand, only defines actual values. Cil can exist only in actual items of CList, Cil, Table.
+//
+//    {
+//      val : 2,
+//      //inner_list omitted
+//    },
+//
+// In this item, inner_list is omitted. Omitted lists are regarded as an empty list.
+//
+// Vec is used for implementing Cil, like CList.
+```
+
+
+[prev](a4_clist_clist_root.json5.md)
+[index](index.md)
+[next](a4_clist_use_cil.rs.md)

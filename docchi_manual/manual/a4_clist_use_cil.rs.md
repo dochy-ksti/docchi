@@ -1,6 +1,6 @@
-[prev](root.md)
+[prev](a4_clist_cil_root.json5.md)
 [index](index.md)
-[next](root.md)
+[next](a5_mlist_mlist_root.json5.md)
 
 ### 2-2. Use Clist And Cil
 
@@ -39,6 +39,6 @@ fn cil_test() -> DpResult<()> {
 ```
 
 
-[prev](root.md)
+[prev](a4_clist_cil_root.json5.md)
 [index](index.md)
-[next](root.md)
+[next](a5_mlist_mlist_root.json5.md)

@@ -1,6 +1,6 @@
-[prev](split_src.md)
+[prev](a7_split_docchi_src_split_src.md.md)
 [index](index.md)
-[next](save_docchi_file_test.md)
+[next](b1_save_docchi_files_save_docchi_file_test.rs.md)
 
 ### 6. Docchi File
 
@@ -23,6 +23,6 @@ This is the Docchi Src for this section.
 
 
 
-[prev](split_src.md)
+[prev](a7_split_docchi_src_split_src.md.md)
 [index](index.md)
-[next](save_docchi_file_test.md)
+[next](b1_save_docchi_files_save_docchi_file_test.rs.md)

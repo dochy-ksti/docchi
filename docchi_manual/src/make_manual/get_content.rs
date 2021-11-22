@@ -21,5 +21,5 @@ pub(crate) fn get_file_stem(src : &str) -> DpResult<String>{
 }
 
 pub(crate) fn get_md_filename(src : &str) -> DpResult<String>{
-    Ok(format!("{}.md", get_file_stem(src)?))
+    Ok(format!("{}.md", src.replace('/',"_")))
 }

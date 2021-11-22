@@ -1,6 +1,6 @@
-[prev](load_docchi_file.md)
+[prev](b1_save_docchi_files_load_docchi_file.rs.md)
 [index](index.md)
-[next](save_history_file_test.md)
+[next](b2_save_history_files_save_history_file_test.rs.md)
 
 ### 7. Docchi History
 
@@ -23,6 +23,6 @@ Besides, you can specify files to retain and remove all the other files without 
 
 
 
-[prev](load_docchi_file.md)
+[prev](b1_save_docchi_files_load_docchi_file.rs.md)
 [index](index.md)
-[next](save_history_file_test.md)
+[next](b2_save_history_files_save_history_file_test.rs.md)
