@@ -8,4 +8,4 @@ in the near future for the loading process to be more concurrent.
 Needs to improve removing process to be durable for sudden power outage.
 
 Currently, we are creating a sample game, 
-which is a Shinobigami simulator, to prove this library can be used smoothly.  
+which is a Ninja TRPG simulator, to prove this library can be used smoothly.  
