@@ -1,4 +1,3 @@
-## Hello World
 
 Docchi is a language, so we need "Hello World".
 ```json5
