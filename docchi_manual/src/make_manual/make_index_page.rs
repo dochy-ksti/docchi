@@ -43,7 +43,7 @@ applications which want to retain every change of the data, like cloud apps.
 Docchi is a language, so [the API documentation](https://docs.rs/docchi/) is not very good to learn.
 This user's manual should be good to go.
 
-Everything samplecode is in the [docchi_manual](https://github.com/dochy-ksti/docchi/tree/master/docchi_manual/src) crate.
+Every samplecode is in the [docchi_manual](https://github.com/dochy-ksti/docchi/tree/master/docchi_manual/src) crate.
 "#
 }
 

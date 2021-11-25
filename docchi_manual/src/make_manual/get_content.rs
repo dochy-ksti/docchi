@@ -15,10 +15,7 @@ pub(crate) fn get_content(src : &str) -> DpResult<String>{
     Ok(s)
 }
 
-pub(crate) fn get_file_stem(src : &str) -> DpResult<String>{
-    let path = Path::new(src);
-    Ok(path.file_stem().unwrap().to_string_lossy().to_string())
-}
+
 
 pub(crate) fn get_md_filename(src : &str) -> DpResult<String>{
     Ok(format!("{}.md", src.replace('/',"_")))
