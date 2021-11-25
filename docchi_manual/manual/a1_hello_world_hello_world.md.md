@@ -2,7 +2,6 @@
 
 ### 0. Hello World
 
-## Hello World
 
 Docchi is a language, so we need "Hello World".
 ```json5
@@ -102,9 +101,9 @@ fn hello_world_save_test() -> DpResult<()> {
 }
 ```
 The saved_path is 
-"src/a1_hello_world/save_dir/137c76e4b7f38be35c5b72ab227e98d5/next_world.docchi".
+"src/a1_hello_world/save_dir/7ddf0e5d6e73619ba205e3c47575905e/next_world.docchi".
 
-"137c76e4b7f38be35c5b72ab227e98d5" is the hash of the source file.
+"7ddf0e5d6e73619ba205e3c47575905e" is the hash of the source file.
 
 Why we need such a directory is hard to explain, so we ignore it for now.
 
