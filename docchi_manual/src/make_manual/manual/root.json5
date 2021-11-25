@@ -6,6 +6,10 @@
       "src?" : ["Str",null],
     }],
     {
+      title : "0. Hello World",
+      src : "a1_hello_world/hello_world.md"
+    },
+    {
       title : "1. Docchi Lang"
     },
     {
