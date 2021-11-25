@@ -1,8 +1,7 @@
 [![crates.io link](https://img.shields.io/crates/v/docchi.svg)](https://crates.io/crates/docchi)
 
 Docchi is a diff-based data management language to implement
-unlimited undo, auto-save for games, and cloud-apps which needs to
-retain every change. 
+unlimited undo, auto-save for games, and cloud-apps which needs to save very often. 
 
 * [User's Manual](https://github.com/dochy-ksti/docchi/blob/master/docchi_manual/manual/index.md)
 
