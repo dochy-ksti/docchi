@@ -68,6 +68,6 @@ impl SomeItem{
 ### changelog
 #### 0.4.0 
 
-change encode of the values "undefined".
+changed encode of the values "undefined".
 
-add Binary, Binary8, Binary4, and Binary2 types.
+added Binary, Binary8, Binary4, and Binary2 types.

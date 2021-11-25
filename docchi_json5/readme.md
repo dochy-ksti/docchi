@@ -1,3 +1,3 @@
-This library is based on json5, and added some functionalities to implement docchi_core.
+One of the components of [Docchi](https://github.com/dochy-ksti/docchi)
 
-It is directly derived from json5-rs.
+This is directly derived from [json5-rs](https://github.com/callum-oakley/json5-rs).

@@ -142,3 +142,21 @@ When comparing data and constructing diff, we compare the current object with th
 it's very fast process.
 
 On the other hand, we didn't do anything special on loading. If it's fast, it owes to Rayon.
+
+## License
+
+Licensed under either of
+
+- Apache License, Version 2.0, ([LICENSE-APACHE](apache_license.txt) or http://www.apache.org/licenses/LICENSE-2.0)
+- MIT license ([LICENSE-MIT](mit_license.txt) or http://opensource.org/licenses/MIT)
+
+at your discretion.
+
+### Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.
+
+I'm eagerly looking for someone who can 
+
+- correct my English(I'm not an English speaker)
+- criticize my code/API

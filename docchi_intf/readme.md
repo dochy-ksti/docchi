@@ -1,3 +1,1 @@
-The Docchi Interface component generates the source code to access Docchi Data. 
-
-More explanations to be added...
+One of the components of [Docchi](https://github.com/dochy-ksti/docchi)

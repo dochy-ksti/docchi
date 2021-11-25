@@ -1,5 +1,1 @@
-Calculates the diff of two Docchi Data.
-
-This is one of the key components of the Docchi File System.
-
-More explanations to be added...
+One of the components of [Docchi](https://github.com/dochy-ksti/docchi)
