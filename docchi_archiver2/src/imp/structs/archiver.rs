@@ -21,7 +21,7 @@ pub(crate) struct ArchiverItem<T : Send + 'static>{
 
 impl<T : Send + 'static> Archiver<T>{
 
-    pub fn new(f : impl Fn(&str, &[u8]) -> T + Send + Sync + 'static) -> Archiver<T>{
+    pub(crate) fn new(f : impl Fn(&str, &[u8]) -> T + Send + Sync + 'static) -> Archiver<T>{
 
         let hash_thread = HashThread::new();
         Archiver{
@@ -32,7 +32,7 @@ impl<T : Send + 'static> Archiver<T>{
     }
 
     /// path をアルファベット順にして この fn を何度も呼び出すべし。スレッドに流されて非同期に実行される
-    pub fn archive(&mut self, path : String, data : Vec<u8>){
+    pub(crate) fn archive(&mut self, path : String, data : Vec<u8>){
         let data = Arc::new(data);
         self.hash_thread.calc_hash(path.clone(), data.clone());
         let (sender, processed) = mpsc::channel();
@@ -52,7 +52,7 @@ impl<T : Send + 'static> Archiver<T>{
         });
     }
 
-    pub fn finish(self) -> ArcResult<ArchiveData<T>>{
+    pub(crate) fn finish(self) -> ArcResult<ArchiveData<T>>{
         let mut btree : BTreeMap<String, ArchiveDataItem<T>> = BTreeMap::new();
 
         for item in self.data_receivers {

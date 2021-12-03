@@ -3,16 +3,16 @@ use crate::enc_dec::kihon_from_tag::KihonFromTag;
 use anyhow::{bail, Result};
 
 pub(crate) struct TagReader{
-    pub vec : BitVec,
-    pub index : usize,
+    pub(crate) vec : BitVec,
+    pub(crate) index : usize,
 }
 
 impl TagReader{
-    pub fn new(bytes : &[u8]) -> TagReader{
+    pub(crate) fn new(bytes : &[u8]) -> TagReader{
         TagReader{ vec : BitVec::from_bytes(bytes), index : 0 }
     }
 
-    pub fn read_bit(&mut self) -> Result<bool>{
+    pub(crate) fn read_bit(&mut self) -> Result<bool>{
         if self.index < self.vec.len() {
             let r = self.vec[self.index];
             self.index += 1;
@@ -22,7 +22,7 @@ impl TagReader{
         }
     }
 
-    pub fn read_bits(&mut self, size : usize) -> Result<u64>{
+    pub(crate) fn read_bits(&mut self, size : usize) -> Result<u64>{
         let mut r : u64 = 0;
         for _ in 0..size{
             r *= 2;
@@ -31,7 +31,7 @@ impl TagReader{
         return Ok(r);
     }
 
-    pub fn read_next_1(&mut self) -> Result<usize>{
+    pub(crate) fn read_next_1(&mut self) -> Result<usize>{
         let mut count = 0;
         loop{
             let b = self.read_bit()?;
@@ -40,7 +40,7 @@ impl TagReader{
         }
     }
 
-    pub fn read_tag(&mut self) -> Result<KihonFromTag>{
+    pub(crate) fn read_tag(&mut self) -> Result<KihonFromTag>{
         let count = self.read_next_1()?;
         match count{
             0 => return Ok(KihonFromTag::Bit(self.read_bit()?)),

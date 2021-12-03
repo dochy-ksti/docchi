@@ -32,7 +32,7 @@ pub(crate) struct TmpRefs{
 }
 
 impl TmpRefs{
-    pub fn new(capacity : usize, span : Span) -> TmpRefs{
+    pub(crate) fn new(capacity : usize, span : Span) -> TmpRefs{
         TmpRefs{ map : HashMt::with_capacity(capacity), old : HashSt::new(), is_enum : false, span }
     }
 
@@ -40,7 +40,7 @@ impl TmpRefs{
     //     self.map.into_iter().collect()
     // }
 
-    pub fn into_ref_def_obj(self) -> RefDefObj{
+    pub(crate) fn into_ref_def_obj(self) -> RefDefObj{
         RefDefObj::new(self.map,  self.is_enum, self.old)
     }
 }
@@ -52,11 +52,11 @@ pub(crate) enum IdValue{
 }
 
 impl TmpObj{
-    pub fn new(capacity : usize, span : Span) -> TmpObj{
+    pub(crate) fn new(capacity : usize, span : Span) -> TmpObj{
         TmpObj{ default : HashMt::with_capacity(capacity), id : None, include : vec![], refs : TmpRefs::new(0,span.clone()), old : HashSt::new(), span }
     }
 
-    pub fn into_root_obj(self) -> CoreResult<RootObject>{
+    pub(crate) fn into_root_obj(self) -> CoreResult<RootObject>{
         fn to_root_hash(map : HashM<String, (usize, RustValue)>) ->
                                                                  CoreResult<(
                                                                      HashM<String, (usize, RootValue)>,
@@ -89,7 +89,7 @@ impl TmpObj{
         Ok(RootObject::new(RootDefObj::new(def), sabun, self.old))
     }
 
-    pub fn into_list_def_obj(self) -> CoreResult<ListDefObj>{
+    pub(crate) fn into_list_def_obj(self) -> CoreResult<ListDefObj>{
         if self.id.is_some(){
             Err(format!("{} list def can't have ID {}", self.span.line_str(), self.span.slice()))?
         }
@@ -97,11 +97,11 @@ impl TmpObj{
                            self.refs.into_ref_def_obj(), self.old))
     }
 
-    pub fn insert_default(&mut self, s : String, id : usize, v : RustValue){
+    pub(crate) fn insert_default(&mut self, s : String, id : usize, v : RustValue){
         self.default.insert(s, (id,v));
     }
 
-    pub fn into_list_item(self) -> CoreResult<ConstItem>{
+    pub(crate) fn into_list_item(self) -> CoreResult<ConstItem>{
 
         if self.id.is_some(){
             Err(format!("{} ID is not needed for a list item {}", self.span.line_str(), self.span.slice()))?
@@ -116,7 +116,7 @@ impl TmpObj{
         Ok(ConstItem::new(to_list_sab_map(self.default, &self.span)?, to_ref_sab_map(self.refs.map)))
     }
 
-    pub fn into_list_item_with_id(self) -> CoreResult<(String, ConstItem)>{
+    pub(crate) fn into_list_item_with_id(self) -> CoreResult<(String, ConstItem)>{
         if self.id.is_none(){
             Err(format!("{} ID must be defined {}", self.span.line_str(), self.span.slice()))?
         }
@@ -136,7 +136,7 @@ impl TmpObj{
         }
     }
 
-    pub fn into_mut_list_item(self, id : usize) -> CoreResult<(u64, MutItem)>{
+    pub(crate) fn into_mut_list_item(self, id : usize) -> CoreResult<(u64, MutItem)>{
         let id = match self.id {
             Some(IdValue::Num(id)) => id,
             Some(_) =>{

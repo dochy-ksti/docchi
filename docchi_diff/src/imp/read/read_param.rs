@@ -4,6 +4,7 @@ use crate::imp::read::reader::Reader;
 use crate::imp::read::get_null::get_null;
 use crate::imp::read::get_undefined::get_undefined;
 use docchi_compaction::kval_enum::KVal;
+use with_capacity_safe::vec_into_raw_parts;
 
 pub(crate) fn read_param(meta : &MetaParam, r : &mut Reader) -> Result<RustParam, DiffError>{
     match meta.var_type() {
@@ -54,7 +55,7 @@ fn read_param2(meta : &MetaParam, r : &mut Reader) -> Result<RustParam, DiffErro
 
 fn read_int_array(r : &mut Reader) -> Result<RustIntArray, DiffError>{
     if let KVal::Binary8(b) = r.read()?{
-        let (ptr, len, cap) = b.into_raw_parts();
+        let (ptr, len, cap) = vec_into_raw_parts(b);
         Ok(RustIntArray::new(unsafe{
             Vec::from_raw_parts(ptr as *mut i64, len, cap)
         }))
@@ -65,7 +66,7 @@ fn read_int_array(r : &mut Reader) -> Result<RustIntArray, DiffError>{
 
 fn read_float_array(r : &mut Reader) -> Result<RustFloatArray, DiffError>{
     if let KVal::Binary8(b) = r.read()?{
-        let (ptr, len, cap) = b.into_raw_parts();
+        let (ptr, len, cap) = vec_into_raw_parts(b);
         Ok(RustFloatArray::new(unsafe{
             Vec::from_raw_parts(ptr as *mut f64, len, cap)
         }))

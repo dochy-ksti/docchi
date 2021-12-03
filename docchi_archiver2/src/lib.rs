@@ -1,6 +1,5 @@
-#![feature(test)]
-#![feature(once_cell)]
-extern crate test;
+#![deny(unreachable_pub)]
+#![deny(unused_crate_dependencies)]
 
 mod imp;
 #[cfg(test)]

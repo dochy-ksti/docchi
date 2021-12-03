@@ -1,8 +1,5 @@
-#![feature(test)]
-#![feature(vec_into_raw_parts)]
-extern crate test;
-
-
+#![deny(unreachable_pub)]
+#![deny(unused_crate_dependencies)]
 
 mod imp;
 mod diff_error;

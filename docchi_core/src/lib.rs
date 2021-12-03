@@ -1,4 +1,5 @@
-#![feature(once_cell)]
+#![deny(unreachable_pub)]
+#![deny(unused_crate_dependencies)]
 
 mod old;
 mod error;
@@ -7,7 +8,7 @@ pub mod structs;
 #[allow(dead_code)]
 mod testing;
 
-pub static JSON_ARC_OPT : SyncLazy<ArchiveOptions> = SyncLazy::new(|| {
+pub static JSON_ARC_OPT : Lazy<ArchiveOptions> = Lazy::new(|| {
     ArchiveOptionsBuilder::new()
         .add_extension("json5")
         .archive_subfolders(false)
@@ -33,8 +34,8 @@ pub use imp::structs::util::identity_equal_trait::IdentityEqual;
 
 pub use imp::structs::json_file::JsonFile;
 pub use imp::structs::json_file::JsonFileImpl;
-use std::lazy::SyncLazy;
 use docchi_archiver2::{ArchiveOptions, ArchiveOptionsBuilder};
 
 pub use error::{CoreError, CoreResult};
+use once_cell::sync::Lazy;
 

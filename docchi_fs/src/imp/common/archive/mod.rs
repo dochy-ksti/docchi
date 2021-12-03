@@ -1,1 +1,1 @@
-pub mod get_archive_path;
+pub(crate) mod get_archive_path;

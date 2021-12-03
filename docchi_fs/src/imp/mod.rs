@@ -1,5 +1,5 @@
 
-pub mod filesys;
+pub(crate) mod filesys;
 
-pub mod history;
-pub mod common;
+pub(crate) mod history;
+pub(crate) mod common;

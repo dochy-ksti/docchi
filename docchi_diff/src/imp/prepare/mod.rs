@@ -1,5 +1,5 @@
-pub mod get_mlist_diff;
-pub mod get_root_diff;
-pub mod compare_items;
-pub mod new_item;
-pub mod new_list;
+pub(crate) mod get_mlist_diff;
+pub(crate) mod get_root_diff;
+pub(crate) mod compare_items;
+pub(crate) mod new_item;
+pub(crate) mod new_list;

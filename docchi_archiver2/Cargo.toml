@@ -1,6 +1,6 @@
 [package]
 name = "docchi_archiver2"
-version = "0.7.0"
+version = "0.7.3"
 authors = ["juzy <dochy.ksti@gmail.com>"]
 edition = "2018"
 
@@ -11,9 +11,9 @@ readme = "readme.md"
 keywords = ["archiver", "Snappy", "MetroHash"]
 
 [dependencies]
-docchi_compaction = { path="../docchi_compaction", version="0.7.0" }
+docchi_compaction = { path="../docchi_compaction", version="0.7" }
 metrohash = "1.0.6"
 snap = "1.0.1"
 anyhow = "1.0.34"
-with_capacity_safe = "0.4.0"
+with_capacity_safe = "0.4"
 rayon = "1.5.1"

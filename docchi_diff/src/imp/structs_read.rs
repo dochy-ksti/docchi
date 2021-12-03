@@ -38,8 +38,8 @@ pub(crate) enum ListItemDiffEnumR{
 }
 
 pub(crate) struct CS{
-    pub prev_id : Option<u64>,
-    pub diff : ListItemDiffR,
+    pub(crate) prev_id : Option<u64>,
+    pub(crate) diff : ListItemDiffR,
 }
 
 pub(crate) struct ListItemDiffR{

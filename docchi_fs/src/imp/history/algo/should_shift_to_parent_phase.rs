@@ -1,7 +1,7 @@
 
 
 ///上のphaseへの移行をすべきか
-pub fn should_shift_to_parent_phase(
+pub(crate) fn should_shift_to_parent_phase(
     parent_size : u64, descendant_total_size : u64, descendant_total_len : usize,
     current_total_size: u64, current_total_len: usize) -> bool{
 

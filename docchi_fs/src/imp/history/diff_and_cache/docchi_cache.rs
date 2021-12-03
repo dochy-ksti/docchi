@@ -21,7 +21,7 @@ pub(crate) struct DocchiCache {
 impl DocchiCache {
 
 
-    pub fn get_or_create_hash_root<P:AsRef<Path>>(&self, history_dir : P, hash : u128) -> FsResult<RootObject>{
+    pub(crate) fn get_or_create_hash_root<P:AsRef<Path>>(&self, history_dir : P, hash : u128) -> FsResult<RootObject>{
         if self.hash() != hash {
             Ok(archive_file_to_root(get_archive_path2(history_dir, hash), false)?)
         } else{
@@ -41,13 +41,13 @@ impl DocchiCache {
     }
 
     //pub fn current_src(&self) -> &CurrentSrc{ &self.current_src }
-    pub fn hash(&self) -> u128{ self.hash }
+    pub(crate) fn hash(&self) -> u128{ self.hash }
 
-    pub fn clone_src_root(&self) -> RootObject{
+    pub(crate) fn clone_src_root(&self) -> RootObject{
         self.src_root.clone()
     }
 
-    pub fn apply_items_for_save(&mut self, paths: Vec<PathBuf>, op : &HistoryOptions) -> FsResult<RootObject> {
+    pub(crate) fn apply_items_for_save(&mut self, paths: Vec<PathBuf>, op : &HistoryOptions) -> FsResult<RootObject> {
         let first_len = paths.len();
         let (root,paths) = get_cached_item(self.clone_src_root(), self, paths, op.max_phase())?;
         let num_cached = first_len - paths.len();
@@ -77,7 +77,7 @@ impl DocchiCache {
         }
     }
 
-    pub fn apply_items_for_load(&mut self, load_root : RootObject, paths: Vec<PathBuf>, op : &HistoryOptions) -> FsResult<RootObject> {
+    pub(crate) fn apply_items_for_load(&mut self, load_root : RootObject, paths: Vec<PathBuf>, op : &HistoryOptions) -> FsResult<RootObject> {
         let (root,paths) = get_cached_item(load_root,self, paths, op.max_phase())?;
 
         if op.mt_load() {
@@ -91,7 +91,7 @@ impl DocchiCache {
         }
     }
 
-    pub fn set_cache(&mut self, path : PathBuf, item: RootObject, phase: usize) {
+    pub(crate) fn set_cache(&mut self, path : PathBuf, item: RootObject, phase: usize) {
         remove_upper_phase_cache(&mut self.phase_cache, phase);
         self.phase_cache.insert(phase, (path, item));
     }

@@ -10,7 +10,7 @@ pub(crate) struct HashThread{
 }
 
 impl HashThread{
-    pub fn new() -> HashThread{
+    pub(crate) fn new() -> HashThread{
         let (vec_sender, vec_receiver) = channel();
         let (result_sender, result_receiver) = channel();
         std::thread::spawn(move || {
@@ -36,11 +36,11 @@ impl HashThread{
         }
     }
 
-    pub fn calc_hash(&mut self, path : String, vec : Arc<Vec<u8>>){
+    pub(crate) fn calc_hash(&mut self, path : String, vec : Arc<Vec<u8>>){
         self.vec_sender.send(Some((path, vec))).ok();
     }
 
-    pub fn finish(&self) -> ArcResult<u128>{
+    pub(crate) fn finish(&self) -> ArcResult<u128>{
         self.vec_sender.send(None).ok();
         Ok(self.result_receiver.recv()??)
     }

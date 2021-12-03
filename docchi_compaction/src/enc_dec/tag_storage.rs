@@ -1,16 +1,16 @@
 use bit_vec::BitVec;
 
 pub(crate) struct TagStorage{
-    pub vec : BitVec,
+    pub(crate) vec : BitVec,
 
 }
 
 impl TagStorage{
-    pub fn new() -> TagStorage{
+    pub(crate) fn new() -> TagStorage{
         TagStorage{ vec : BitVec::new() }
     }
     ///n bitを追加。
-    pub fn append(&mut self, val : u64, n : usize){
+    pub(crate) fn append(&mut self, val : u64, n : usize){
         if n == 0{ return; }
         if 64 < n{ panic!("you can only append 64 bits at a time"); }
 
@@ -25,7 +25,7 @@ impl TagStorage{
 
     }
 
-    pub fn to_vec(&self) -> Vec<u8>{
+    pub(crate) fn to_vec(&self) -> Vec<u8>{
         self.vec.to_bytes()
     }
 }

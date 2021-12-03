@@ -2,11 +2,8 @@
 //!
 //! Docchi is a language, so this API document is not sufficient to explain what it is.
 
-#![feature(vec_into_raw_parts)]
-#![feature(test)]
-extern crate test;
-
-
+#![deny(unreachable_pub)]
+#![deny(unused_crate_dependencies)]
 
 pub mod intf;
 pub mod core;

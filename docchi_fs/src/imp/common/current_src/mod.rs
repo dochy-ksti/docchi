@@ -1,3 +1,3 @@
-pub mod current_src;
-pub mod current_src_info;
-pub mod current_src_map;
+pub(crate) mod current_src;
+pub(crate) mod current_src_info;
+pub(crate) mod current_src_map;

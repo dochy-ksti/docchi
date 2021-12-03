@@ -6,7 +6,7 @@ use crate::imp::structs::util::identity_equal_trait::IdentityEqual;
 use std::sync::Arc;
 
 #[derive(Debug, Clone)]
-pub struct RustArray{
+pub(crate) struct RustArray{
     array : Box<Qv<Vec<RustParam>>>,
 }
 

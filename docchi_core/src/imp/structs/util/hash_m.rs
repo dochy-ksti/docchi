@@ -8,7 +8,7 @@ use std::hash::Hash;
 pub type HashM<K,V> = fnv::FnvHashMap<K,V>;
 //pub type LinkedM<K,V> = LinkedHashMap<K, V, FnvBuildHasher>;
 
-pub type HashS<K> = fnv::FnvHashSet<K>;
+pub(crate) type HashS<K> = fnv::FnvHashSet<K>;
 
 
 pub struct HashMt{}
@@ -29,6 +29,6 @@ impl HashMt{
 
 pub(crate) struct HashSt{}
 impl HashSt{
-    pub fn new<K: Hash+Eq>() -> HashS<K>{ HashS::default() }
-    pub fn with_capacity<K: Hash+Eq>(capacity : usize) -> HashS<K>{ HashS::with_capacity_and_hasher(capacity, Default::default()) }
+    pub(crate) fn new<K: Hash+Eq>() -> HashS<K>{ HashS::default() }
+    pub(crate) fn with_capacity<K: Hash+Eq>(capacity : usize) -> HashS<K>{ HashS::with_capacity_and_hasher(capacity, Default::default()) }
 }

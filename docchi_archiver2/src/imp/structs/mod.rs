@@ -1,4 +1,4 @@
-pub mod archive_options;
-pub mod archive_data;
-pub mod archiver;
-pub mod hash_thread;
+pub(crate) mod archive_options;
+pub(crate) mod archive_data;
+pub(crate) mod archiver;
+pub(crate) mod hash_thread;

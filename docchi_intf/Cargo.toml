@@ -1,6 +1,6 @@
 [package]
 name = "docchi_intf"
-version = "0.7.0"
+version = "0.7.3"
 authors = ["juzy <dochy.ksti@gmail.com>"]
 edition = "2018"
 
@@ -11,5 +11,5 @@ readme = "readme.md"
 keywords = ["data", "management"]
 
 [dependencies]
-docchi_core = {path="../docchi_core", version="0.7.0"}
+docchi_core = {path="../docchi_core", version="0.7"}
 anyhow = "1.0.34"

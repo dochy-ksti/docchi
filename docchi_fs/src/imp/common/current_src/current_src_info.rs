@@ -15,7 +15,7 @@ impl CurrentSrcInfo{
         CurrentSrcInfo{ current_src, src_root, hash, }
     }
 
-    pub fn current_src(&self) -> &CurrentSrc{ &self.current_src }
-    pub fn clone_src_root(&self) -> RootObject{ self.src_root.clone() }
-    pub fn hash(&self) -> u128{ self.hash }
+    pub(crate) fn current_src(&self) -> &CurrentSrc{ &self.current_src }
+    pub(crate) fn clone_src_root(&self) -> RootObject{ self.src_root.clone() }
+    pub(crate) fn hash(&self) -> u128{ self.hash }
 }

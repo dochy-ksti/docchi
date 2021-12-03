@@ -6,11 +6,11 @@ pub(crate) struct FifoThread{
 }
 
 impl FifoThread{
-    pub fn new() -> FifoThread{
+    pub(crate) fn new() -> FifoThread{
         FifoThread{ pool : Mutex::new(None) }
     }
 
-    pub fn spawn_fifo<F : FnOnce() + Send + 'static>(&self, f : F){
+    pub(crate) fn spawn_fifo<F : FnOnce() + Send + 'static>(&self, f : F){
         let mut opt = self.pool.lock().unwrap();
         if opt.is_none(){
             *opt = Some(ThreadPool::new(1))

@@ -1,7 +1,7 @@
-pub mod json_to_rust;
-pub mod rust_to_json;
-pub mod version_adjuster;
-pub mod structs;
+pub(crate) mod json_to_rust;
+pub(crate) mod rust_to_json;
+pub(crate) mod version_adjuster;
+pub(crate) mod structs;
 
 ///This module contains low-level accessors.
 /// They are intended to be used by generated codes, not humans.

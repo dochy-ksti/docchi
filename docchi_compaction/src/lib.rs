@@ -1,3 +1,6 @@
+#![deny(unreachable_pub)]
+#![deny(unused_crate_dependencies)]
+
 
 /// Define the value type to serialize
 pub mod kval_enum;

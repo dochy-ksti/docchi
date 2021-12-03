@@ -37,7 +37,7 @@ impl Iterator for ListFilesIterator{
 }
 
 impl InnerIterator {
-    pub fn next(&mut self) -> Option<FsResult<FileData>> {
+    pub(crate) fn next(&mut self) -> Option<FsResult<FileData>> {
         loop {
             match find_next_file(&mut self.dir) {
                 Ok(file_opt) => {

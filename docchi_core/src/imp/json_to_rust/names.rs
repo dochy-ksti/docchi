@@ -6,7 +6,7 @@ pub(crate) struct Names<'a>{
 }
 
 impl<'a> Names<'a>{
-    pub fn to_string(&self) -> String{
+    pub(crate) fn to_string(&self) -> String{
         let mut vec : Vec<String> = vec![];
         let mut cur = self;
         loop{
@@ -20,11 +20,11 @@ impl<'a> Names<'a>{
         vec.join(".")
     }
 
-    pub fn append(&'a self, name : &'a str) -> Self{
+    pub(crate) fn append(&'a self, name : &'a str) -> Self{
         Names::<'a>{ name, next : Some(self)}
     }
 
-    pub fn new(name : &'a str) -> Self{
+    pub(crate) fn new(name : &'a str) -> Self{
         Names::<'a>{ name, next : None }
     }
 }

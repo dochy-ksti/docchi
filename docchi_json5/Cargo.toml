@@ -1,6 +1,6 @@
 [package]
 name = "docchi_json5"
-version = "0.7.0"
+version = "0.7.3"
 authors = ["juzy <dochy.ksti@gmail.com>"]
 edition = "2018"
 

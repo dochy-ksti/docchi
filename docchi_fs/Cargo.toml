@@ -1,6 +1,6 @@
 [package]
 name = "docchi_fs"
-version = "0.7.0"
+version = "0.7.3"
 authors = ["juzy <dochy.ksti@gmail.com>"]
 edition = "2018"
 
@@ -11,14 +11,12 @@ readme = "readme.md"
 keywords = ["data","management","file","system", "diff"]
 
 [dependencies]
-docchi_core = {path="../docchi_core", version="0.7.0" }
+docchi_core = {path="../docchi_core", version="0.7" }
 anyhow = "1.0.34"
-docchi_archiver2 = {path="../docchi_archiver2", version="0.7.0"}
-docchi_diff = {path="../docchi_diff", version="0.7.0"}
-docchi_compaction = {path="../docchi_compaction", version="0.7.0" }
-tempfile = "3.2.0"
-rand = "0.8.3"
-with_capacity_safe = "0.4.0"
+docchi_archiver2 = {path="../docchi_archiver2", version="0.7"}
+docchi_diff = {path="../docchi_diff", version="0.7"}
+docchi_compaction = {path="../docchi_compaction", version="0.7" }
+with_capacity_safe = "0.4"
 once_cell = "1.7.2"
 rayon = "1.5.1"
 threadpool = "1.8.1"

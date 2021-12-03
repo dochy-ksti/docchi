@@ -94,9 +94,9 @@ fn get_str(s : String) -> KVal {
 }
 
 struct NumResult{
-    pub minus : bool,
-    pub dot : Option<u8>,
-    pub number : i128,
+    pub(crate) minus : bool,
+    pub(crate) dot : Option<u8>,
+    pub(crate) number : i128,
 }
 
 fn rex(s : &str) -> Option<regex::Captures>{

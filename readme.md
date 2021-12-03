@@ -8,6 +8,10 @@ unlimited undo, auto-save for games, and cloud-apps which needs to save very oft
 Docchi is a language, so [the API documentation](https://docs.rs/docchi/) is not very good to learn. 
 You may want to read [User's Manual](https://github.com/dochy-ksti/docchi/blob/master/docchi_manual/manual/index.md).
 
+* Minimum Supported Version of Rust
+
+1.57.0(stable)
+
 * Demonstration
 
 [Demo](https://github.com/dochy-ksti/dochy_bench)
