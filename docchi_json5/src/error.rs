@@ -1,7 +1,8 @@
 use pest;
 
 use crate::de::Rule;
-use anyhow::anyhow;
+use anyhow::{anyhow};
+use std::fmt::{Display, Formatter, Debug};
 //use std::error::Error;
 
 pub type Result<T> = std::result::Result<T, MyError>;
@@ -22,11 +23,6 @@ impl MyError{
     }
 }
 
-impl Into<anyhow::Error> for MyError{
-    fn into(self) -> anyhow::Error { self.e }
-}
-
-
 impl From<pest::error::Error<Rule>> for MyError {
     fn from(err: pest::error::Error<Rule>) -> Self {
         match err.location{
@@ -40,6 +36,16 @@ impl From<pest::error::Error<Rule>> for MyError {
             }
         }
     }
+}
+
+impl Display for MyError{
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        Debug::fmt(self, f)
+    }
+}
+
+impl std::error::Error for MyError{
+
 }
 //
 // imp ser::Error for Error {
