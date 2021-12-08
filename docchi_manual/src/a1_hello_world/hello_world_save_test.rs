@@ -17,8 +17,9 @@ fn hello_world_save_test() -> Result<()> // DpResult can handle every error type
     // save_dir and src_dir's paths are needed to create SaveDirInfo.
     let info = SaveDirInfo::create(save_dir, CurrentSrc::from_src_dir(src_dir))?;
     //SaveDirInfo::create returns FsResult, which is the result type of the module docchi_fs.
-    //It's automatically converted to DpResult with ? operator.
-    //Every other result type is automatically converted to DpResult, so basically, users of this library only need DpResult.
+    //It's automatically converted to anyhow::Result with ? operator.
+    //Every error type of Docchi implements std::error::Error,
+    //so you can convert them into anyhow::Error with ? operator
 
 
     // RootObject is created from Docchi-source. It can be cloned via SaveDirInfo

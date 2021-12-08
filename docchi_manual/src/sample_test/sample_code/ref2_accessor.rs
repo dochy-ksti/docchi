@@ -15,13 +15,14 @@ impl RootIntf{
 	}
     pub fn root_obj_ref(&self) -> &RootObject{ self.root.as_ref() }
     pub fn root_obj_ref_mut(&mut self) -> &mut RootObject{ self.root.as_mut() }
+    pub fn deconstruct(self) -> RootObject{ *self.root }
 
 	pub fn list(&self) -> MListConst<ListMItem>{
 		let mil = root::get_mlist_const(self.ptr, "list").unwrap().unwrap();
 		MListConst::new(mil, self)
 	}
 	pub fn list_mut(&mut self) -> MListMut<ListMItem>{
-		let mil = root::get_mlist_mut(self.ptr, "list").unwrap().unwrap();
+		let mil = root::get_mlist_mut(self.ptr, "list").unwrap();
 		MListMut::new(mil, self)
 	}
 	pub fn table_a(&self) -> CTableConst<TableATable>{
@@ -54,7 +55,7 @@ impl ListMItem {
 		let qv = mitem::get_ref(self.ptr, "tableA").unwrap();
 		TableACItem::from(qv.into_value().unwrap())
 	}
-	pub fn ref_id_table_a(&self) -> String{
+	pub fn ref_id_table_a(&self) -> &String{
 		let qv = mitem::get_ref_id(self.ptr, "tableA").unwrap();
 		qv.into_value().unwrap()
 	}

@@ -4,7 +4,7 @@
 mod tests {
     use crate::diff::generated_test_big_structure::test::RootIntf;
     use docchi::core::json_dir_to_root;
-    use docchi::error::DpResult;
+    use anyhow::Result;
 
     #[test]
     fn test_big_structure(){
@@ -22,7 +22,7 @@ mod tests {
 
 
     #[test]
-    fn test_zero() -> DpResult<()>{
+    fn test_zero() -> Result<()>{
         let json_dir_path = "src/diff/diff_big_structure/";
         let root_obj = json_dir_to_root(json_dir_path,false)?;
 
@@ -40,7 +40,7 @@ mod tests {
         Ok(())
     }
 
-    fn test_mem1() -> DpResult<()>{
+    fn test_mem1() -> Result<()>{
         let json_dir_path = "src/diff/diff_big_structure/";
         let root_obj = json_dir_to_root(json_dir_path,false)?;
 
@@ -58,7 +58,7 @@ mod tests {
         Ok(())
     }
 
-    fn test_mem63_65() -> DpResult<()>{
+    fn test_mem63_65() -> Result<()>{
         let json_dir_path = "src/diff/diff_big_structure/";
         let root_obj = json_dir_to_root(json_dir_path, false)?;
 
@@ -80,7 +80,7 @@ mod tests {
     }
 
     #[test]
-    fn test_mem64_65() -> DpResult<()>{
+    fn test_mem64_65() -> Result<()>{
         let json_dir_path = "src/diff/diff_big_structure/";
         let root_obj = json_dir_to_root(json_dir_path, false)?;
 
@@ -103,7 +103,7 @@ mod tests {
     }
 
     #[test]
-    fn test_mem58_62() -> DpResult<()>{
+    fn test_mem58_62() -> Result<()>{
         let json_dir_path = "src/diff/diff_big_structure/";
         let root_obj = json_dir_to_root(json_dir_path, false)?;
 
@@ -130,7 +130,7 @@ mod tests {
     }
 
     #[test]
-    fn test_mem58_63() -> DpResult<()>{
+    fn test_mem58_63() -> Result<()>{
         let json_dir_path = "src/diff/diff_big_structure/";
         let root_obj = json_dir_to_root(json_dir_path, false)?;
 

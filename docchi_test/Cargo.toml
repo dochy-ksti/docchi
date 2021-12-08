@@ -8,8 +8,8 @@ license = "MIT OR Apache-2.0"
 
 [dependencies]
 docchi = { path="../../docchi"}
-# docchi_diff = { path="../docchi_diff"}
-# docchi_core = { path="../docchi_core"}
+docchi_diff = { path="../docchi_diff"}
+docchi_core = { path="../docchi_core"}
 # docchi_archiver2 = { path="../docchi_archiver2" }
 rand = "0.8.3"
 # rayon = "1.5.1"

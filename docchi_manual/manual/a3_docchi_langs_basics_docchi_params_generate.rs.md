@@ -11,7 +11,7 @@ use docchi::intf::generate_interface;
 use anyhow::Result;
 
 #[test]
-fn docchi_params_generate() -> Result<()> { // DpResult can handle every error type of Docchi
+fn docchi_params_generate() -> Result<()> {
 
     // You can convert Docchi Src into RootObject with json_dir_to_root
     // RootObject is the object representation of Docchi Src

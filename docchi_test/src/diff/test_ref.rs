@@ -2,14 +2,13 @@
 
 #[cfg(test)]
 mod tests {
-    use docchi::core::structs::Qv;
+    use docchi::core::structs::{Qv, NullOr, UndefOr};
     use crate::diff::generated_test_ref::test::{RootIntf, Refed1TableID, Refed2TableID, Refed3TableID, Refed4TableID};
-    use docchi::error::DpResult;
+    use anyhow::Result;
     use docchi::core::json_dir_to_root;
-    use docchi_core::structs::{NullOr, UndefOr};
 
     #[test]
-    fn test_diff2() -> DpResult<()>{
+    fn test_diff2() -> Result<()>{
         let json_dir_path = "src/diff/diff_ref/";
         let root_obj = json_dir_to_root(json_dir_path, false)?;
 
@@ -25,8 +24,8 @@ mod tests {
 
         let mut moto = json_dir_to_root(json_dir_path, false)?;
 
-        let diff = docchi_diff::get_diff(&moto, intf.root_obj_ref()).or_else(|e| Err(e.to_string()))?;
-        docchi_diff::apply_diff(&mut moto, &mut diff.as_slice()).or_else(|e| Err(e.to_string()))?;
+        let diff = docchi_diff::get_diff(&moto, intf.root_obj_ref())?;
+        docchi_diff::apply_diff(&mut moto, &mut diff.as_slice())?;
         let mut intf = RootIntf::new(moto);
         let list1 = intf.list1();
         let f = list1.first().unwrap();

@@ -18,7 +18,7 @@ proj_dir ┬ src_dir-root.json5
 ```
 Let's convert the source file into a Docchi's object.
 ```Rust
-use anyhow::Result; //DpResult is the Docchi's error type.
+use anyhow::Result;
 use docchi::core::structs::RootObject;
 use docchi::core::json_dir_to_root;
 

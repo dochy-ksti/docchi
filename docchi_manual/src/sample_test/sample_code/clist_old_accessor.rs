@@ -15,6 +15,7 @@ impl RootIntf{
 	}
     pub fn root_obj_ref(&self) -> &RootObject{ self.root.as_ref() }
     pub fn root_obj_ref_mut(&mut self) -> &mut RootObject{ self.root.as_mut() }
+    pub fn deconstruct(self) -> RootObject{ *self.root }
 
 	pub fn list(&self) -> CListConst<ListCItem>{
 		CListConst::new(root::get_clist(self.ptr, "list").unwrap(), self)

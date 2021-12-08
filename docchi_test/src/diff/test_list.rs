@@ -3,11 +3,11 @@
 #[cfg(test)]
 mod tests {
     use docchi::core::structs::{RootObject};
-    use docchi::error::DpResult;
+    use anyhow::Result;
     use crate::diff::generated_test_list::test::{RootIntf, Refed1TableID};
     use docchi::core::json_dir_to_root;
 
-    fn apply(current : &RootObject, path : &str) -> DpResult<RootIntf>{
+    fn apply(current : &RootObject, path : &str) -> Result<RootIntf>{
         let mut moto = json_dir_to_root(path, false)?;
 
         let diff = docchi_diff::get_diff(&moto, current)?;
@@ -16,7 +16,7 @@ mod tests {
     }
 
     #[test]
-    fn test_modify() -> DpResult<()>{
+    fn test_modify() -> Result<()>{
         let json_dir_path = "src/diff/diff_list/";
         let root_obj = json_dir_to_root(json_dir_path, false)?;
 
@@ -32,7 +32,7 @@ mod tests {
     }
 
     #[test]
-    fn test_add_add_remove() -> DpResult<()>{
+    fn test_add_add_remove() -> Result<()>{
         let json_dir_path = "src/diff/diff_list/";
         let root_obj = json_dir_to_root(json_dir_path, false)?;
 
@@ -63,7 +63,7 @@ mod tests {
         }
     }
 
-    fn test_remove_add_add_add_remove() -> DpResult<()>{
+    fn test_remove_add_add_add_remove() -> Result<()>{
         let json_dir_path = "src/diff/diff_list/";
         let root_obj = json_dir_to_root(json_dir_path, false)?;
 
@@ -109,7 +109,7 @@ mod tests {
         }
     }
 
-    fn test_in_add_add_add_add_remove() -> DpResult<()>{
+    fn test_in_add_add_add_add_remove() -> Result<()>{
         let json_dir_path = "src/diff/diff_list/";
         let root_obj = json_dir_to_root(json_dir_path, false)?;
 

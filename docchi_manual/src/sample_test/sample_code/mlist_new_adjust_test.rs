@@ -1,9 +1,9 @@
 use docchi::core::{json_dir_to_root, adjust_versions};
 use crate::sample_test::sample_code::mlist_new_accessor::{RootIntf};
-use docchi::error::DpResult;
+use anyhow::Result;
 
 #[test]
-fn mlilst_new_adjust_test() -> DpResult<()> {
+fn mlilst_new_adjust_test() -> Result<()> {
     let old = json_dir_to_root("src/sample_test/sample_code_json/mlist_old", true)?;
     let new = json_dir_to_root("src/sample_test/sample_code_json/mlist_new", true)?;
 

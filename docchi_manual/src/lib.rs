@@ -2,7 +2,7 @@
 
 
 
-// #[cfg(test)]#[allow(dead_code)] mod sample_test;
+#[cfg(test)]#[allow(dead_code)] mod sample_test;
 
 
 #[cfg(test)]#[allow(dead_code)]mod a3_docchi_langs_basics;

@@ -15,6 +15,7 @@ impl RootIntf{
 	}
     pub fn root_obj_ref(&self) -> &RootObject{ self.root.as_ref() }
     pub fn root_obj_ref_mut(&mut self) -> &mut RootObject{ self.root.as_mut() }
+    pub fn deconstruct(self) -> RootObject{ *self.root }
 
 	pub fn sword(&self) -> CTableConst<SwordTable>{
 		let t = SwordTable::new(root::get_table(self.ptr.def(), "sword").unwrap());
@@ -25,7 +26,7 @@ impl RootIntf{
 		MListConst::new(mil, self)
 	}
 	pub fn pc_list_mut(&mut self) -> MListMut<PcListMItem>{
-		let mil = root::get_mlist_mut(self.ptr, "pcList").unwrap().unwrap();
+		let mil = root::get_mlist_mut(self.ptr, "pcList").unwrap();
 		MListMut::new(mil, self)
 	}
 	pub fn herb(&self) -> CTableConst<HerbTable>{
@@ -137,8 +138,8 @@ impl PcListMItem {
 		MListConst::new(mil, self)
 	}
 	pub fn items_mut(&mut self) -> MListMut<ItemsMItem>{
-		let mil = mitem::get_mil_mut(self.ptr, "items").unwrap().unwrap();
-		MListMut::new(mil, self)
+		let p = mitem::get_mil_mut(self.ptr, "items").unwrap();
+		MListMut::new(p, self)
 	}
 	pub fn name_def_val(&self) -> &String{
 		let qv = mitem::get_str_def(self.ptr, "name").unwrap();
