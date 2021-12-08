@@ -1,6 +1,6 @@
 [package]
 name = "docchi"
-version = "0.7.3"
+version = "0.8.0"
 authors = ["juzy <dochy.ksti@gmail.com>"]
 edition = "2018"
 
@@ -29,7 +29,7 @@ members = [
 
 [dependencies]
 
-docchi_core = { path="docchi_core", version="0.7" }
-docchi_fs = { path="docchi_fs", version="0.7"}
-docchi_intf = { path="docchi_intf", version="0.7"}
+docchi_core = { path="docchi_core", version="0.8" }
+docchi_fs = { path="docchi_fs", version="0.8"}
+docchi_intf = { path="docchi_intf", version="0.8"}
 

@@ -1,6 +1,6 @@
 [package]
 name = "docchi_diff"
-version = "0.7.3"
+version = "0.8.0"
 authors = ["juzy <dochy.ksti@gmail.com>"]
 edition = "2018"
 
@@ -11,8 +11,8 @@ readme = "readme.md"
 keywords = ["data","diff"]
 
 [dependencies]
-docchi_core = { path="../docchi_core", version="0.7" }
-docchi_compaction = {path="../docchi_compaction", version="0.7"}
+docchi_core = { path="../docchi_core", version="0.8" }
+docchi_compaction = {path="../docchi_compaction", version="0.8"}
 
 anyhow = "1.0.34"
 with_capacity_safe = "0.4"
