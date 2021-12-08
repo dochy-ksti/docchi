@@ -1,7 +1,7 @@
-use docchi::error::DpResult;
+use anyhow::Result;
 use std::path::Path;
 
-pub(crate) fn get_content(src : &str) -> DpResult<String>{
+pub(crate) fn get_content(src : &str) -> Result<String>{
     println!("{}", src);
     let s = std::fs::read_to_string(format!("src/{}", src))?;
     let path = Path::new(src);
@@ -17,6 +17,6 @@ pub(crate) fn get_content(src : &str) -> DpResult<String>{
 
 
 
-pub(crate) fn get_md_filename(src : &str) -> DpResult<String>{
+pub(crate) fn get_md_filename(src : &str) -> Result<String>{
     Ok(format!("{}.md", src.replace('/',"_")))
 }

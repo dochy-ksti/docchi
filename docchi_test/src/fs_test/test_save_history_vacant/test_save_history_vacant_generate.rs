@@ -1,10 +1,10 @@
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::structs::RootObject;
 use docchi::core::json_dir_to_root;
 use docchi::intf::generate_interface;
 
 //#[test]
-fn test_save_history_vacant_generate() -> DpResult<()> {
+fn test_save_history_vacant_generate() -> Result<()> {
     let mut root_obj : RootObject = json_dir_to_root("src/fs_test/test_save_history_vacant/src_dir", true)?;
 
     let ans = generate_interface(&mut root_obj);

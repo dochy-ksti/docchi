@@ -2,6 +2,8 @@ use std::collections::TryReserveError;
 use anyhow::anyhow;
 use std::fmt::{Debug, Display, Formatter};
 use docchi_compaction::kval_enum::KVal;
+use std::error::Error;
+use docchi_compaction::error::ComError;
 
 pub type DiffResult<T> = std::result::Result<T, DiffError>;
 
@@ -32,7 +34,7 @@ pub struct DiffError {
     e : anyhow::Error
 }
 impl DiffError{
-    pub fn new(e : impl Into<anyhow::Error>) -> Self{ Self{ e : e.into() } }
+    pub(crate) fn new(e : impl Error + Send + Sync + 'static) -> Self{ Self{ e : e.into() } }
 }
 
 impl Display for DiffError{
@@ -47,14 +49,9 @@ impl Debug for DiffError{
     }
 }
 
-impl Into<anyhow::Error> for DiffError {
-    fn into(self) -> anyhow::Error { self.e }
-}
-
-
-impl From<anyhow::Error> for DiffError{
-    fn from(e: anyhow::Error) -> Self {
-        Self::new(e)
+impl Error for DiffError{
+    fn source(&self) -> Option<&(dyn Error + 'static)> {
+        self.e.source()
     }
 }
 
@@ -62,15 +59,15 @@ impl From<TryReserveError> for DiffError{
     fn from(e: TryReserveError) -> Self { DiffError::new(e) }
 }
 
+impl From<ComError> for DiffError{
+    fn from(e: ComError) -> Self { DiffError::new(e) }
+}
+
 impl From<&str> for DiffError{
-    fn from(e: &str) -> Self {
-        Self::new(anyhow!("{}", e))
-    }
+    fn from(e: &str) -> Self { Self{ e : anyhow!("{}", e) } }
 }
 
 impl From<String> for DiffError{
-    fn from(e: String) -> Self {
-        Self::new(anyhow!("{}", e))
-    }
+    fn from(e: String) -> Self { Self{ e : anyhow!("{}", e) } }
 }
 

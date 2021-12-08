@@ -4,7 +4,8 @@ use std::fmt::{Display, Formatter, Debug};
 use anyhow::{anyhow};
 use std::time::SystemTimeError;
 use docchi_compaction::kval_enum::KVal;
-//use std::time::SystemTimeError;
+use std::error::Error;
+use docchi_compaction::error::ComError;
 
 pub type FsResult<T> = Result<T, FsError>;
 
@@ -35,7 +36,7 @@ pub struct FsError {
 }
 
 impl FsError {
-    pub fn new(e : impl Into<anyhow::Error>) -> Self{ Self{ error : e.into() } }
+    pub fn new(e : impl Error + Send + Sync + 'static) -> Self{ Self{ error : e.into() } }
 }
 
 impl Display for FsError {
@@ -50,14 +51,14 @@ impl Debug for FsError {
     }
 }
 
-impl Into<anyhow::Error> for FsError {
-    fn into(self) -> anyhow::Error {
-        self.error
+impl Error for FsError{
+    fn source(&self) -> Option<&(dyn Error + 'static)> {
+        self.error.source()
     }
 }
 
-impl From<anyhow::Error> for FsError {
-    fn from(e: anyhow::Error) -> Self {
+impl From<ComError> for FsError {
+    fn from(e: ComError) -> Self {
         Self::new(e)
     }
 }
@@ -87,11 +88,11 @@ impl From<TryReserveError> for FsError{
 }
 
 impl From<&str> for FsError{
-    fn from(e : &str) -> Self{ Self::new(anyhow!("{}", e)) }
+    fn from(e : &str) -> Self{ Self{ error :anyhow!("{}", e) } }
 }
 
 impl From<String> for FsError{
-    fn from(e : String) -> Self{ Self::new(anyhow!("{}", e)) }
+    fn from(e : String) -> Self{ Self{ error : anyhow!("{}", e) } }
 }
 
 //impl From<std::sys_common::poison::PoisonError<Guard>> for FsError{

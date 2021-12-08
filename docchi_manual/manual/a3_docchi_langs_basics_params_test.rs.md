@@ -5,13 +5,13 @@
 ### 1-1-2. Use Generated Source Code
 
 ```rust
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::json_dir_to_root;
 use docchi::core::structs::{RootObject, NullOr, UndefOr, Qv};
 use crate::a3_docchi_langs_basics::docchi_params_accessor::RootIntf;
 
 #[test]
-fn params_test() -> DpResult<()> {
+fn params_test() -> Result<()> {
     // You validated Docchi Src when you generated the source code, so validation is not needed now.
     let root_obj : RootObject = json_dir_to_root("src/a3_docchi_langs_basics/docchi_params", false)?;
 

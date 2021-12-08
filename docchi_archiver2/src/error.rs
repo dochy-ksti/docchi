@@ -5,6 +5,8 @@ use std::fmt::{Display, Formatter, Debug};
 use anyhow::{anyhow};
 use std::time::SystemTimeError;
 use std::path::StripPrefixError;
+use docchi_compaction::error::ComError;
+use std::error::Error;
 
 /// The error type.
 ///
@@ -19,7 +21,7 @@ pub struct NouArcError{
 }
 
 impl NouArcError{
-    pub(crate) fn new(e : impl Into<anyhow::Error>) -> Self{ Self{ error : e.into() } }
+    pub(crate) fn new(e : impl Error + Send + Sync + 'static) -> Self{ Self{ error : e.into() } }
 }
 
 impl Display for NouArcError{
@@ -34,15 +36,14 @@ impl Debug for NouArcError{
     }
 }
 
-impl Into<anyhow::Error> for NouArcError{
-    fn into(self) -> anyhow::Error {
-        self.error
+impl Error for NouArcError{
+    fn source(&self) -> Option<&(dyn Error + 'static)> {
+        self.error.source()
     }
 }
 
-
-impl From<anyhow::Error> for NouArcError{
-    fn from(e: anyhow::Error) -> Self {
+impl From<ComError> for NouArcError{
+    fn from(e: ComError) -> Self {
         Self::new(e)
     }
 }
@@ -70,16 +71,8 @@ impl From<std::sync::mpsc::RecvError> for NouArcError{
     fn from(e : std::sync::mpsc::RecvError) -> Self { Self::new(e) }
 }
 
-impl<T> From<std::sync::mpsc::SendError<T>> for NouArcError{
-    fn from(e : std::sync::mpsc::SendError<T>) -> Self { Self::new(anyhow!("{}", e)) }
-}
-
-impl From<&str> for NouArcError{
-    fn from(e : &str) -> Self { Self::new(anyhow!("{}", e)) }
-}
-
-impl From<String> for NouArcError{
-    fn from(e : String) -> Self { Self::new(anyhow!("{}", e)) }
+impl<T : Send + Sync + 'static> From<std::sync::mpsc::SendError<T>> for NouArcError{
+    fn from(e : std::sync::mpsc::SendError<T>) -> Self { Self::new(e) }
 }
 
 impl From<snap::Error> for NouArcError{
@@ -88,4 +81,12 @@ impl From<snap::Error> for NouArcError{
 
 impl From<TryReserveError> for NouArcError{
     fn from(e : TryReserveError) -> Self { Self::new(e) }
+}
+
+impl From<&str> for NouArcError{
+    fn from(e : &str) -> Self { Self{ error : anyhow!("{}", e) } }
+}
+
+impl From<String> for NouArcError{
+    fn from(e : String) -> Self { Self{ error : anyhow!("{}", e) } }
 }

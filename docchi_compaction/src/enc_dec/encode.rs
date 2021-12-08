@@ -1,11 +1,11 @@
 use crate::kval_enum::KVal;
 use crate::enc_dec::tag_storage::TagStorage;
 use std::io::Write;
-use anyhow::Result;
 use crate::enc_dec::writer::Writer;
+use crate::error::ComResult;
 
 /// Serialize KVals and return bytes_written.
-pub fn encode<W : Write>(vec : &[KVal], write : &mut W) -> Result<usize>{
+pub fn encode<W : Write>(vec : &[KVal], write : &mut W) -> ComResult<usize>{
     let mut writer = Writer::new(write);
 
     //どんぶり勘定

@@ -1,4 +1,4 @@
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::fs::common::{CurrentSrc};
 use std::path::{Path};
 
@@ -17,7 +17,7 @@ static VEC_LAZY: Lazy<Mutex<Vec<String>>> = Lazy::new(||{
 });
 
 #[test]
-fn test_save_history_nb() -> DpResult<()> {
+fn test_save_history_nb() -> Result<()> {
     let root_dir = Path::new("src/fs_test/test_save_history_nb");
     let history_dir = root_dir.join("history_dir");
 

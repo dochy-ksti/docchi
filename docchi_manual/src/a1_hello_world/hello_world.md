@@ -18,12 +18,12 @@ proj_dir ┬ src_dir-root.json5
 ```
 Let's convert the source file into a Docchi's object.
 ```Rust
-use docchi::error::DpResult; //DpResult is the Docchi's error type.
+use anyhow::Result; //DpResult is the Docchi's error type.
 use docchi::core::structs::RootObject;
 use docchi::core::json_dir_to_root;
 
 #[test]
-fn hello_world() -> DpResult<()> {
+fn hello_world() -> Result<()> {
     let _root_obj : RootObject = json_dir_to_root("src/a1_hello_world/some_dir", true)?;
     Ok(())
 }
@@ -34,13 +34,13 @@ Designating directory's path is needed.
 "RootObject" has low-level interfaces, 
 but generally you need to generate the source code to access the converted object.
 ```Rust
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::structs::RootObject;
 use docchi::core::json_dir_to_root;
 use docchi::intf::generate_interface;
 
 #[test]
-fn hello_world_generate() -> DpResult<()> {
+fn hello_world_generate() -> Result<()> {
     let mut root_obj : RootObject = json_dir_to_root("src/a1_hello_world/some_dir", true)?;
 
     let ans = generate_interface(&mut root_obj);
@@ -58,12 +58,12 @@ so std::fs::write is used.
 
 Let's use the generated source.
 ```Rust
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::json_dir_to_root;
 use crate::a1_hello_world::hello_world_accessor::RootIntf;
 
 #[test]
-fn hello_world_test() -> DpResult<()> {
+fn hello_world_test() -> Result<()> {
     let root = json_dir_to_root("src/a1_hello_world/some_dir", true)?;
 
     let mut root = RootIntf::new(root);
@@ -78,7 +78,7 @@ fn hello_world_test() -> DpResult<()> {
 
 We modified the data, then saved the data to a file.
 ```Rust
-fn hello_world_save_test() -> DpResult<()> {
+fn hello_world_save_test() -> Result<()> {
     let root = json_dir_to_root("src/a1_hello_world/some_dir", true)?;
 
     let mut root = RootIntf::new(root);
@@ -105,7 +105,7 @@ Why we need such a directory is hard to explain, so we ignore it for now.
 
 Let's find the file and load it.
 ```Rust
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::json_dir_to_root;
 use crate::a1_hello_world::hello_world_accessor::RootIntf;
 use docchi::fs::filesys::{save_file, load_saved_file, list_saved_files};
@@ -113,7 +113,7 @@ use docchi::fs::common::CurrentSrc;
 use std::path::PathBuf;
 
 #[test]
-fn hello_world_load_test() -> DpResult<()> {
+fn hello_world_load_test() -> Result<()> {
     let save_dir = "src/a1_hello_world/save_dir";
     let files = list_saved_files(save_dir)?;
 

@@ -5,14 +5,14 @@
 ### 4-1. Use Table
 
 ```rust
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::structs::{RootObject, NullOr};
 use docchi::core::json_dir_to_root;
 use crate::a6_table::table_accessor::{RootIntf, Table2TableID, Table1TableID};
 
 
 //#[test]
-fn table_test() -> DpResult<()> {
+fn table_test() -> Result<()> {
     let root_obj : RootObject = json_dir_to_root("src/a6_table/table", false)?;
 
     let mut root = RootIntf::new(root_obj);

@@ -5,13 +5,13 @@
 ### 3-2. Use Mil
 
 ```rust
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::structs::RootObject;
 use docchi::core::json_dir_to_root;
 use crate::a5_mlist::mil_accessor::RootIntf;
 
 //#[test]
-fn mil_test() -> DpResult<()> {
+fn mil_test() -> Result<()> {
     let root_obj : RootObject = json_dir_to_root("src/a5_mlist/mil", false)?;
 
     let mut root = RootIntf::new(root_obj);

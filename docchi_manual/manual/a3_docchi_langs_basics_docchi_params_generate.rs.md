@@ -5,13 +5,13 @@
 ### 1-1-1. Generate Source Code To Access Params
 
 ```rust
-use docchi::error::DpResult;
 use docchi::core::structs::{RootObject};
 use docchi::core::json_dir_to_root;
 use docchi::intf::generate_interface;
+use anyhow::Result;
 
 #[test]
-fn docchi_params_generate() -> DpResult<()> { // DpResult can handle every error type of Docchi
+fn docchi_params_generate() -> Result<()> { // DpResult can handle every error type of Docchi
 
     // You can convert Docchi Src into RootObject with json_dir_to_root
     // RootObject is the object representation of Docchi Src

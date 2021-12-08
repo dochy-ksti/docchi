@@ -5,7 +5,7 @@
 ### 7-1. Save History File
 
 ```rust
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::fs::common::{CurrentSrc, hash_dir_path};
 use docchi::fs::history::{HistoryInfo, save_history_file, HistoryOptionsBuilder, CumulativeOptionsBuilder};
 use crate::b2_save_history_files::save_history_files_accessor::RootIntf;
@@ -13,7 +13,7 @@ use std::path::Path;
 use crate::b2_save_history_files::load_history_file_test::load_history_file_test;
 
 //#[test]
-fn save_history_file_test() -> DpResult<()> {
+fn save_history_file_test() -> Result<()> {
     let history_dir = "src/b2_save_history_files/history_dir";
 
     // initialize history_dir
@@ -231,7 +231,7 @@ pub(crate) fn modify(root : &mut RootIntf, count : &mut usize){
     m.push_str("0123456789");
 }
 
-pub(crate) fn print_dir<P : AsRef<Path>>(dir : P) -> DpResult<()>{
+pub(crate) fn print_dir<P : AsRef<Path>>(dir : P) -> Result<()>{
     for entry in std::fs::read_dir(dir)?{
         let entry = entry?;
         let name = entry.file_name().to_str().unwrap().to_string();

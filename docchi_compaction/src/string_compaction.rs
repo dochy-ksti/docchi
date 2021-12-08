@@ -1,10 +1,9 @@
 use crate::kval_enum::{KVal, Decimal};
 use regex::{Regex, Match};
 use crate::enc_dec::decode::decode;
-//use lazy_static::lazy_static;
-use anyhow::Result;
 use crate::enc_dec::encode_to_vec::encode_to_vec;
 use once_cell::sync::Lazy;
+use crate::error::ComResult;
 
 /// Get KVals from raw Strings. If the String represents a number,
 /// it's converted to number binary to reduce the size.
@@ -14,13 +13,13 @@ pub fn to_kvals<I : Iterator<Item=String>>(strs : I) -> Vec<KVal>{
 
 /// Serialize the raw Strings to bytes. If the String represents a number,
 /// it's converted to number binary to reduce the size.
-pub fn compress_strings<I : Iterator<Item=String>>(strs : I) -> Result<Vec<u8>>{
+pub fn compress_strings<I : Iterator<Item=String>>(strs : I) -> ComResult<Vec<u8>>{
     let vec : Vec<KVal> = to_kvals(strs);
     let encoded = encode_to_vec(&vec)?;
     return Ok(encoded);
 }
 
-pub fn decompress(mut bytes : &[u8]) -> Result<(Vec<String>, usize)>{
+pub fn decompress(mut bytes : &[u8]) -> ComResult<(Vec<String>, usize)>{
     let (kihons, size) = decode(&mut bytes)?;
     Ok((to_strings(&kihons), size))
 }

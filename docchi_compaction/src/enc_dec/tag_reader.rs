@@ -1,6 +1,6 @@
 use bit_vec::BitVec;
 use crate::enc_dec::kihon_from_tag::KihonFromTag;
-use anyhow::{bail, Result};
+use crate::error::ComResult;
 
 pub(crate) struct TagReader{
     pub(crate) vec : BitVec,
@@ -12,17 +12,17 @@ impl TagReader{
         TagReader{ vec : BitVec::from_bytes(bytes), index : 0 }
     }
 
-    pub(crate) fn read_bit(&mut self) -> Result<bool>{
+    pub(crate) fn read_bit(&mut self) -> ComResult<bool>{
         if self.index < self.vec.len() {
             let r = self.vec[self.index];
             self.index += 1;
             return Ok(r);
         } else{
-            bail!("read_bit failed")
+            Err("read_bit failed")?
         }
     }
 
-    pub(crate) fn read_bits(&mut self, size : usize) -> Result<u64>{
+    pub(crate) fn read_bits(&mut self, size : usize) -> ComResult<u64>{
         let mut r : u64 = 0;
         for _ in 0..size{
             r *= 2;
@@ -31,7 +31,7 @@ impl TagReader{
         return Ok(r);
     }
 
-    pub(crate) fn read_next_1(&mut self) -> Result<usize>{
+    pub(crate) fn read_next_1(&mut self) -> ComResult<usize>{
         let mut count = 0;
         loop{
             let b = self.read_bit()?;
@@ -40,7 +40,7 @@ impl TagReader{
         }
     }
 
-    pub(crate) fn read_tag(&mut self) -> Result<KihonFromTag>{
+    pub(crate) fn read_tag(&mut self) -> ComResult<KihonFromTag>{
         let count = self.read_next_1()?;
         match count{
             0 => return Ok(KihonFromTag::Bit(self.read_bit()?)),
@@ -55,7 +55,7 @@ impl TagReader{
                         let bytes = self.read_bits(4)?;
                         return Ok(KihonFromTag::Decimal((bytes + 1) as u8));
                     },
-                    _ =>{ bail!("undefined tag 01 count {}", count) }
+                    _ =>{ Err(format!("undefined tag 01 count {}", count))? }
                 }
             }
             2 => {
@@ -72,7 +72,7 @@ impl TagReader{
                         return Ok(KihonFromTag::BigStr((bytes + 1) as u8));
                     },
                     4 => return Ok(KihonFromTag::Float),
-                    _ => bail!("undefined tag 001 count {}", count),
+                    _ => Err(format!("undefined tag 001 count {}", count))?,
                 }
             },
             3 =>{
@@ -94,14 +94,14 @@ impl TagReader{
                         let bytes = self.read_bits(3)?;
                         return Ok(KihonFromTag::Binary2((bytes + 1) as u8));
                     },
-                    _ => bail!("undefined tag 0001 count {}", count),
+                    _ => Err(format!("undefined tag 0001 count {}", count))?,
                 }
             }
             4 =>{
                 let count = self.read_next_1()?;
                 return Ok(KihonFromTag::Undefined(count as u8));
             },
-            _ =>{ bail!("undefined_tag 00000") } //panic!("Tag's zeroes must be within 3") }
+            _ =>{ Err("undefined_tag 00000")? } //panic!("Tag's zeroes must be within 3") }
         }
     }
 

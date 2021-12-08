@@ -1,6 +1,7 @@
 use anyhow::anyhow;
 use std::fmt::{Debug, Formatter, Display};
 use docchi_core::CoreError;
+use std::error::Error;
 
 pub type IntfResult<T> = std::result::Result<T, IntfError>;
 
@@ -10,7 +11,7 @@ pub struct IntfError {
 }
 
 impl IntfError {
-    pub fn new(e : impl Into<anyhow::Error>) -> Self{ Self{ e : e.into() } }
+    pub fn new(e : impl Error + Send + Sync + 'static) -> Self{ Self{ e : e.into() } }
     pub fn to_string(&self) -> String{ self.e.to_string() }
 }
 
@@ -23,6 +24,12 @@ impl Debug for IntfError {
 impl Display for IntfError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         Display::fmt(&self.e, f)
+    }
+}
+
+impl Error for IntfError{
+    fn source(&self) -> Option<&(dyn Error + 'static)> {
+        self.e.source()
     }
 }
 
@@ -45,11 +52,5 @@ impl From<String> for IntfError {
 impl From<&str> for IntfError {
     fn from(s : &str) -> Self {
         Self{ e : anyhow!("{}", s) }
-    }
-}
-
-impl Into<anyhow::Error> for IntfError {
-    fn into(self) -> anyhow::Error {
-        self.e
     }
 }

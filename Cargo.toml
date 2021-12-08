@@ -29,10 +29,7 @@ members = [
 
 [dependencies]
 
-docchi_archiver2 = { path="docchi_archiver2", version="0.7" }
 docchi_core = { path="docchi_core", version="0.7" }
-docchi_diff = { path="docchi_diff", version="0.7"}
 docchi_fs = { path="docchi_fs", version="0.7"}
 docchi_intf = { path="docchi_intf", version="0.7"}
-anyhow = "1.0.34"
 

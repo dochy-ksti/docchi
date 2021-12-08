@@ -2,10 +2,10 @@ use docchi::core::{adjust_versions, json_dir_to_root};
 use super::old_accessor as old_accessor;
 use super::new_accessor as new_accessor;
 use crate::b3_conversion::new_accessor_wrapper::NewWrapper;
-use docchi::error::DpResult;
+use anyhow::Result;
 
 #[test]
-fn conversion_test() -> DpResult<()>{
+fn conversion_test() -> Result<()>{
     let old = json_dir_to_root("src/b3_conversion/jsons/old", true)?;
     let new = json_dir_to_root("src/b3_conversion/jsons/new", true)?;
     let r = adjust_versions(new, old, true)?;

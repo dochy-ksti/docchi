@@ -1,9 +1,9 @@
 use crate::make_manual::get_content::{get_content, get_md_filename};
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::structs::NullOr;
 
 pub(crate) fn make_page(prev_src: NullOr<&str>, next_src: NullOr<&str>, title : &str, src : &str)
-                        -> DpResult<String>{
+                        -> Result<String>{
 
     let mut r = String::new();
     {

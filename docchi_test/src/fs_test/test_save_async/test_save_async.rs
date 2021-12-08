@@ -1,4 +1,4 @@
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::fs::common::{CurrentSrc};
 use std::path::{Path};
 use docchi::fs::filesys::{SaveDirInfo, save_docchi_file_nb, load_docchi_file, list_docchi_files};
@@ -13,7 +13,7 @@ static VEC_LAZY: Lazy<FairMutex<Vec<String>>> = Lazy::new(||{
 });
 
 #[test]
-fn test_save_async() -> DpResult<()> {
+fn test_save_async() -> Result<()> {
     let root_dir = Path::new("src/fs_test/test_save_async");
     let save_dir = root_dir.join("save_dir");
     std::fs::create_dir(&save_dir).ok();

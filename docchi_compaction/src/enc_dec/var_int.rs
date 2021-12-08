@@ -1,9 +1,9 @@
 use super::signed_bytes::{signed_bytes, signed_bytes128};
 use arrayvec::ArrayVec;
-use anyhow::{Result};
 use std::io::{Write, Read};
 use crate::enc_dec::writer::Writer;
 use crate::enc_dec::reader::Reader;
+use crate::error::ComResult;
 
 ///compact i64 as small as possible。(0 needs 1 byte.)
 pub fn encode(val : i64) -> ArrayVec<[u8; 8]>{
@@ -126,7 +126,7 @@ pub fn decode128(vec : &[u8]) -> i128{
 }
 
 
-pub(crate) fn write<T : Write>(int : i64, writer : &mut Writer<T>) -> Result<usize>{
+pub(crate) fn write<T : Write>(int : i64, writer : &mut Writer<T>) -> ComResult<usize>{
     let bytes = super::var_int::encode(int);
     let bytes_len = bytes.len();
     writer.write_byte(bytes_len as u8)?;
@@ -134,7 +134,7 @@ pub(crate) fn write<T : Write>(int : i64, writer : &mut Writer<T>) -> Result<usi
     return Ok(bytes_len + 1);
 }
 
-pub(crate) fn read<T : Read>(reader : &mut Reader<T>) -> Result<(i64, usize)> {
+pub(crate) fn read<T : Read>(reader : &mut Reader<T>) -> ComResult<(i64, usize)> {
     let bytes_len = reader.read_byte()? as usize;
     let bytes = reader.read(bytes_len)?;
     Ok((super::var_int::decode(bytes), bytes_len + 1))

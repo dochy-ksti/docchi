@@ -36,7 +36,7 @@ list!.json5
 ```
 Let's test it.
  ```Rust
-fn undefiable_list_test() -> DpResult<()> {
+fn undefiable_list_test() -> Result<()> {
     let old = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/no_data", true)?;
     let new = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/undefiable_list_separated", true)?;
 

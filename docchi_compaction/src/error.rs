@@ -1,70 +1,61 @@
 use anyhow::anyhow;
 use std::fmt::{Debug, Formatter, Display};
-use std::str::Utf8Error;
-use docchi_archiver2::NouArcError;
 use std::error::Error;
+use std::collections::TryReserveError;
+use std::string::FromUtf8Error;
 
-pub type CoreResult<T> = std::result::Result<T, CoreError>;
+pub type ComResult<T> = std::result::Result<T, ComError>;
 
 
-
-pub struct CoreError {
+pub struct ComError {
     e : anyhow::Error,
 }
 
-impl CoreError {
+impl ComError {
     pub fn new(e : impl Error + Send + Sync + 'static) -> Self{ Self{ e : e.into() } }
     pub fn to_string(&self) -> String{ self.e.to_string() }
 }
 
-impl Debug for CoreError {
+impl Debug for ComError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         Debug::fmt(&self.e, f)
     }
 }
 
-impl Display for CoreError {
+impl Display for ComError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         Display::fmt(&self.e, f)
     }
 }
 
-impl Error for CoreError{
+impl Error for ComError{
     fn source(&self) -> Option<&(dyn Error + 'static)> {
         self.e.source()
     }
 }
 
-impl From<docchi_json5::MyError> for CoreError {
-    fn from(e : docchi_json5::MyError) -> Self {
-        Self{ e : e.into() }
-    }
-}
-
-impl From<std::io::Error> for CoreError {
+impl From<std::io::Error> for ComError {
     fn from(e : std::io::Error) -> Self {
         Self{ e : anyhow::Error::new(e) }
     }
 }
 
-
-impl From<String> for CoreError {
+impl From<String> for ComError {
     fn from(s : String) -> Self {
         Self{ e : anyhow!("{}", s) }
     }
 }
 
-impl From<&str> for CoreError {
+impl From<&str> for ComError {
     fn from(s : &str) -> Self {
         Self{ e : anyhow!("{}", s) }
     }
 }
 
-impl From<Utf8Error> for CoreError{
-    fn from(e : Utf8Error) -> Self{ Self::new(e) }
+impl From<TryReserveError> for ComError{
+    fn from(e: TryReserveError) -> Self { Self{ e : e.into() } }
 }
 
-impl From<NouArcError> for CoreError{
-    fn from(e : NouArcError) -> Self{ Self::new(e) }
+impl From<FromUtf8Error> for ComError{
+    fn from(e: FromUtf8Error) -> Self { Self{ e : e.into() } }
 }
-

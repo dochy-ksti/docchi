@@ -8,5 +8,5 @@ license= "MIT OR Apache-2.0"
 
 [dependencies]
 docchi = { path="../../docchi" }
-docchi_diff ={ path="../docchi_diff" }
-flate2 = "1.0.20"
+# docchi_diff ={ path="../docchi_diff" }
+anyhow = "1.0"

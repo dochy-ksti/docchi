@@ -1,11 +1,11 @@
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::fs::filesys::{SaveDirInfo, save_docchi_file};
 use docchi::fs::common::CurrentSrc;
 use crate::b1_save_docchi_files::load_docchi_file::load_docchi_file_test;
 use crate::b1_save_docchi_files::save_docchi_files_accessor::RootIntf;
 
 #[test]
-fn save_docchi_file_test() -> DpResult<()>
+fn save_docchi_file_test() -> Result<()>
 {
     let save_dir = "src/b1_save_docchi_files/save_dir";
 

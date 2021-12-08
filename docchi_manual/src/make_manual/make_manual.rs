@@ -1,10 +1,10 @@
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::json_dir_to_root;
 use crate::make_manual::manual_accessor::RootIntf;
 use crate::make_manual::manual_builder::ManualBuilder;
 
 #[test]
-fn make_manual() -> DpResult<()>{
+fn make_manual() -> Result<()>{
     let manual_dir = "manual";
     std::fs::remove_dir_all(manual_dir).ok();
     std::fs::create_dir(manual_dir).unwrap();

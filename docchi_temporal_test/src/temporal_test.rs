@@ -1,9 +1,9 @@
 use std::time::{UNIX_EPOCH};
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::structs::NullOr;
 
 #[test]
-fn temporal_test() -> DpResult<()>{
+fn temporal_test() -> Result<()>{
     let mut v : Vec<u128> = vec![];
     for _i in 0..10 {
         let now = std::time::SystemTime::now();

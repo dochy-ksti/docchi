@@ -8,7 +8,6 @@
 pub mod intf;
 pub mod core;
 pub mod fs;
-pub mod error;
 
 
 

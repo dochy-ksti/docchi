@@ -1,10 +1,10 @@
-use docchi::error::DpResult;
+use anyhow::Result;
 use crate::a1_hello_world::hello_world_accessor::RootIntf;
 use docchi::fs::filesys::{save_docchi_file, SaveDirInfo, list_docchi_files, load_docchi_file};
 use docchi::fs::common::{CurrentSrc};
 
 #[test]
-fn hello_world_save_test() -> DpResult<()> // DpResult can handle every error type of Docchi.
+fn hello_world_save_test() -> Result<()> // DpResult can handle every error type of Docchi.
 {
     let save_dir = "src/a1_hello_world/save_dir";
 
@@ -37,7 +37,7 @@ fn hello_world_save_test() -> DpResult<()> // DpResult can handle every error ty
     Ok(())
 }
 
-fn hello_world_load_test() -> DpResult<()> {
+fn hello_world_load_test() -> Result<()> {
     let save_dir = "src/a1_hello_world/save_dir";
     let src_dir = "src/a1_hello_world/src_dir";
     let info = SaveDirInfo::create(save_dir, CurrentSrc::from_src_dir(src_dir))?;

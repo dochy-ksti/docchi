@@ -1,5 +1,5 @@
 use std::path::Path;
-use docchi::error::DpResult;
+use anyhow::Result;
 use crate::make_manual::make_page::make_page;
 use crate::make_manual::write_page::{write_page, write_index_page};
 use crate::make_manual::make_index_page::make_index_page;
@@ -28,7 +28,7 @@ impl ManualBuilder {
         self.vec.push(ManualBuilderItem::new(title, src))
     }
 
-    pub(crate) fn build<P : AsRef<Path>>(&self, manual_dir : P) -> DpResult<()>{
+    pub(crate) fn build<P : AsRef<Path>>(&self, manual_dir : P) -> Result<()>{
         let manual_dir = manual_dir.as_ref();
 
         let vec = &self.vec;

@@ -1,9 +1,9 @@
 use docchi::core::json_dir_to_root;
-use docchi::error::DpResult;
+use anyhow::Result;
 use crate::b3_1_clist_and_mlist::mlist_old_accessor::RootIntf;
 
 #[test]
-fn mlist_old_test() -> DpResult<()> {
+fn mlist_old_test() -> Result<()> {
     let old = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/mlist_old", true)?;
 
     let mut r = RootIntf::new(old);

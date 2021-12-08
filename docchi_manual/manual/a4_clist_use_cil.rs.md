@@ -5,13 +5,13 @@
 ### 2-2. Use Clist And Cil
 
 ```rust
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::structs::RootObject;
 use docchi::core::json_dir_to_root;
 use crate::a4_clist::cil_accessor::RootIntf;
 
 //#[test]
-fn cil_test() -> DpResult<()> {
+fn cil_test() -> Result<()> {
     let root_obj : RootObject = json_dir_to_root("src/a4_clist/cil", false)?;
 
     let root = RootIntf::new(root_obj);

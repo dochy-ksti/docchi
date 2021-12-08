@@ -20,7 +20,7 @@ pub mod string_compaction;
 #[allow(unused_imports, dead_code)]
 #[cfg(test)]
 mod testing;
-
+pub mod error;
 
 
 pub use crate::enc_dec::encode::encode;

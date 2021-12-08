@@ -53,7 +53,7 @@ And the new version
 ```
 The old version's list's foo is 1,2,0
  ```Rust
-fn clilst_old_test() -> DpResult<()> {
+fn clilst_old_test() -> Result<()> {
     let old = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/clist_old", true)?;
 
     let r = RootIntf::new(old);
@@ -69,7 +69,7 @@ fn clilst_old_test() -> DpResult<()> {
 The adjusted data's foo is 3,4,5,-1.
 The old list is completely replaced by the new list in the adjustment process.
 ```Rust
-fn clilst_new_adjust_test() -> DpResult<()> {
+fn clilst_new_adjust_test() -> Result<()> {
     let old = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/clist_old", true)?;
     let new = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/clist_new", true)?;
 
@@ -118,7 +118,7 @@ The old version is below.
 ```
 The test code
 ```Rust
-fn mlilst_old_test() -> DpResult<()> {
+fn mlilst_old_test() -> Result<()> {
     let old = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/mlist_old", true)?;
 
     let mut r = RootIntf::new(old);
@@ -163,7 +163,7 @@ The new version...
 ```
 The new version is completely ignored in the adjustment process.
 ```Rust
-fn mlilst_new_adjust_test() -> DpResult<()> {
+fn mlilst_new_adjust_test() -> Result<()> {
     let old = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/mlist_old", true)?;
     let new = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/mlist_new", true)?;
 

@@ -1,13 +1,13 @@
 use crate::kval_enum::{KVal};
 use super::tag_reader::TagReader;
 use crate::enc_dec::kihon_from_tag::KihonFromTag;
-use anyhow::Result;
 use std::io::Read;
 use crate::enc_dec::reader::Reader;
 use with_capacity_safe::vec_with_capacity_safe;
+use crate::error::ComResult;
 
 /// Decode the bytes to KVals and return them with bytes_read.
-pub fn decode<R : Read>(read : &mut R) -> Result<(Vec<KVal>, usize)>{
+pub fn decode<R : Read>(read : &mut R) -> ComResult<(Vec<KVal>, usize)>{
     let mut reader = Reader::new(read);
     let (count, _) = super::var_int::read(&mut reader)?;
     let count = count as usize;

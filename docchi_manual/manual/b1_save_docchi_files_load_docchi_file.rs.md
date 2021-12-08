@@ -5,12 +5,12 @@
 ### 6-2. Load And Remove Docchi File
 
 ```rust
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::fs::filesys::{SaveDirInfo, list_docchi_files, load_docchi_file};
 use docchi::fs::common::{CurrentSrc, hash_dir_path};
 use crate::b1_save_docchi_files::save_docchi_files_accessor::RootIntf;
 
-pub(crate) fn load_docchi_file_test() -> DpResult<()> {
+pub(crate) fn load_docchi_file_test() -> Result<()> {
     let save_dir = "src/b1_save_docchi_files/save_dir";
     let src_dir = "src/b1_save_docchi_files/src_dir";
     let info = SaveDirInfo::create(save_dir, CurrentSrc::from_src_dir(src_dir))?;

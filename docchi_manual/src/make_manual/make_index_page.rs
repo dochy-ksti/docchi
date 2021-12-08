@@ -1,10 +1,10 @@
 use crate::make_manual::manual_builder::ManualBuilderItem;
 use crate::make_manual::make_page::l;
 use crate::make_manual::get_content::get_md_filename;
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::core::structs::NullOr;
 
-pub(crate) fn make_index_page(vec : &[ManualBuilderItem]) -> DpResult<String>{
+pub(crate) fn make_index_page(vec : &[ManualBuilderItem]) -> Result<String>{
     let mut r = String::new();
     {
         let r = &mut r;

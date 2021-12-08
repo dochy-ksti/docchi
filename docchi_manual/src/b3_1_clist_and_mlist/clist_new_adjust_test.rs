@@ -1,9 +1,9 @@
 use docchi::core::{json_dir_to_root, adjust_versions};
-use docchi::error::DpResult;
+use anyhow::Result;
 use crate::b3_1_clist_and_mlist::clist_old_accessor::RootIntf;
 
 #[test]
-fn clilst_new_adjust_test() -> DpResult<()> {
+fn clilst_new_adjust_test() -> Result<()> {
     let old = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/clist_old", true)?;
     let new = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/clist_new", true)?;
 

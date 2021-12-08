@@ -1,10 +1,10 @@
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::fs::history::{HistoryInfo, HistoryOptionsBuilder, CumulativeOptionsBuilder, load_history_file, list_histories, save_history_file, FileHistories, HistoryRemover};
 use docchi::fs::common::{CurrentSrc, hash_dir_path};
 use crate::b2_save_history_files::save_history_files_accessor::RootIntf;
 use crate::b2_save_history_files::save_history_file_test::{modify, print_dir};
 
-pub(crate) fn load_history_file_test() -> DpResult<()>{
+pub(crate) fn load_history_file_test() -> Result<()>{
     let history_dir = "src/b2_save_history_files/history_dir";
     let src_dir = "src/b2_save_history_files/src_dir";
 

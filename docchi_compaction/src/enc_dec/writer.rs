@@ -1,5 +1,5 @@
 use std::io::Write;
-use anyhow::{Result};
+use crate::error::ComResult;
 
 pub(crate) struct Writer<'a, T : Write>{
     write : &'a mut T,
@@ -8,12 +8,12 @@ pub(crate) struct Writer<'a, T : Write>{
 
 impl<'a, T : Write> Writer<'a, T>{
     pub(crate) fn new(write : &'a mut T) -> Self{ Self{ write, len : 0 } }
-    pub(crate) fn write_byte(&mut self, byte : u8) -> Result<usize>{
+    pub(crate) fn write_byte(&mut self, byte : u8) -> ComResult<usize>{
         self.write.write_all(&[byte])?;
         self.len += 1;
         Ok(1)
     }
-    pub(crate) fn write(&mut self, bytes : &[u8]) -> Result<usize>{
+    pub(crate) fn write(&mut self, bytes : &[u8]) -> ComResult<usize>{
         self.write.write_all(bytes)?;
         self.len += bytes.len();
         Ok(bytes.len())

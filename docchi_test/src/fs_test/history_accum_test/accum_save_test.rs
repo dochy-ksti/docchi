@@ -1,4 +1,4 @@
-use docchi::error::DpResult;
+use anyhow::Result;
 use docchi::fs::common::{CurrentSrc, hash_dir_path};
 use std::path::{Path};
 use docchi::fs::history::{save_history_file, list_histories, load_history_file, CurrentRootObjInfo, HistoryInfo};
@@ -10,7 +10,7 @@ use rand::Rng;
 /// 各メンバ(Binary)がジワジワ伸びていくので全体のファイルサイズは大きくなっていく
 /// そんな状態が正しくHistoryとして記録できているか、目視とload and compareで確認
 #[test]
-fn accum_save_test() -> DpResult<()> {
+fn accum_save_test() -> Result<()> {
     let info = HistoryInfo::create("src/fs_test/history_accum_test/history_dir",
     CurrentSrc::from_src_dir("src/fs_test/history_accum_test/src_dir"), ())?;
 
@@ -67,7 +67,7 @@ fn mutate_root(r : &mut RootIntf){
     }
 }
 
-fn print_file_data<P : AsRef<Path>>(path : P) -> DpResult<()>{
+fn print_file_data<P : AsRef<Path>>(path : P) -> Result<()>{
     for file in std::fs::read_dir(path)?{
         let file = file?;
         println!("{} size {}", file.file_name().to_str().unwrap(), file.metadata().unwrap().len());
@@ -76,7 +76,7 @@ fn print_file_data<P : AsRef<Path>>(path : P) -> DpResult<()>{
 }
 
 
-fn load_newest_file(info : &HistoryInfo) -> DpResult<RootObject>{
+fn load_newest_file(info : &HistoryInfo) -> Result<RootObject>{
     let his = list_histories(info)?;
     let d = his.get_newest_file_data().unwrap();
 

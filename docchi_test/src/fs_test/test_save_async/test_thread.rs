@@ -1,26 +1,21 @@
-use docchi::error::DpResult;
-use docchi::fs::common::{CurrentSrc};
-use std::path::{Path, PathBuf};
-use docchi::core::structs::RootObject;
-use rand::Rng;
+use anyhow::Result;
 use std::time::Duration;
 //use std::lazy::Lazy;
 
 use once_cell::sync::Lazy;
-use std::io::Write;
 
 
 //use parking_lot::FairMutex as Bmutex;
 use parking_lot::Mutex as Bmutex;
 //use std::sync::Mutex as Bmutex;
 
-static vec_lazy : Lazy<Bmutex<Vec<String>>> = Lazy::new(||{
+static VEC_LAZY: Lazy<Bmutex<Vec<String>>> = Lazy::new(||{
     Bmutex::new(Vec::new())
 });
 
 ///thread::spawnでスレッドはバラバラに実行されることの確認
 //#[test]
-fn test_thread() -> DpResult<()> {
+fn test_thread() -> Result<()> {
 
     let max = 10;
 
@@ -28,7 +23,7 @@ fn test_thread() -> DpResult<()> {
     for i in 0..max{
         std::thread::spawn(move||{
             {
-                let mut v = vec_lazy.lock();
+                let mut v = VEC_LAZY.lock();
 
 
                 std::thread::sleep(Duration::from_millis(100));
@@ -43,7 +38,7 @@ fn test_thread() -> DpResult<()> {
 
     std::thread::sleep(Duration::from_millis(1));
 
-    let mut v = vec_lazy.lock();
+    let v = VEC_LAZY.lock();
     let hoge : &Vec<String> = &v;
     println!("{:?}", hoge);
 

@@ -1,9 +1,9 @@
 use docchi::core::{json_dir_to_root, adjust_versions};
-use docchi::error::DpResult;
+use anyhow::Result;
 use crate::b3_1_clist_and_mlist::undefiable_list_accessor::RootIntf;
 
 #[test]
-fn undefiable_list_test() -> DpResult<()> {
+fn undefiable_list_test() -> Result<()> {
     let old = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/no_data", true)?;
     let new = json_dir_to_root("src/b3_1_clist_and_mlist/jsons/undefiable_list_separated", true)?;
 
