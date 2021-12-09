@@ -3,4 +3,4 @@
 -created ComError, the error type for docchi_compaction
 -implemented std::error::Error for all our error types:
 NouArcError, ComError, CoreError, DiffError, FsError, IntfError, docchi_json5::MyError
--removed docchi::error::DpError. Please use anyhow::Error as an alternative.
+-removed docchi::error::DpError. We recommend using anyhow::Error as an alternative.
