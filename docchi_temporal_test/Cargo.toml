@@ -9,7 +9,7 @@ license = "MIT OR Apache-2.0"
 [dependencies]
 # docchi_core = { path="../docchi_core" }
 docchi = { path="../../docchi" }
-# bitvec = "0.22.3"
-# rand = "0.8.4"
-# rayon = "1.5.1"
+bitvec = "0.22.3"
+rand = "0.8.4"
+rayon = "1.5.1"
 anyhow = "1.0"

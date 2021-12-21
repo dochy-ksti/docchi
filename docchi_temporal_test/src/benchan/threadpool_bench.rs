@@ -3,8 +3,8 @@ use test::Bencher;
 use rand::Rng;
 use std::sync::Arc;
 
-static VEC_LEN : usize = 10;
-static INNER_LEN : usize = 1_000_000;
+static VEC_LEN : usize = 2;
+static INNER_LEN : usize = 5_000_000;
 
 fn vec64() -> Vec<Vec<u8>>{
     let mut bv = Vec::new();
@@ -89,75 +89,53 @@ fn bench_pool(b : &mut Bencher){
 
 static ATOM: AtomicI64 = AtomicI64::new(0);
 
+
+
 //static VEC_LEN : usize = 100_000;
-// static INNER_LEN : usize = 100;
-//-3010000000
-// test benchan::threadpool_bench::bench_pool ... bench:  35,291,230 ns/iter (+/- 3,092,987)
-// -6020000000
-// test benchan::threadpool_bench::bench_st   ... bench:   9,004,800 ns/iter (+/- 172,166)
+//static INNER_LEN : usize = 100;
+//-2986452770
+// test benchan::threadpool_bench::bench_pool ... bench:  34,644,190 ns/iter (+/- 1,735,788)
+// -11925531456
+// test benchan::threadpool_bench::bench_st   ... bench:   8,289,375 ns/iter (+/- 461,029)
 
-// static VEC_LEN : usize = 10_000;
-// static INNER_LEN : usize = 1000;
-// -9010000000
-// test benchan::threadpool_bench::bench_pool ... bench:   5,283,245 ns/iter (+/- 466,750)
-// -18020000000
-// test benchan::threadpool_bench::bench_st   ... bench:   6,371,420 ns/iter (+/- 173,987)
+//static VEC_LEN : usize = 10_000;
+// static INNER_LEN : usize = 1_000;
+//-8939476928
+// test benchan::threadpool_bench::bench_pool ... bench:   4,498,805 ns/iter (+/- 518,372)
+// -17879566536
+// test benchan::threadpool_bench::bench_st   ... bench:   7,072,615 ns/iter (+/- 201,394)
 
-// static VEC_LEN : usize = 1_000;
-// static INNER_LEN : usize = 10000;
-// -9010000000
-// test benchan::threadpool_bench::bench_pool ... bench:   4,292,455 ns/iter (+/- 226,315)
-// -18020000000
-// test benchan::threadpool_bench::bench_st   ... bench:   5,943,635 ns/iter (+/- 157,499)
+//static VEC_LEN : usize = 1_000;
+// static INNER_LEN : usize = 10_000;
+//-20844945440
+// test benchan::threadpool_bench::bench_pool ... bench:   2,458,767 ns/iter (+/- 263,929)
+// -29785004414
+// test benchan::threadpool_bench::bench_st   ... bench:   6,758,105 ns/iter (+/- 172,024)
 
-// static VEC_LEN : usize = 100;
+//static VEC_LEN : usize = 100;
 // static INNER_LEN : usize = 100_000;
-// -9010000000
-// test benchan::threadpool_bench::bench_pool ... bench:   4,129,780 ns/iter (+/- 168,445)
-// -18020000000
-// test benchan::threadpool_bench::bench_st   ... bench:   5,944,530 ns/iter (+/- 187,824)
+//-20845554730
+// test benchan::threadpool_bench::bench_pool ... bench:   2,062,895 ns/iter (+/- 272,761)
+// -29784975796
+// test benchan::threadpool_bench::bench_st   ... bench:   6,748,885 ns/iter (+/- 139,985)
 
-// static VEC_LEN : usize = 10;
+//static VEC_LEN : usize = 10;
 // static INNER_LEN : usize = 1_000_000;
-// -9010000000
-// test benchan::threadpool_bench::bench_pool ... bench:   4,058,960 ns/iter (+/- 287,905)
-// -18020000000
-// test benchan::threadpool_bench::bench_st   ... bench:   5,982,230 ns/iter (+/- 534,526)
+//-20845235378
+// test benchan::threadpool_bench::bench_pool ... bench:   2,074,070 ns/iter (+/- 115,883)
+// -29785198846
+// test benchan::threadpool_bench::bench_st   ... bench:   6,755,415 ns/iter (+/- 187,608)
 
-// static VEC_LEN : usize = 4;
-// static INNER_LEN : usize = 2_500_000;
-// -9010000000
-// test benchan::threadpool_bench::bench_pool ... bench:   4,058,940 ns/iter (+/- 478,486)
-// -18020000000
-// test benchan::threadpool_bench::bench_st   ... bench:   5,972,505 ns/iter (+/- 193,141)
+//static VEC_LEN : usize = 4;
+//static INNER_LEN : usize = 2_500_000;
+//-20846390928
+// test benchan::threadpool_bench::bench_pool ... bench:   2,066,365 ns/iter (+/- 245,362)
+// -29785784964
+// test benchan::threadpool_bench::bench_st   ... bench:   6,732,140 ns/iter (+/- 188,267)
 
-// static VEC_LEN : usize = 1;
-// static INNER_LEN : usize = 10_000_000;
-// -9010000000
-// test benchan::threadpool_bench::bench_pool ... bench:   5,824,540 ns/iter (+/- 175,283)
-// -18020000000
-// test benchan::threadpool_bench::bench_st   ... bench:   5,979,925 ns/iter (+/- 143,011)
-
-// Vec<u8>に変更
-// static VEC_LEN : usize = 100;
-// static INNER_LEN : usize = 100_000;
-// -20846021152
-// test benchan::threadpool_bench::bench_pool ... bench:   1,825,120 ns/iter (+/- 192,431)
-// -29785193542
-// test benchan::threadpool_bench::bench_st   ... bench:   6,216,150 ns/iter (+/- 106,515)
-// やはりメモリ転送がボトルネックになってマルチスレッド化の効果が出ていなかった
-
-// static VEC_LEN : usize = 4;
-// static INNER_LEN : usize = 2_500_000;
-// -20844739542
-// test benchan::threadpool_bench::bench_pool ... bench:   1,675,912 ns/iter (+/- 150,170)
-// -29783816426
-// test benchan::threadpool_bench::bench_st   ... bench:   6,200,145 ns/iter (+/- 117,933)
-
-// static VEC_LEN : usize = 10;
-// static INNER_LEN : usize = 1_000_000;
-// -2986482268
-// test benchan::threadpool_bench::bench_pool ... bench:   2,004,320 ns/iter (+/- 526,821)
-// -5972969954
-// test benchan::threadpool_bench::bench_st   ... bench:   6,204,840 ns/iter (+/- 160,441)
-// 4コアだから、10スレッドだと割り切れなくて遅くなるね・・・
+//static VEC_LEN : usize = 2;
+// static INNER_LEN : usize = 5_000_000;
+//-8939822912
+// test benchan::threadpool_bench::bench_pool ... bench:   3,406,975 ns/iter (+/- 148,196)
+// -17879236770
+// test benchan::threadpool_bench::bench_st   ... bench:   6,745,165 ns/iter (+/- 513,804)

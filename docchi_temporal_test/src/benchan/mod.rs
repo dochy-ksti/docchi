@@ -1,2 +1,2 @@
-//mod benchanmark;
+mod benchanmark;
 mod threadpool_bench;
