@@ -92,6 +92,8 @@ static ATOM: AtomicI64 = AtomicI64::new(0);
 //1 task あたり約340nsかかる 1/3 micro second
 //非力な環境を考えて1 micro secondと換算してもよいだろう
 
+//対して thread spawn すると 100 micro secondぐらいかかるので300倍のオーバーヘッドと考えていいだろう
+
 //static VEC_LEN : usize = 100_000;
 //static INNER_LEN : usize = 100;
 //-2986452770
