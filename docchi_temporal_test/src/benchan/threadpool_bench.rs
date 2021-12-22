@@ -3,8 +3,8 @@ use test::Bencher;
 use rand::Rng;
 use std::sync::Arc;
 
-static VEC_LEN : usize = 2;
-static INNER_LEN : usize = 5_000_000;
+static VEC_LEN : usize = 100000;
+static INNER_LEN : usize = 2;
 
 fn vec64() -> Vec<Vec<u8>>{
     let mut bv = Vec::new();
@@ -89,7 +89,8 @@ fn bench_pool(b : &mut Bencher){
 
 static ATOM: AtomicI64 = AtomicI64::new(0);
 
-
+//1 task あたり約340nsかかる 1/3 micro second
+//非力な環境を考えて1 micro secondと換算してもよいだろう
 
 //static VEC_LEN : usize = 100_000;
 //static INNER_LEN : usize = 100;
