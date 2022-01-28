@@ -109,7 +109,7 @@ static ATOM: AtomicI64 = AtomicI64::new(0);
 // test benchan::threadpool_bench::bench_st   ... bench:   7,072,615 ns/iter (+/- 201,394)
 
 //static VEC_LEN : usize = 1_000;
-// static INNER_LEN : usize = 10_000;
+// static INNER_LEN : usize = 10_000; //10000アイテムあれば概ねOKな感じであろうか
 //-20844945440
 // test benchan::threadpool_bench::bench_pool ... bench:   2,458,767 ns/iter (+/- 263,929)
 // -29785004414
