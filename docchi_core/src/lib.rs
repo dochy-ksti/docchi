@@ -11,7 +11,7 @@ mod testing;
 pub static JSON_ARC_OPT : Lazy<ArchiveOptions> = Lazy::new(|| {
     ArchiveOptionsBuilder::new()
         .add_extension("json5")
-        .archive_subfolders(false)
+        .archive_subfolders(true)
         .build().unwrap()
 });
 
