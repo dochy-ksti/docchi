@@ -32,7 +32,5 @@ impl RootValue{
     }
 }
 
-birudo dekinaku suruyo
 
-aaa
 
