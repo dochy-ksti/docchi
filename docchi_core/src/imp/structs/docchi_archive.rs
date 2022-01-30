@@ -3,6 +3,7 @@ use crate::error::CoreResult;
 use docchi_archiver2::{ArchiveData, write_archive};
 use std::io::Write;
 use crate::imp::json_to_rust::roots::archive_data_to_root::archive_to_root;
+use crate::imp::structs::rust_list::ConstItem;
 
 pub struct DocchiArchive {
     pub(crate) data : ArchiveData<CoreResult<ArchivingItem>>
@@ -26,4 +27,6 @@ impl DocchiArchive {
 pub(crate) enum ArchivingItem{
     Root(RootObject),
     Item((String, RootValue, Option<RootSabValue>)),
+    TableItem((String,ConstItem))
 }
+
