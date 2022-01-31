@@ -74,57 +74,7 @@ impl TmpList{
 
         Ok(ConstTable::new(self.default.unwrap(), to_data_items(self.vec)?, old))
     }
-    // pub(crate) fn into_inner_data(self) -> Result<InnerData>{
-    //     if self.compatible.is_some(){
-    //         Err(format!("{} Compatible is not needed for Data {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     if self.default.is_some(){
-    //         Err(format!("{} Default must not be defined {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     if self.next_id.is_some(){
-    //         Err(format!("{} NextID must not be defined {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     let old = self.old.unwrap_or_else(|| HashSt::new());
-    //
-    //     Ok(InnerData::new(to_data_items(self.vec)?, old))
-    // }
 
-    // pub(crate) fn into_mut_list(self) -> Result<MutList>{
-    //     if self.old.is_some(){
-    //         Err(format!("{} Old is not needed for MutList {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     if self.default.is_none(){
-    //         Err(format!("{} Default must be defined {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     // mut_listのときだけnext_idを消す処理が難しいしめんどいので無視してしまう・・・
-    //     //if self.next_id.is_some(){
-    //       //  Err(format!("{} NextID is not needed for MutList {}", self.span.line_str(), self.span.slice()))?
-    //     //}
-    //     if self.vec.len() != 0{
-    //         Err(format!("{} MutList must not have items {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     let compatible = self.compatible.unwrap_or_else(|| HashSt::new());
-    //     Ok(MutList::new(self.default.unwrap(),LinkedMap::new(), compatible))
-    // }
-    //
-    // pub(crate) fn into_inner_mut_list(self) -> Result<MutInnerList>{
-    //     if self.compatible.is_some(){
-    //         Err(format!("{} Compatible is not needed for InnerMutList {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     if self.old.is_some(){
-    //         Err(format!("{} Old is not needed for InnerMutList {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     if self.default.is_some(){
-    //         Err(format!("{} Default must not be defined {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     if self.next_id.is_some(){
-    //         Err(format!("{} NextID is not needed for InnerMutList {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     if self.vec.len() != 0{
-    //         Err(format!("{} InnerMutList must not have items {}", self.span.line_str(), self.span.slice()))?
-    //     }
-    //     Ok(MutInnerList::new(LinkedMap::new()))
-    // }
 
 
     pub(crate) fn into_mut_list(self, undefiable : bool) -> CoreResult<(MutListDef, Option<MutListVal>)>{

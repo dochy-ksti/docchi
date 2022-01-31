@@ -101,8 +101,27 @@ impl TmpObj{
         self.default.insert(s, (id,v));
     }
 
-    pub(crate) fn into_list_item(self) -> CoreResult<ConstItem>{
 
+
+    pub(crate) fn into_mut_list_item(self, id : usize) -> CoreResult<(u64, MutItem)>{
+        let id = match self.id {
+            Some(IdValue::Num(id)) => id,
+            Some(_) =>{
+                Err(format!("{} Mut List's item's ID must be a number {}", self.span.line_str(), self.span.slice()))?
+            },
+            None => id as u64,
+        };
+
+        if self.old.len() != 0{
+            Err(format!("{} Old is not needed for a mut item {}", self.span.line_str(), self.span.slice()))?
+        }
+        if self.refs.old.len() != 0{
+            Err(format!("{} Old is not needed for a mut item {}", self.refs.span.line_str(), self.refs.span.slice()))?
+        }
+
+        Ok((id, MutItem::new(to_list_sab_map(self.default, &self.span)?, to_ref_sab_map(self.refs.map))))
+    }
+    pub(crate) fn into_list_item(self) -> CoreResult<ConstItem>{
         if self.id.is_some(){
             Err(format!("{} ID is not needed for a list item {}", self.span.line_str(), self.span.slice()))?
         }
@@ -112,7 +131,6 @@ impl TmpObj{
         if self.refs.old.len() != 0{
             Err(format!("{} Old is not needed for a list item {}", self.refs.span.line_str(), self.refs.span.slice()))?
         }
-
         Ok(ConstItem::new(to_list_sab_map(self.default, &self.span)?, to_ref_sab_map(self.refs.map)))
     }
 
@@ -134,25 +152,6 @@ impl TmpObj{
                 Err(format!("{} ID must be a string {}", self.span.line_str(), self.span.slice()))?
             }
         }
-    }
-
-    pub(crate) fn into_mut_list_item(self, id : usize) -> CoreResult<(u64, MutItem)>{
-        let id = match self.id {
-            Some(IdValue::Num(id)) => id,
-            Some(_) =>{
-                Err(format!("{} Mut List's item's ID must be a number {}", self.span.line_str(), self.span.slice()))?
-            },
-            None => id as u64,
-        };
-
-        if self.old.len() != 0{
-            Err(format!("{} Old is not needed for a mut item {}", self.span.line_str(), self.span.slice()))?
-        }
-        if self.refs.old.len() != 0{
-            Err(format!("{} Old is not needed for a mut item {}", self.refs.span.line_str(), self.refs.span.slice()))?
-        }
-
-        Ok((id, MutItem::new(to_list_sab_map(self.default, &self.span)?, to_ref_sab_map(self.refs.map))))
     }
 }
 

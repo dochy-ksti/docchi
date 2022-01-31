@@ -4,6 +4,7 @@ use crate::error::CoreResult;
 
 use crate::imp::structs::root_obj::RootObject;
 use std::path::Path;
+use std::sync::Arc;
 use docchi_archiver2::read_archive_data_from_directory;
 use crate::JSON_ARC_OPT;
 use crate::imp::json_to_rust::validation::validate_root::validate_root;
@@ -27,7 +28,9 @@ pub fn json_dir_to_root<P : AsRef<Path>>(dir_path : P, validation : bool) -> Cor
 }
 
 pub(crate) fn json_dir_to_archive<P : AsRef<Path>>(dir_path : P) -> CoreResult<DocchiArchive>{
-    let data = read_archive_data_from_directory(dir_path, &JSON_ARC_OPT, json_file_to_rust)?;
+    let dir_path = dir_path.as_ref();
+    let data = read_archive_data_from_directory(dir_path, &JSON_ARC_OPT,
+                                                    json_file_to_rust)?;
     for (_name,item) in data.btree(){
         if let Err(e) = item.converted_data(){
             Err(format!("{}", e))?

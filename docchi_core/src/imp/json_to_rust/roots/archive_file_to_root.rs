@@ -2,10 +2,10 @@ use crate::error::CoreResult;
 use crate::structs::RootObject;
 use std::io::Read;
 use crate::imp::json_to_rust::validation::validate_root::validate_root;
-use crate::imp::json_to_rust::roots::json_file_to_rust::json_file_to_rust;
 use crate::imp::json_to_rust::roots::archive_data_to_root::archive_data_to_root_with_hash;
 use std::path::Path;
 use std::fs::File;
+use crate::imp::json_to_rust::roots::json_file_to_rust::json_file_to_rust;
 
 pub fn read_archive_to_root_with_hash<R : Read>(r : &mut R, validation : bool) -> CoreResult<(RootObject, u128)>{
     let data = docchi_archiver2::read_archive(json_file_to_rust, r)?;
