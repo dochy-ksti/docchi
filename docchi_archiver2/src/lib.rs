@@ -1,5 +1,5 @@
-#![deny(unreachable_pub)]
-#![deny(unused_crate_dependencies)]
+#![warn(unreachable_pub)]
+#![warn(unused_crate_dependencies)]
 
 mod imp;
 #[cfg(test)]

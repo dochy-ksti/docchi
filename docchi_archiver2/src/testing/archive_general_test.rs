@@ -8,6 +8,7 @@ use once_cell::sync::Lazy;
 pub(crate) static JSON_ARC_OPT : Lazy<ArchiveOptions> = Lazy::new(|| {
     ArchiveOptionsBuilder::new()
         .add_extension("json5")
+        .add_extension("txt")
         .archive_subfolders(true)
         .build().unwrap()
 });
@@ -19,7 +20,7 @@ fn hoge<'a, T:Send + 'static>(f : impl Fn(&'a [u8]) -> T + Send + Sync + 'static
 #[test]
 fn archive_test() -> ArcResult<()>{
     let archive_data : ArchiveData<()> = read_archive_data_from_directory(
-        "./src/json/simple",
+        "./src/json/general",
         &*JSON_ARC_OPT,
         |_name, _dat| (),
 
@@ -31,6 +32,7 @@ fn archive_test() -> ArcResult<()>{
     write_archive(&archive_data, &mut buf)?;
     let read : ArchiveData<()> = read_archive(|_name, _slice| (), &mut buf.as_slice())?;
     for (path, dat) in archive_data.btree(){
+        dbg!(path);
         let got = read.btree().get(path).ok_or("error")?;
         assert_eq!(got.raw_data(), dat.raw_data());
     }
