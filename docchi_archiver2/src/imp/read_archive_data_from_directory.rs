@@ -1,4 +1,4 @@
-use std::path::{Path, PathBuf};
+use std::path::{Path};
 use crate::{ArcResult, ArchiveOptions};
 use crate::imp::structs::archiver::Archiver;
 use std::collections::BTreeSet;
@@ -52,9 +52,15 @@ fn get_paths_from_dir<P1 : AsRef<Path>, P2 : AsRef<Path>>(root_path : P1, rel_pa
 }
 
 fn get_joined_path_str(rel_path : &Path, name : &OsStr) -> String{
-    let mut path = String::with_capacity(rel_path.as_os_str().len() + name.len() + 1);
-    path.push_str(rel_path.to_string_lossy().as_ref());
-    path.push('/');
-    path.push_str(name.to_string_lossy().as_ref());
-    path
+    let rel_len = rel_path.as_os_str().len();
+    if rel_len == 0{
+        return name.to_string_lossy().to_string();
+    } else {
+        let mut path = String::with_capacity(rel_len + name.len() + 1);
+
+        path.push_str(rel_path.to_string_lossy().as_ref());
+        path.push('/');
+        path.push_str(name.to_string_lossy().as_ref());
+        path
+    }
 }

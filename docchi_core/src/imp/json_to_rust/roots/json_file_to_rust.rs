@@ -2,7 +2,7 @@ use crate::error::CoreResult;
 use std::str::from_utf8;
 use std::path::Path;
 use docchi_json5::JVal;
-use crate::imp::json_to_rust::json_name::{json_name_re, NameType};
+use crate::imp::json_to_rust::json_name::{json_name_re, NameType, json_simple_name};
 use crate::imp::json_to_rust::{json_item_str_to_rust, json_root_to_rust};
 use crate::imp::json_to_rust::json_obj_to_rust::json_obj_to_rust;
 use crate::imp::json_to_rust::names::Names;
@@ -71,11 +71,15 @@ fn direct(path :&Path, s : &str) -> CoreResult<ArchivingItem>{
 fn indirect(path : &Path, s : &str) -> CoreResult<ArchivingItem>{
     let parent_name = path.parent().unwrap().file_name().unwrap().to_string_lossy().to_string();
     let filename = path.file_name().unwrap().to_string_lossy().to_string();
+    if json_simple_name(&filename).is_none(){
+        Err(format!("filename {} is not a valid name", filename))?
+    }
     if let JVal::Map(map, span) = docchi_json5::from_str(s)?{
         let obj = json_obj_to_rust(&map, false, &span, &Names::new(&parent_name))?;
         let item = obj.into_list_item()?;
-        return Ok(ArchivingItem::TableItem((parent_name, filename, item)));
+        return Ok(ArchivingItem::TableItem((filename, item)));
     } else{
+
         Err(format!("{}.{}: Invalid Json5", parent_name, filename))?
     }
 

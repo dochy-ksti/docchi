@@ -28,6 +28,14 @@ impl ConstTable {
     pub(crate) fn default(&self) -> &ListDefObj{ self.default.as_ref() }
     pub(crate) fn list(&self) -> &HashM<String, ConstItem>{ self.list.as_ref() }
     pub(crate) fn old(&self) -> &HashS<String>{ self.old.as_ref() }
+    pub(crate) fn deconstruct(self) ->(Box<ListDefObj>, Box<HashM<String, ConstItem>>, Box<HashS<String>>){
+        (self.default, self.list, self.old)
+    }
+    pub(crate) fn construct(default : Box<ListDefObj>,
+                            list : Box<HashM<String, ConstItem>>,
+                            old :Box<HashS<String>>) -> Self{
+        Self{ default, list, old }
+    }
 }
 
 ///IDを持たず、参照できない。バージョン違い読み出し時の動作の違いが一番大きな違いで、それが存在理由。

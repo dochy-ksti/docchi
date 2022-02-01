@@ -1,0 +1,6 @@
+{
+  num : 10,
+  Ref : {
+    some_table : "a2",
+  }
+}

@@ -1,9 +1,12 @@
 use docchi_archiver2::ArchiveData;
 use crate::error::{CoreResult};
-use crate::structs::{ RootObject};
+use crate::structs::{RootObject, RootValue, RootSabValue, ListDefObj};
 use crate::imp::json_to_rust::construct_root::construct_root;
 use crate::imp::structs::docchi_archive::{ArchivingItem, DocchiArchive};
 use crate::imp::json_to_rust::validation::validate_root::validate_root;
+use crate::HashM;
+use crate::imp::structs::rust_list::ConstItem;
+use crate::imp::structs::util::hash_m::HashS;
 
 pub fn archive_to_root(archive : DocchiArchive, validation : bool) -> CoreResult<RootObject>{
     let (root, _hash) = archive_data_to_root_with_hash(archive.data)?;
@@ -17,40 +20,40 @@ pub(crate) fn archive_data_to_root_with_hash(data : ArchiveData<CoreResult<Archi
     -> CoreResult<(RootObject, u128)> {
     let hash = data.hash();
     let mut tree = data.deconstruct();
-    let root: CoreResult<RootObject> = (|| {
-        let key =
-            if let Some((key, _)) = tree.iter().find(|(_key, val)| {
-                if let Ok(ArchivingItem::Root(_)) = val.converted_data() {
-                    true
-                } else {
-                    false
-                }
-            }) {
-                key.to_string()
-            } else {
-                Err("couldn't find root.json5")?
-            };
+    let item = if let Some(item) = tree.remove("root.json5"){
+        item
+    } else{
+        Err("root.json5 couldn't be found")?
+    };
+    let (item, _) = item.deconstruct();
+    let root = match item? {
+        ArchivingItem::Root(root) => root,
+        _ => unreachable!(),
+    };
 
-        let item = tree.remove(&key).unwrap();
-        let (item, _) = item.deconstruct();
-
-        if let Ok(ArchivingItem::Root(root)) = item {
-            return Ok(root)
-        } else {
-            unreachable!()
-        }
-    })();
-    let root = root?;
 
     let mut vec = Vec::with_capacity(tree.len());
-    for (_path, val) in tree {
+    for (path, val) in tree {
         let (item, _) = val.deconstruct();
         match item {
             Ok(ArchivingItem::Item((name, val, sab))) =>{
-                vec.push((name, val, sab));
+                match val{
+                    RootValue::Table(table) => {
+                        let (def, list, old) = table.deconstruct();
+                        vec.push(TItem::Table((name, def, list, old)));
+                    }
+                    _ =>{ vec.push(TItem::Item((name, val, sab))); }
+                }
             },
-            Ok(ArchivingItem::TableItem((parent, id, item))) =>{
-
+            Ok(ArchivingItem::TableItem((id, item))) =>{
+                //path順に並べると、hoge.json5 hoge/huga.json5...となり、.と/はASCIIコード表で隣同士なので、
+                //validな名前としてその間に入り込める可能性はない。なのでTableとTableItemは連続する、
+                //というかなりナイーブな実装になっている。しかしそうしないと微妙に手間のかかる処理になって気持ち悪い(実害はないと思うが
+                if let Some(TItem::Table((_name, _def,list,_old))) = vec.last_mut(){
+                    list.insert(id, item);
+                } else{
+                    Err(format!("{} corresponding table couldn't be found", path))?
+                }
             },
             Err(e) =>{ return Err(e); }
             _ => { Err("Multiple Root?")? } //Rootが複数なければここにはこれない・・・
@@ -59,4 +62,9 @@ pub(crate) fn archive_data_to_root_with_hash(data : ArchiveData<CoreResult<Archi
 
     let root = construct_root(root, vec)?;
     return Ok((root, hash));
+}
+
+pub(crate) enum TItem{
+    Item((String, RootValue, Option<RootSabValue>)),
+    Table((String, Box<ListDefObj>, Box<HashM<String, ConstItem>>, Box<HashS<String>>))
 }
