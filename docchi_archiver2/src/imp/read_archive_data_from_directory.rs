@@ -1,7 +1,8 @@
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use crate::{ArcResult, ArchiveOptions};
 use crate::imp::structs::archiver::Archiver;
 use std::collections::BTreeSet;
+use std::ffi::OsStr;
 use crate::imp::structs::archive_data::ArchiveData;
 
 pub fn read_archive_data_from_directory<
@@ -37,17 +38,23 @@ fn get_paths_from_dir<P1 : AsRef<Path>, P2 : AsRef<Path>>(root_path : P1, rel_pa
             let ext = path.extension().map_or("", |e| e.to_str().unwrap_or(""));
             if opt.is_archived(ext){
                 if let Some(filename) = path.file_name() {
-                    let rel = rel_path.join(filename);
-                    btree.insert(rel.to_string_lossy().to_string());
+                    btree.insert(get_joined_path_str(rel_path, filename));
                 }
             }
         } else if meta.is_dir(){
             if opt.archive_subfolders(){
-                let rel = rel_path.join(de.file_name());
+                let rel = get_joined_path_str(rel_path, &de.file_name());
                 get_paths_from_dir(root_path, &rel,  opt, btree)?;
-
             }
         }
     }
     Ok(())
+}
+
+fn get_joined_path_str(rel_path : &Path, name : &OsStr) -> String{
+    let mut path = String::with_capacity(rel_path.as_os_str().len() + name.len() + 1);
+    path.push_str(rel_path.to_string_lossy().as_ref());
+    path.push('/');
+    path.push_str(name.to_string_lossy().as_ref());
+    path
 }

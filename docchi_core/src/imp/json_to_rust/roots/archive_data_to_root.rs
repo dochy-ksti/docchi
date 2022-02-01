@@ -48,7 +48,10 @@ pub(crate) fn archive_data_to_root_with_hash(data : ArchiveData<CoreResult<Archi
         match item {
             Ok(ArchivingItem::Item((name, val, sab))) =>{
                 vec.push((name, val, sab));
-            }
+            },
+            Ok(ArchivingItem::TableItem((parent, id, item))) =>{
+
+            },
             Err(e) =>{ return Err(e); }
             _ => { Err("Multiple Root?")? } //Rootが複数なければここにはこれない・・・
         }

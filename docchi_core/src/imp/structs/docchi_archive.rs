@@ -27,6 +27,6 @@ impl DocchiArchive {
 pub(crate) enum ArchivingItem{
     Root(RootObject),
     Item((String, RootValue, Option<RootSabValue>)),
-    TableItem((String,ConstItem))
+    TableItem((String,String,ConstItem))
 }
 

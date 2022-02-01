@@ -4,7 +4,6 @@ use crate::error::CoreResult;
 
 use crate::imp::structs::root_obj::RootObject;
 use std::path::Path;
-use std::sync::Arc;
 use docchi_archiver2::read_archive_data_from_directory;
 use crate::JSON_ARC_OPT;
 use crate::imp::json_to_rust::validation::validate_root::validate_root;

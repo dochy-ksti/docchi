@@ -3,6 +3,7 @@ use regex::Captures;
 //use lazy_static::lazy_static;
 use crate::imp::structs::var_type::VarType;
 use once_cell::sync::Lazy;
+use crate::CoreResult;
 
 pub(crate) enum SystemNames{
     Old,
@@ -32,6 +33,9 @@ pub(crate) fn json_name(s : &str) -> Option<NameType>{
 
     let (vt, name) = value_type_and_name(s)?;
     return Some(NameType::Name(name, vt))
+}
+pub(crate) fn json_name_re(s : &str) -> CoreResult<NameType>{
+    Ok(json_name(s).ok_or_else(|| format!("{} is not a valid json_name", s))?)
 }
 
 ///?とか！がついておらず大文字で始まらない普通の名前
