@@ -77,9 +77,8 @@ fn indirect(path : &Path, s : &str) -> CoreResult<ArchivingItem>{
     if let JVal::Map(map, span) = docchi_json5::from_str(s)?{
         let obj = json_obj_to_rust(&map, false, &span, &Names::new(&parent_name))?;
         let item = obj.into_list_item()?;
-        return Ok(ArchivingItem::TableItem((filename, item)));
+        return Ok(ArchivingItem::TableItem((parent_name, filename, item)));
     } else{
-
         Err(format!("{}.{}: Invalid Json5", parent_name, filename))?
     }
 

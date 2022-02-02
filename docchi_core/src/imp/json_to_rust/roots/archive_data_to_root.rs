@@ -45,12 +45,16 @@ pub(crate) fn archive_data_to_root_with_hash(data : ArchiveData<CoreResult<Archi
                     _ =>{ vec.push(TItem::Item((name, val, sab))); }
                 }
             },
-            Ok(ArchivingItem::TableItem((id, item))) =>{
+            Ok(ArchivingItem::TableItem((parent, id, item))) =>{
                 //path順に並べると、hoge.json5 hoge/huga.json5...となり、.と/はASCIIコード表で隣同士なので、
                 //validな名前としてその間に入り込める可能性はない。なのでTableとTableItemは連続する、
                 //というかなりナイーブな実装になっている。しかしそうしないと微妙に手間のかかる処理になって気持ち悪い(実害はないと思うが
-                if let Some(TItem::Table((_name, _def,list,_old))) = vec.last_mut(){
-                    list.insert(id, item);
+                if let Some(TItem::Table((name, _def,list,_old))) = vec.last_mut(){
+                    if parent.eq(name) {
+                        list.insert(id, item);
+                    } else{
+                        Err(format!("{} corresponding table couldn't be found", path))?
+                    }
                 } else{
                     Err(format!("{} corresponding table couldn't be found", path))?
                 }
