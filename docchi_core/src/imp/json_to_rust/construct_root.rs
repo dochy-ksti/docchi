@@ -14,11 +14,9 @@ pub(crate) fn construct_root(root : RootObject, vec : Vec<TItem>) -> CoreResult<
     let default = Arc::make_mut(&mut default_v).def_mut();
     let mut sabun_v = sabun_v;
     let sabun = Arc::make_mut(&mut sabun_v);
-    println!("default v {}", default.len());
     for item in vec {
         match item {
             TItem::Item((name, value, sab)) => {
-                println!("item {}", name);
                 let id = default.len();
                 default.insert(name.to_string(), (id, value));
                 if let Some(sab) = sab {
@@ -26,7 +24,6 @@ pub(crate) fn construct_root(root : RootObject, vec : Vec<TItem>) -> CoreResult<
                 }
             },
             TItem::Table((name, def, list, old)) =>{
-                println!("table {}", name);
                 let id = default.len();
                 let root = RootValue::Table(ConstTable::construct(def, list, old));
                 default.insert(name, (id, root));
@@ -34,7 +31,6 @@ pub(crate) fn construct_root(root : RootObject, vec : Vec<TItem>) -> CoreResult<
         }
     }
     let meta = MetaTable::from_root(default_v.def());
-    println!("default v {}", default_v.len());
     let root = RootObject::construct(default_v, sabun_v, old, Arc::new(meta));
 
     // if validation{
