@@ -16,16 +16,16 @@ pub enum RootValue{
 
 impl RootValue{
 
-    pub fn into_rust_value(self, sab : RootSabValue) -> CoreResult<RustValue>{
+    pub fn into_rust_value(self, sab : Option<RootSabValue>) -> CoreResult<RustValue>{
         match self{
             RootValue::Param(p,v) => Ok(RustValue::Param(p,v)),
             RootValue::Table(d) => Ok(RustValue::Table(d)),
             RootValue::CList(d) => Ok(RustValue::CList(d)),
             RootValue::MList(d) =>{
-                if let RootSabValue::Mut(m) = sab {
-                    Ok(RustValue::MList((d, m)))
-                } else{
-                    Err("unmatched Mut List")?
+                match sab {
+                    Some(RootSabValue::Mut(m)) => Ok(RustValue::MList((d, m))),
+                    Some(_) => Err("unmatched Mut List")?,
+                    None => Ok(RustValue::MList((d, None))),
                 }
             }
         }

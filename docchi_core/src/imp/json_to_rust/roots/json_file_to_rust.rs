@@ -70,16 +70,16 @@ fn direct(path :&Path, s : &str) -> CoreResult<ArchivingItem>{
 
 fn indirect(path : &Path, s : &str) -> CoreResult<ArchivingItem>{
     let parent_name = path.parent().unwrap().file_name().unwrap().to_string_lossy().to_string();
-    let filename = path.file_name().unwrap().to_string_lossy().to_string();
-    if json_simple_name(&filename).is_none(){
-        Err(format!("filename {} is not a valid name", filename))?
+    let file_stem = path.file_stem().unwrap().to_string_lossy().to_string();
+    if json_simple_name(&file_stem).is_none(){
+        Err(format!("filename {} is not a valid name", file_stem))?
     }
     if let JVal::Map(map, span) = docchi_json5::from_str(s)?{
         let obj = json_obj_to_rust(&map, false, &span, &Names::new(&parent_name))?;
         let item = obj.into_list_item()?;
-        return Ok(ArchivingItem::TableItem((parent_name, filename, item)));
+        return Ok(ArchivingItem::TableItem((parent_name, file_stem, item)));
     } else{
-        Err(format!("{}.{}: Invalid Json5", parent_name, filename))?
+        Err(format!("{}.{}: Invalid Json5", parent_name, file_stem))?
     }
 
 }

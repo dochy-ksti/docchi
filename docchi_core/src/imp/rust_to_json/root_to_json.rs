@@ -31,7 +31,9 @@ pub fn root_to_json_new_default(obj : &RootObject) -> CoreResult<Value> {
             }
         } else{
             if let Some(sab) = sabun.remove(&name) {
-                result.insert(name, val.into_rust_value(sab)?);
+                result.insert(name, val.into_rust_value(Some(sab))?);
+            } else{
+                result.insert(name, val.into_rust_value(None)?);
             }
         }
     }
