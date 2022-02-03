@@ -1,3 +1,5 @@
+pub use docchi_fs::{FsResult, FsError};
+
 pub mod common{
     pub use docchi_fs::common::CurrentSrc;
 
@@ -63,4 +65,5 @@ pub mod filesys{
     pub use docchi_fs::filesys::force_update_and_get_info_us;
     pub use docchi_fs::filesys::SaveDirInfo;
 }
+
 

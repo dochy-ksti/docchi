@@ -3,6 +3,7 @@ pub use docchi_core::json_dir_to_root;
 //pub use docchi_core::json_files_to_root;
 pub use docchi_core::adjust_versions;
 pub use docchi_core::intf;
+pub use docchi_core::{CoreResult, CoreError};
 //
 // pub use docchi_core::HashMt;
 // pub use docchi_core::HashM;

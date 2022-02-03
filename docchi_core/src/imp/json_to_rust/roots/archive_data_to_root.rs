@@ -20,9 +20,11 @@ pub(crate) fn archive_data_to_root_with_hash(data : ArchiveData<CoreResult<Archi
     -> CoreResult<(RootObject, u128)> {
     let hash = data.hash();
     let mut tree = data.deconstruct();
+    eprintln!("{:?}", tree.keys());
     let item = if let Some(item) = tree.remove("root.json5"){
         item
     } else{
+
         Err("root.json5 couldn't be found")?
     };
     let (item, _) = item.deconstruct();
