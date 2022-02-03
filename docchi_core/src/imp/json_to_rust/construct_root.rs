@@ -14,7 +14,6 @@ pub(crate) fn construct_root(root : RootObject, vec : Vec<TItem>) -> CoreResult<
     let default = Arc::make_mut(&mut default_v).def_mut();
     let mut sabun_v = sabun_v;
     let sabun = Arc::make_mut(&mut sabun_v);
-
     for item in vec {
         match item {
             TItem::Item((name, value, sab)) => {
