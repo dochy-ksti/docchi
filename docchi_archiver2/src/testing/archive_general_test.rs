@@ -31,9 +31,9 @@ fn archive_test() -> ArcResult<()>{
     let mut buf = Vec::new();
     write_archive(&archive_data, &mut buf)?;
     let read : ArchiveData<()> = read_archive(|_name, _slice| (), &mut buf.as_slice())?;
-    for (path, dat) in archive_data.btree(){
+    for (path, dat) in read.btree(){
         dbg!(path);
-        let got = read.btree().get(path).ok_or("error")?;
+        let got = archive_data.btree().get(path).ok_or("error")?;
         assert_eq!(got.raw_data(), dat.raw_data());
     }
 
