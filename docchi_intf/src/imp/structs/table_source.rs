@@ -84,82 +84,82 @@ impl TableSource {
         sb.push(1, &format!("pub fn new(ptr : TablePtr) -> {}{{ {}{{ ptr }} }} ",
                            &data_type_name, &data_type_name));
 
-        // for key in &self.keys {
-        //     let key_name = key.key_name();
-        //     sb.push(1,&format!("pub unsafe fn {}_us(&self) -> {} {{", &key_name, &item_type_name));
-        //     sb.push(2,&format!("let ptr = table::get_value(self.ptr, \"{}\").unwrap();", &key.key));
-        //     sb.push(2, &format!("{}::from(ptr)", &item_type_name));
-        //     sb.push(1, "}");
-        //
-        //     sb.push(1,&format!("pub fn {}(&self) -> CItemConst<{}> {{", &key_name, &item_type_name));
-        //     sb.push(2,&format!("let ptr = table::get_value(self.ptr, \"{}\").unwrap();", &key.key));
-        //     sb.push(2,&format!("CItemConst::new({}::from(ptr), self)", &item_type_name));
-        //     sb.push(1, "}");
-        // }
-        //
-        // if self.keys.len() != 0 {
-        //     sb.push(1,&format!("pub unsafe fn get_by_id_us(&self, id : {}) -> {}{{", &ids_type_name, &item_type_name));
-        //     sb.push(2,"match id{");
-        //
-        //     for key in &self.keys {
-        //          sb.push(3,&format!("{}::{} => self.{}_us(),", &ids_type_name, &key.enum_name(), &key.key_name()));
-        //     }
-        //     sb.push(2, "}");
-        //     sb.push(1, "}");
-        //
-        //     sb.push(1,&format!("pub fn get_by_id(&self, id : {}) -> CItemConst<{}>{{", &ids_type_name, &item_type_name));
-        //     sb.push(2,"CItemConst::new(unsafe{ self.get_by_id_us(id) }, self)");
-        //     sb.push(1, "}");
-        // }
+        for key in &self.keys {
+            let key_name = key.key_name();
+            sb.push(1,&format!("pub unsafe fn {}_us(&self) -> {} {{", &key_name, &item_type_name));
+            sb.push(2,&format!("let ptr = table::get_value(self.ptr, \"{}\").unwrap();", &key.key));
+            sb.push(2, &format!("{}::from(ptr)", &item_type_name));
+            sb.push(1, "}");
+
+            sb.push(1,&format!("pub fn {}(&self) -> CItemConst<{}> {{", &key_name, &item_type_name));
+            sb.push(2,&format!("let ptr = table::get_value(self.ptr, \"{}\").unwrap();", &key.key));
+            sb.push(2,&format!("CItemConst::new({}::from(ptr), self)", &item_type_name));
+            sb.push(1, "}");
+        }
+
+        if self.keys.len() != 0 {
+            sb.push(1,&format!("pub unsafe fn get_by_id_us(&self, id : {}) -> {}{{", &ids_type_name, &item_type_name));
+            sb.push(2,"match id{");
+
+            for key in &self.keys {
+                 sb.push(3,&format!("{}::{} => self.{}_us(),", &ids_type_name, &key.enum_name(), &key.key_name()));
+            }
+            sb.push(2, "}");
+            sb.push(1, "}");
+
+            sb.push(1,&format!("pub fn get_by_id(&self, id : {}) -> CItemConst<{}>{{", &ids_type_name, &item_type_name));
+            sb.push(2,"CItemConst::new(unsafe{ self.get_by_id_us(id) }, self)");
+            sb.push(1, "}");
+        }
 
         sb.push(0, "}");
 
 
-        // sb.append(&format!("#[repr(u64)] pub enum {}{{ ", &ids_type_name));
-        // for key in &self.keys{
-        //     sb.append(&format!("{}, ", &key.enum_name()))
-        // }
-        // sb.push(0, "}");
-        // sb.push(0, &format!("impl {}{{", &ids_type_name));
-        // sb.push(1, &format!("pub fn from_str(id : &str) -> Option<Self>{{"));
-        // sb.push(2, &format!("match id{{"));
-        // for key in &self.keys {
-        //     sb.push(3, &format!(r#""{}" => Some(Self::{}),"#, &key.key, &key.enum_name()));
-        // }
-        //
-        // sb.push(3, "_ =>{ None }");
-        // sb.push(2, "}");
-        // sb.push(1, "}");
-        // sb.push(1, &format!("pub fn from_num(id : usize) -> Self{{"));
-        // sb.push(2, &format!("match id{{"));
-        // for (id, key) in self.keys.iter().enumerate() {
-        //     sb.push(3, &format!("{} => Self::{},", id, key.enum_name()));
-        // }
-        // sb.push(3, &format!("_ => panic!(\"invalid ID num {{}} {}\", id),", &ids_type_name));
-        // sb.push(2, "}");
-        // sb.push(1, "}");
-        // sb.push(1, &format!("pub fn len() -> usize{{ {} }}", self.keys.len()));
-        // sb.push(1, &format!("pub fn to_num(&self) -> usize{{"));
-        // sb.push(2, &format!("match self{{"));
-        // for (i, key) in self.keys.iter().enumerate() {
-        //     sb.push(3, &format!(r#"{}::{} => {},"#, &ids_type_name, &key.enum_name(), i));
-        // }
-        // sb.push(2, "}");
-        // sb.push(1, "}");
-        // sb.push(1, &format!("pub fn metadata() -> &'static [&'static str]{{"));
-        // let mut s = format!("&[");
-        // for key in &self.keys {
-        //     s.push_str("\"");
-        //     s.push_str(&key.key);
-        //     s.push_str("\", ");
-        // }
-        // s.push_str("]");
-        // sb.push(2, &s);
-        // sb.push(1, "}");
-        // sb.push(1, "pub fn to_str(&self) -> &'static str{");
-        // sb.push(2, "Self::metadata()[self.to_num()]");
-        // sb.push(1, "}");
-        // sb.push(0,"}");
+        sb.append(&format!("#[repr(u64)] pub enum {}{{ ", &ids_type_name));
+        for key in &self.keys{
+            sb.append(&format!("{}, ", &key.enum_name()))
+        }
+        sb.push(0, "}");
+        sb.push(0, &format!("impl {}{{", &ids_type_name));
+        sb.push(1, &format!("pub fn from_str(id : &str) -> Option<Self>{{"));
+        sb.push(2, &format!("match id{{"));
+        for key in &self.keys {
+            sb.push(3, &format!(r#""{}" => Some(Self::{}),"#, &key.key, &key.enum_name()));
+        }
+
+        sb.push(3, "_ =>{ None }");
+        sb.push(2, "}");
+        sb.push(1, "}");
+        sb.push(1, &format!("pub fn from_num(id : usize) -> Self{{"));
+        sb.push(2, &format!("match id{{"));
+        for (id, key) in self.keys.iter().enumerate() {
+            sb.push(3, &format!("{} => Self::{},", id, key.enum_name()));
+        }
+        sb.push(3, &format!("_ => panic!(\"invalid ID num {{}} {}\", id),", &ids_type_name));
+        sb.push(2, "}");
+        sb.push(1, "}");
+        sb.push(1, &format!("pub fn len() -> usize{{ {} }}", self.keys.len()));
+        sb.push(1, &format!("pub fn to_num(&self) -> usize{{"));
+        sb.push(2, &format!("match self{{"));
+        for (i, key) in self.keys.iter().enumerate() {
+            sb.push(3, &format!(r#"{}::{} => {},"#, &ids_type_name, &key.enum_name(), i));
+        }
+        sb.push(2, "}");
+        sb.push(1, "}");
+        sb.push(1, &format!("pub fn metadata() -> &'static [&'static str]{{"));
+        let mut s = format!("&[");
+        for key in &self.keys {
+            s.push_str("\"");
+            s.push_str(&key.key);
+            s.push_str("\", ");
+        }
+        s.push_str("]");
+        sb.push(2, &s);
+        sb.push(1, "}");
+        sb.push(1, "pub fn to_str(&self) -> &'static str{");
+        sb.push(2, "Self::metadata()[self.to_num()]");
+        sb.push(1, "}");
+        sb.push(0,"}");
 
         sb.push_without_newline(0, &self.item_source.to_string());
         sb.to_string()
