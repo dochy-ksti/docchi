@@ -5,10 +5,10 @@ use std::hash::Hash;
 // 固定のHasherに変える
 
 
-pub type HashM<K,V> = fnv::FnvHashMap<K,V>;
+pub type HashM<K,V> = rustc_hash::FxHashMap<K,V>;
 //pub type LinkedM<K,V> = LinkedHashMap<K, V, FnvBuildHasher>;
 
-pub(crate) type HashS<K> = fnv::FnvHashSet<K>;
+pub(crate) type HashS<K> = rustc_hash::FxHashSet<K>;
 
 
 pub struct HashMt{}
