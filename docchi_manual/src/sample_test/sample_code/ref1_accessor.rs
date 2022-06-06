@@ -70,14 +70,6 @@ pub struct TableATable {
 }
 impl TableATable {
 	pub fn new(ptr : TablePtr) -> TableATable{ TableATable{ ptr } } 
-	pub unsafe fn item2_us(&self) -> TableACItem {
-		let ptr = table::get_value(self.ptr, "item2").unwrap();
-		TableACItem::from(ptr)
-	}
-	pub fn item2(&self) -> CItemConst<TableACItem> {
-		let ptr = table::get_value(self.ptr, "item2").unwrap();
-		CItemConst::new(TableACItem::from(ptr), self)
-	}
 	pub unsafe fn item1_us(&self) -> TableACItem {
 		let ptr = table::get_value(self.ptr, "item1").unwrap();
 		TableACItem::from(ptr)
@@ -86,41 +78,49 @@ impl TableATable {
 		let ptr = table::get_value(self.ptr, "item1").unwrap();
 		CItemConst::new(TableACItem::from(ptr), self)
 	}
+	pub unsafe fn item2_us(&self) -> TableACItem {
+		let ptr = table::get_value(self.ptr, "item2").unwrap();
+		TableACItem::from(ptr)
+	}
+	pub fn item2(&self) -> CItemConst<TableACItem> {
+		let ptr = table::get_value(self.ptr, "item2").unwrap();
+		CItemConst::new(TableACItem::from(ptr), self)
+	}
 	pub unsafe fn get_by_id_us(&self, id : TableATableID) -> TableACItem{
 		match id{
-			TableATableID::Item2 => self.item2_us(),
 			TableATableID::Item1 => self.item1_us(),
+			TableATableID::Item2 => self.item2_us(),
 		}
 	}
 	pub fn get_by_id(&self, id : TableATableID) -> CItemConst<TableACItem>{
 		CItemConst::new(unsafe{ self.get_by_id_us(id) }, self)
 	}
 }
-#[repr(u64)] pub enum TableATableID{ Item2, Item1, }
+#[repr(u64)] pub enum TableATableID{ Item1, Item2, }
 impl TableATableID{
 	pub fn from_str(id : &str) -> Option<Self>{
 		match id{
-			"item2" => Some(Self::Item2),
 			"item1" => Some(Self::Item1),
+			"item2" => Some(Self::Item2),
 			_ =>{ None }
 		}
 	}
 	pub fn from_num(id : usize) -> Self{
 		match id{
-			0 => Self::Item2,
-			1 => Self::Item1,
+			0 => Self::Item1,
+			1 => Self::Item2,
 			_ => panic!("invalid ID num {} TableATableID", id),
 		}
 	}
 	pub fn len() -> usize{ 2 }
 	pub fn to_num(&self) -> usize{
 		match self{
-			TableATableID::Item2 => 0,
-			TableATableID::Item1 => 1,
+			TableATableID::Item1 => 0,
+			TableATableID::Item2 => 1,
 		}
 	}
 	pub fn metadata() -> &'static [&'static str]{
-		&["item2", "item1", ]
+		&["item1", "item2", ]
 	}
 	pub fn to_str(&self) -> &'static str{
 		Self::metadata()[self.to_num()]

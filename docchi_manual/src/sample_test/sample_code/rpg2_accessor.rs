@@ -17,10 +17,6 @@ impl RootIntf{
     pub fn root_obj_ref_mut(&mut self) -> &mut RootObject{ self.root.as_mut() }
     pub fn deconstruct(self) -> RootObject{ *self.root }
 
-	pub fn sword(&self) -> CTableConst<SwordTable>{
-		let t = SwordTable::new(root::get_table(self.ptr.def(), "sword").unwrap());
-		CTableConst::new(t, self)
-	}
 	pub fn pc_list(&self) -> MListConst<PcListMItem>{
 		let mil = root::get_mlist_const(self.ptr, "pcList").unwrap().unwrap();
 		MListConst::new(mil, self)
@@ -33,96 +29,11 @@ impl RootIntf{
 		let t = HerbTable::new(root::get_table(self.ptr.def(), "herb").unwrap());
 		CTableConst::new(t, self)
 	}
-}
-#[derive(Debug, PartialEq)]
-pub struct SwordTable {
-	ptr : TablePtr,
-}
-impl SwordTable {
-	pub fn new(ptr : TablePtr) -> SwordTable{ SwordTable{ ptr } } 
-	pub unsafe fn iron_us(&self) -> SwordCItem {
-		let ptr = table::get_value(self.ptr, "iron").unwrap();
-		SwordCItem::from(ptr)
-	}
-	pub fn iron(&self) -> CItemConst<SwordCItem> {
-		let ptr = table::get_value(self.ptr, "iron").unwrap();
-		CItemConst::new(SwordCItem::from(ptr), self)
-	}
-	pub unsafe fn bronze_us(&self) -> SwordCItem {
-		let ptr = table::get_value(self.ptr, "bronze").unwrap();
-		SwordCItem::from(ptr)
-	}
-	pub fn bronze(&self) -> CItemConst<SwordCItem> {
-		let ptr = table::get_value(self.ptr, "bronze").unwrap();
-		CItemConst::new(SwordCItem::from(ptr), self)
-	}
-	pub unsafe fn get_by_id_us(&self, id : SwordTableID) -> SwordCItem{
-		match id{
-			SwordTableID::Iron => self.iron_us(),
-			SwordTableID::Bronze => self.bronze_us(),
-		}
-	}
-	pub fn get_by_id(&self, id : SwordTableID) -> CItemConst<SwordCItem>{
-		CItemConst::new(unsafe{ self.get_by_id_us(id) }, self)
+	pub fn sword(&self) -> CTableConst<SwordTable>{
+		let t = SwordTable::new(root::get_table(self.ptr.def(), "sword").unwrap());
+		CTableConst::new(t, self)
 	}
 }
-#[repr(u64)] pub enum SwordTableID{ Iron, Bronze, }
-impl SwordTableID{
-	pub fn from_str(id : &str) -> Option<Self>{
-		match id{
-			"iron" => Some(Self::Iron),
-			"bronze" => Some(Self::Bronze),
-			_ =>{ None }
-		}
-	}
-	pub fn from_num(id : usize) -> Self{
-		match id{
-			0 => Self::Iron,
-			1 => Self::Bronze,
-			_ => panic!("invalid ID num {} SwordTableID", id),
-		}
-	}
-	pub fn len() -> usize{ 2 }
-	pub fn to_num(&self) -> usize{
-		match self{
-			SwordTableID::Iron => 0,
-			SwordTableID::Bronze => 1,
-		}
-	}
-	pub fn metadata() -> &'static [&'static str]{
-		&["iron", "bronze", ]
-	}
-	pub fn to_str(&self) -> &'static str{
-		Self::metadata()[self.to_num()]
-	}
-}
-#[derive(Debug, PartialEq, Clone, Copy)]
-pub struct SwordCItem {
-	ptr : CItemPtr,
-}
-impl From<CItemPtr> for SwordCItem {
-	fn from(ptr : CItemPtr) -> Self { Self{ ptr } }
-}
-impl SwordCItem {
-	pub fn attack(&self) -> i64{
-		let qv = citem::get_int(self.ptr, "attack").unwrap();
-		qv.into_value().unwrap()
-	}
-	pub fn attack_def_val(&self) -> i64{
-		let qv = citem::get_int_def(self.ptr, "attack").unwrap();
-		qv.into_value().unwrap()
-	}
-	pub fn price(&self) -> i64{
-		let qv = citem::get_int(self.ptr, "price").unwrap();
-		qv.into_value().unwrap()
-	}
-	pub fn price_def_val(&self) -> i64{
-		let qv = citem::get_int_def(self.ptr, "price").unwrap();
-		qv.into_value().unwrap()
-	}
-	
-}
-
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub struct PcListMItem {
 	ptr : MItemPtr,
@@ -272,12 +183,101 @@ impl From<CItemPtr> for HerbCItem {
 	fn from(ptr : CItemPtr) -> Self { Self{ ptr } }
 }
 impl HerbCItem {
+	pub fn price(&self) -> i64{
+		let qv = citem::get_int(self.ptr, "price").unwrap();
+		qv.into_value().unwrap()
+	}
+	pub fn price_def_val(&self) -> i64{
+		let qv = citem::get_int_def(self.ptr, "price").unwrap();
+		qv.into_value().unwrap()
+	}
 	pub fn restore(&self) -> i64{
 		let qv = citem::get_int(self.ptr, "restore").unwrap();
 		qv.into_value().unwrap()
 	}
 	pub fn restore_def_val(&self) -> i64{
 		let qv = citem::get_int_def(self.ptr, "restore").unwrap();
+		qv.into_value().unwrap()
+	}
+	
+}
+
+#[derive(Debug, PartialEq)]
+pub struct SwordTable {
+	ptr : TablePtr,
+}
+impl SwordTable {
+	pub fn new(ptr : TablePtr) -> SwordTable{ SwordTable{ ptr } } 
+	pub unsafe fn bronze_us(&self) -> SwordCItem {
+		let ptr = table::get_value(self.ptr, "bronze").unwrap();
+		SwordCItem::from(ptr)
+	}
+	pub fn bronze(&self) -> CItemConst<SwordCItem> {
+		let ptr = table::get_value(self.ptr, "bronze").unwrap();
+		CItemConst::new(SwordCItem::from(ptr), self)
+	}
+	pub unsafe fn iron_us(&self) -> SwordCItem {
+		let ptr = table::get_value(self.ptr, "iron").unwrap();
+		SwordCItem::from(ptr)
+	}
+	pub fn iron(&self) -> CItemConst<SwordCItem> {
+		let ptr = table::get_value(self.ptr, "iron").unwrap();
+		CItemConst::new(SwordCItem::from(ptr), self)
+	}
+	pub unsafe fn get_by_id_us(&self, id : SwordTableID) -> SwordCItem{
+		match id{
+			SwordTableID::Bronze => self.bronze_us(),
+			SwordTableID::Iron => self.iron_us(),
+		}
+	}
+	pub fn get_by_id(&self, id : SwordTableID) -> CItemConst<SwordCItem>{
+		CItemConst::new(unsafe{ self.get_by_id_us(id) }, self)
+	}
+}
+#[repr(u64)] pub enum SwordTableID{ Bronze, Iron, }
+impl SwordTableID{
+	pub fn from_str(id : &str) -> Option<Self>{
+		match id{
+			"bronze" => Some(Self::Bronze),
+			"iron" => Some(Self::Iron),
+			_ =>{ None }
+		}
+	}
+	pub fn from_num(id : usize) -> Self{
+		match id{
+			0 => Self::Bronze,
+			1 => Self::Iron,
+			_ => panic!("invalid ID num {} SwordTableID", id),
+		}
+	}
+	pub fn len() -> usize{ 2 }
+	pub fn to_num(&self) -> usize{
+		match self{
+			SwordTableID::Bronze => 0,
+			SwordTableID::Iron => 1,
+		}
+	}
+	pub fn metadata() -> &'static [&'static str]{
+		&["bronze", "iron", ]
+	}
+	pub fn to_str(&self) -> &'static str{
+		Self::metadata()[self.to_num()]
+	}
+}
+#[derive(Debug, PartialEq, Clone, Copy)]
+pub struct SwordCItem {
+	ptr : CItemPtr,
+}
+impl From<CItemPtr> for SwordCItem {
+	fn from(ptr : CItemPtr) -> Self { Self{ ptr } }
+}
+impl SwordCItem {
+	pub fn attack(&self) -> i64{
+		let qv = citem::get_int(self.ptr, "attack").unwrap();
+		qv.into_value().unwrap()
+	}
+	pub fn attack_def_val(&self) -> i64{
+		let qv = citem::get_int_def(self.ptr, "attack").unwrap();
 		qv.into_value().unwrap()
 	}
 	pub fn price(&self) -> i64{

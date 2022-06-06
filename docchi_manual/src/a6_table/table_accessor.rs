@@ -17,10 +17,6 @@ impl RootIntf{
     pub fn root_obj_ref_mut(&mut self) -> &mut RootObject{ self.root.as_mut() }
     pub fn deconstruct(self) -> RootObject{ *self.root }
 
-	pub fn table2(&self) -> CTableConst<Table2Table>{
-		let t = Table2Table::new(root::get_table(self.ptr.def(), "table2").unwrap());
-		CTableConst::new(t, self)
-	}
 	pub fn mlist(&self) -> MListConst<MlistMItem>{
 		let mil = root::get_mlist_const(self.ptr, "mlist").unwrap().unwrap();
 		MListConst::new(mil, self)
@@ -28,6 +24,10 @@ impl RootIntf{
 	pub fn mlist_mut(&mut self) -> MListMut<MlistMItem>{
 		let mil = root::get_mlist_mut(self.ptr, "mlist").unwrap();
 		MListMut::new(mil, self)
+	}
+	pub fn table2(&self) -> CTableConst<Table2Table>{
+		let t = Table2Table::new(root::get_table(self.ptr.def(), "table2").unwrap());
+		CTableConst::new(t, self)
 	}
 	pub fn a_list(&self) -> CListConst<AListCItem>{
 		CListConst::new(root::get_clist(self.ptr, "a_list").unwrap(), self)
@@ -37,20 +37,46 @@ impl RootIntf{
 		CTableConst::new(t, self)
 	}
 }
+#[derive(Debug, PartialEq, Clone, Copy)]
+pub struct MlistMItem {
+	ptr : MItemPtr,
+}
+impl From<MItemPtr> for MlistMItem {
+	fn from(ptr : MItemPtr) -> Self {
+		Self{ ptr }
+	}
+}
+impl MlistMItem {
+	pub fn ref_table1(&self) -> Table1CItem{
+		let qv = mitem::get_ref(self.ptr, "table1").unwrap();
+		Table1CItem::from(qv.into_value().unwrap())
+	}
+	pub fn ref_id_table1(&self) -> &String{
+		let qv = mitem::get_ref_id(self.ptr, "table1").unwrap();
+		qv.into_value().unwrap()
+	}
+	pub fn ref_table2(&self) -> NullOr<Table2CItem>{
+		let qv = mitem::get_ref(self.ptr, "table2").unwrap();
+		NullOr::from_qv(qv).unwrap().map(|p| Table2CItem::from(p))
+	}
+	pub fn ref_id_table2(&self) -> NullOr<&String>{
+		let qv = mitem::get_ref_id(self.ptr, "table2").unwrap();
+		NullOr::from_qv(qv).unwrap()
+	}
+	pub fn set_ref_table1(&mut self, id : Table1TableID){
+		mitem::set_ref(self.ptr, "table1", Qv::Val(id.to_str().to_string()));
+	}
+	pub fn set_ref_table2(&mut self, id : NullOr<Table2TableID>){
+		mitem::set_ref(self.ptr, "table2", id.into_qv().map(|v| v.to_str().to_string()));
+	}
+}
+
 #[derive(Debug, PartialEq)]
 pub struct Table2Table {
 	ptr : TablePtr,
 }
 impl Table2Table {
 	pub fn new(ptr : TablePtr) -> Table2Table{ Table2Table{ ptr } } 
-	pub unsafe fn a_us(&self) -> Table2CItem {
-		let ptr = table::get_value(self.ptr, "a").unwrap();
-		Table2CItem::from(ptr)
-	}
-	pub fn a(&self) -> CItemConst<Table2CItem> {
-		let ptr = table::get_value(self.ptr, "a").unwrap();
-		CItemConst::new(Table2CItem::from(ptr), self)
-	}
 	pub unsafe fn b_us(&self) -> Table2CItem {
 		let ptr = table::get_value(self.ptr, "b").unwrap();
 		Table2CItem::from(ptr)
@@ -59,41 +85,49 @@ impl Table2Table {
 		let ptr = table::get_value(self.ptr, "b").unwrap();
 		CItemConst::new(Table2CItem::from(ptr), self)
 	}
+	pub unsafe fn a_us(&self) -> Table2CItem {
+		let ptr = table::get_value(self.ptr, "a").unwrap();
+		Table2CItem::from(ptr)
+	}
+	pub fn a(&self) -> CItemConst<Table2CItem> {
+		let ptr = table::get_value(self.ptr, "a").unwrap();
+		CItemConst::new(Table2CItem::from(ptr), self)
+	}
 	pub unsafe fn get_by_id_us(&self, id : Table2TableID) -> Table2CItem{
 		match id{
-			Table2TableID::A => self.a_us(),
 			Table2TableID::B => self.b_us(),
+			Table2TableID::A => self.a_us(),
 		}
 	}
 	pub fn get_by_id(&self, id : Table2TableID) -> CItemConst<Table2CItem>{
 		CItemConst::new(unsafe{ self.get_by_id_us(id) }, self)
 	}
 }
-#[repr(u64)] pub enum Table2TableID{ A, B, }
+#[repr(u64)] pub enum Table2TableID{ B, A, }
 impl Table2TableID{
 	pub fn from_str(id : &str) -> Option<Self>{
 		match id{
-			"a" => Some(Self::A),
 			"b" => Some(Self::B),
+			"a" => Some(Self::A),
 			_ =>{ None }
 		}
 	}
 	pub fn from_num(id : usize) -> Self{
 		match id{
-			0 => Self::A,
-			1 => Self::B,
+			0 => Self::B,
+			1 => Self::A,
 			_ => panic!("invalid ID num {} Table2TableID", id),
 		}
 	}
 	pub fn len() -> usize{ 2 }
 	pub fn to_num(&self) -> usize{
 		match self{
-			Table2TableID::A => 0,
-			Table2TableID::B => 1,
+			Table2TableID::B => 0,
+			Table2TableID::A => 1,
 		}
 	}
 	pub fn metadata() -> &'static [&'static str]{
-		&["a", "b", ]
+		&["b", "a", ]
 	}
 	pub fn to_str(&self) -> &'static str{
 		Self::metadata()[self.to_num()]
@@ -114,40 +148,6 @@ impl Table2CItem {
 	pub fn ref_id_table1(&self) -> &String{
 		let qv = citem::get_ref_id(self.ptr, "table1").unwrap();
 		qv.into_value().unwrap()
-	}
-}
-
-#[derive(Debug, PartialEq, Clone, Copy)]
-pub struct MlistMItem {
-	ptr : MItemPtr,
-}
-impl From<MItemPtr> for MlistMItem {
-	fn from(ptr : MItemPtr) -> Self {
-		Self{ ptr }
-	}
-}
-impl MlistMItem {
-	pub fn ref_table2(&self) -> NullOr<Table2CItem>{
-		let qv = mitem::get_ref(self.ptr, "table2").unwrap();
-		NullOr::from_qv(qv).unwrap().map(|p| Table2CItem::from(p))
-	}
-	pub fn ref_id_table2(&self) -> NullOr<&String>{
-		let qv = mitem::get_ref_id(self.ptr, "table2").unwrap();
-		NullOr::from_qv(qv).unwrap()
-	}
-	pub fn ref_table1(&self) -> Table1CItem{
-		let qv = mitem::get_ref(self.ptr, "table1").unwrap();
-		Table1CItem::from(qv.into_value().unwrap())
-	}
-	pub fn ref_id_table1(&self) -> &String{
-		let qv = mitem::get_ref_id(self.ptr, "table1").unwrap();
-		qv.into_value().unwrap()
-	}
-	pub fn set_ref_table2(&mut self, id : NullOr<Table2TableID>){
-		mitem::set_ref(self.ptr, "table2", id.into_qv().map(|v| v.to_str().to_string()));
-	}
-	pub fn set_ref_table1(&mut self, id : Table1TableID){
-		mitem::set_ref(self.ptr, "table1", Qv::Val(id.to_str().to_string()));
 	}
 }
 
@@ -183,14 +183,6 @@ pub struct Table1Table {
 }
 impl Table1Table {
 	pub fn new(ptr : TablePtr) -> Table1Table{ Table1Table{ ptr } } 
-	pub unsafe fn item2_us(&self) -> Table1CItem {
-		let ptr = table::get_value(self.ptr, "item2").unwrap();
-		Table1CItem::from(ptr)
-	}
-	pub fn item2(&self) -> CItemConst<Table1CItem> {
-		let ptr = table::get_value(self.ptr, "item2").unwrap();
-		CItemConst::new(Table1CItem::from(ptr), self)
-	}
 	pub unsafe fn item1_us(&self) -> Table1CItem {
 		let ptr = table::get_value(self.ptr, "item1").unwrap();
 		Table1CItem::from(ptr)
@@ -199,41 +191,49 @@ impl Table1Table {
 		let ptr = table::get_value(self.ptr, "item1").unwrap();
 		CItemConst::new(Table1CItem::from(ptr), self)
 	}
+	pub unsafe fn item2_us(&self) -> Table1CItem {
+		let ptr = table::get_value(self.ptr, "item2").unwrap();
+		Table1CItem::from(ptr)
+	}
+	pub fn item2(&self) -> CItemConst<Table1CItem> {
+		let ptr = table::get_value(self.ptr, "item2").unwrap();
+		CItemConst::new(Table1CItem::from(ptr), self)
+	}
 	pub unsafe fn get_by_id_us(&self, id : Table1TableID) -> Table1CItem{
 		match id{
-			Table1TableID::Item2 => self.item2_us(),
 			Table1TableID::Item1 => self.item1_us(),
+			Table1TableID::Item2 => self.item2_us(),
 		}
 	}
 	pub fn get_by_id(&self, id : Table1TableID) -> CItemConst<Table1CItem>{
 		CItemConst::new(unsafe{ self.get_by_id_us(id) }, self)
 	}
 }
-#[repr(u64)] pub enum Table1TableID{ Item2, Item1, }
+#[repr(u64)] pub enum Table1TableID{ Item1, Item2, }
 impl Table1TableID{
 	pub fn from_str(id : &str) -> Option<Self>{
 		match id{
-			"item2" => Some(Self::Item2),
 			"item1" => Some(Self::Item1),
+			"item2" => Some(Self::Item2),
 			_ =>{ None }
 		}
 	}
 	pub fn from_num(id : usize) -> Self{
 		match id{
-			0 => Self::Item2,
-			1 => Self::Item1,
+			0 => Self::Item1,
+			1 => Self::Item2,
 			_ => panic!("invalid ID num {} Table1TableID", id),
 		}
 	}
 	pub fn len() -> usize{ 2 }
 	pub fn to_num(&self) -> usize{
 		match self{
-			Table1TableID::Item2 => 0,
-			Table1TableID::Item1 => 1,
+			Table1TableID::Item1 => 0,
+			Table1TableID::Item2 => 1,
 		}
 	}
 	pub fn metadata() -> &'static [&'static str]{
-		&["item2", "item1", ]
+		&["item1", "item2", ]
 	}
 	pub fn to_str(&self) -> &'static str{
 		Self::metadata()[self.to_num()]

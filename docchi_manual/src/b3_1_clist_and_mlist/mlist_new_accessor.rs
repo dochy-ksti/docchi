@@ -36,17 +36,6 @@ impl From<MItemPtr> for MlistMItem {
 	}
 }
 impl MlistMItem {
-	pub fn qux(&self) -> i64{
-		let qv = mitem::get_int(self.ptr, "qux").unwrap();
-		qv.into_value().unwrap()
-	}
-	pub fn qux_def_val(&self) -> i64{
-		let qv = mitem::get_int_def(self.ptr, "qux").unwrap();
-		qv.into_value().unwrap()
-	}
-	pub fn set_qux(&mut self, qux : i64){
-		mitem::set_int(self.ptr, "qux", Qv::Val(qux));
-	}
 	pub fn baz(&self) -> i64{
 		let qv = mitem::get_int(self.ptr, "baz").unwrap();
 		qv.into_value().unwrap()
@@ -57,6 +46,17 @@ impl MlistMItem {
 	}
 	pub fn set_baz(&mut self, baz : i64){
 		mitem::set_int(self.ptr, "baz", Qv::Val(baz));
+	}
+	pub fn qux(&self) -> i64{
+		let qv = mitem::get_int(self.ptr, "qux").unwrap();
+		qv.into_value().unwrap()
+	}
+	pub fn qux_def_val(&self) -> i64{
+		let qv = mitem::get_int_def(self.ptr, "qux").unwrap();
+		qv.into_value().unwrap()
+	}
+	pub fn set_qux(&mut self, qux : i64){
+		mitem::set_int(self.ptr, "qux", Qv::Val(qux));
 	}
 	
 	
